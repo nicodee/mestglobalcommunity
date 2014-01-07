@@ -1,0 +1,223 @@
+{% if action== "view"%}
+<!-- =====================Opened Job Item======================= -->
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="pull-left">Uploaded by: {{username}}</div>
+            {% if job.job_status == "Available" %}
+                <div class="pull-right">
+                    <span class="label label-success">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% else %}
+                <div class="pull-right">
+                    <span class="label label-important">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+                <div class="form-horizontal">  
+                    <fieldset class="">  
+                      <br>
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Job Title</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge" id="input01" readonly="true" value="{{job.job_title}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Hiring Company</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge" id="input01" readonly="true" value="{{job.hiring_company}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Deadline</label>  
+                        <div class="controls">  
+                          <input type="date" class="input-xlarge" id="input01" readonly="true" value="{{job.deadline}}">   
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Description</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10" readonly="true" value="{{job.deadline}}">{{job.job_description}}</textarea>
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Requirements</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10" readonly="true" value="{{job.job_requirements}}">{{job.job_requirements}}</textarea>
+                        </div>  
+                      </div> 
+                      <div class="form-actions">  
+                        {% if access == "granted" %}
+                        <button type="submit" class="btn btn-primary delete-job" data-job-id="{{job.key().id()}}">Delete job</button>  
+                        {% elif access == "denied" %}
+                        <button type="submit" class="btn btn-primary delete-job" data-job-id="{{job.key().id()}}" disabled >Delete job</button> 
+                        {% endif %} 
+                        <a href="/jobs" class="btn">Back</a>  
+                      </div>  
+                    </fieldset>  
+                </div>  
+            </div>
+            
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div> 
+
+{% elif action == "edit" and access=="granted"%}
+<!-- =====================Opened Job Item======================= -->
+<div class="row-fluid edit">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="pull-left">Uploaded by: {{username}}</div>
+            {% if job.job_status == "Available" %}
+                <div class="pull-right">
+                    <span class="label label-success">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% else %}
+                <div class="pull-right">
+                    <span class="label label-important">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+                <div class="form-horizontal">  
+                    <fieldset class="">  
+                      <br>
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Job Title</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge title" id="input01"  required="true" value="{{job.job_title}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Hiring Company</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge hiring-company" id="input01"  required="true" value="{{job.hiring_company}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Deadline</label>  
+                        <div class="controls">  
+                          <input type="date" class="input-xlarge deadline" id="input01"  required="true" value="{{job.deadline}}">   
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Description</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10"  required="true" value="{{job.deadline}}" class="description">{{job.job_description}}</textarea>    
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Requirements</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10" required="true" value="{{job.job_requirements}}" class="requirements">{{job.job_requirements}}</textarea>
+                        </div>  
+                      </div> 
+                      <div class="form-actions">  
+                        <button type="submit" class="btn btn-primary save-edited-job" data-job-id="{{job.key().id()}}">Save changes</button>  
+                        <a href="/jobs" class="btn">Cancel</a>  
+                      </div>  
+                    </fieldset>  
+                </div>  
+            </div>
+            
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div> 
+
+{% elif action=="edit" and access=="denied" %}
+    <div class="alert alert-error alert-block">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <h4 class="alert-heading">Access denied!</h4>
+      You do not have permission to edit this job posting.
+    </div>
+    <div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="pull-left">Uploaded by: {{username}}</div>
+            {% if job.job_status == "Available" %}
+                <div class="pull-right">
+                    <span class="label label-success">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% else %}
+                <div class="pull-right">
+                    <span class="label label-important">
+                        {{job.job_status}}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+                <div class="form-horizontal">  
+                    <fieldset class="">  
+                      <br>
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Job Title</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge" id="input01" readonly="true" value="{{job.job_title}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Hiring Company</label>  
+                        <div class="controls">  
+                          <input type="text" class="input-xlarge" id="input01" readonly="true" value="{{job.hiring_company}}">  
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Deadline</label>  
+                        <div class="controls">  
+                          <input type="date" class="input-xlarge" id="input01" readonly="true" value="{{job.deadline}}">   
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Description</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10" readonly="true" value="{{job.deadline}}">{{job.job_description}}</textarea>
+                        </div>  
+                      </div>  
+                      <div class="control-group">  
+                        <label class="control-label" for="input01">Requirements</label>  
+                        <div class="controls" >  
+                            <textarea name="" id="" cols="60" rows="10" readonly="true" value="{{job.job_requirements}}">{{job.job_requirements}}</textarea>
+                        </div>  
+                      </div> 
+                      <div class="form-actions">  
+                        <a href="/jobs" class="btn">Back</a>  
+                      </div>  
+                    </fieldset>  
+                </div>  
+            </div>
+            
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div> 
+{% endif %}

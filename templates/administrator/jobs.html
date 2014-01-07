@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Jobs</title>
+        <!-- Bootstrap -->
+
+        <link href="../../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/admin/assets/styles.css" rel="stylesheet" media="screen">
+        <!-- <link href="../../scripts/admin/vendors/jGrowl/jquery.jgrowl.css" rel="stylesheet" media="screen"> -->
+
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="../../scripts/admin/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top navbar-inverse">
+             <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Jobs</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>  {{user.first_name}} {{user.last_name}}<i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a tabindex="-1" href="/signout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="/admin"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/admin/entrepreneur" id="admin-entrepreneur"><i class="icon-chevron-right"></i> Entrepreneur </a>
+                        </li>
+                        <li>
+                            <a href="/admin/mentor" id="admin-mentor"><i class="icon-chevron-right"></i> Mentor </a>
+                        </li>
+                        <li>
+                            <a href="/admin/freelance  "><i class="icon-chevron-right"></i> Freelancers</a>
+                        </li>
+                        <li class="active">
+                            <a href="/jobs"><i class="icon-chevron-right"></i>Jobs</a>
+                        </li>
+                        <li>
+                            <a href="/admin/resources  "><i class="icon-chevron-right"></i> Resources</a>
+                        </li>
+                        <li>
+                            <a href="/search  "><i class="icon-chevron-right"></i> Search </a>
+                        </li>
+                         <li>
+                            <a href="/messages  "><i class="icon-chevron-right"></i> Message Center </a>
+                        </li>
+                        <li>
+                            <a href="/admin/mailinglist" id="admin-entrepreneur"><i class="icon-chevron-right"></i> Mailing List </a>
+                        </li>     
+                    </ul>
+                </div>
+
+                <div class="span9" id="content">
+                    
+                <!-- =====================Uploaded Jobs(Available)======================= -->
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="pull-left">Available</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{jobs.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+                                    {% if jobs.count()>0 %}
+                                    <table class="table table-striped available-job-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Company</th>
+                                                <th>Uploaded by</th>
+                                                <th>Status</th>
+                                                <th>Date uploaded</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for job in jobs %}
+                                            <tr class="job">
+                                                {% set count = count+1 %}
+                                                <td class="small-font">
+                                                    {{count}}
+                                                </td>
+                                                <td class="small-font">
+                                                    <a  class="job-item" data-job-id="{{job.key().id()}}" onclick="">{{job.job_title}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a class="job-item" data-job-id="{{job.key().id()}}" onclick="">{{job.hiring_company}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a  class="job-item" data-job-id="{{job.key().id()}}" onclick="" data-toggle="modal">{{job.user.first_name}} {{job.user.last_name}}</a>
+                                                </td>   
+                                                <td class="small-font">
+                                                    <span class="label label-success">
+                                                        {{job.job_status}}
+                                                    </span>
+                                                </td>
+                                                <td class="small-font">{{job.created.strftime("%d %B %Y")}}</td>
+                                                <td class="small-font"></td>
+                                                <td class="small-font">
+                                                    <button class="btn btn-mini edit-job {{job.key().id()}}" data-job-id="{{job.key().id()}}" data-action="edit"><i class="icon-pencil"></i>  Edit</button>
+                                                    <button class="btn btn-mini btn-danger delete-job {{job.key().id()}}" data-job-id="{{job.key().id()}}" data-action="delete"><i class="icon-remove icon-white"></i>  Delete</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No jobs uploaded at the moment</h5>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>                  
+
+                   <!-- =====================Uploaded Jobs(Removed)======================= -->
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="pull-left">Removed</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{removed_jobs.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+                                    {% if removed_jobs.count()>0 %}
+                                    <table class="table table-striped available-job-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Company</th>
+                                                <th>Uploaded by</th>
+                                                <th>Status</th>
+                                                <th>Date removed</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for job in removed_jobs %}
+                                            <tr class="job">
+                                                {% set count = count+1 %}
+                                                <td class="small-font job-item" data-job-id="{{job.key().id()}}">
+                                                    <!-- <a href="" onclick="" data-toggle="modal"> -->
+                                                        {{count}}
+                                                    <!-- </a> -->
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{job.key().id()}}" onclick="" data-toggle="modal">{{job.job_title}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{job.key().id()}}" onclick="" data-toggle="modal">{{job.hiring_company}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{job.key().id()}}" onclick="" data-toggle="modal">{{job.user.first_name}} {{job.user.last_name}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <span class="label label-important">
+                                                        {{job.job_status}}
+                                                    </span>
+                                                </td>
+                                                <td class="small-font">{{job.removed_on.strftime("%d %B %Y")}}</td>
+                                                <td class="small-font"></td>
+                                                <td class="small-font">
+                                                    <button class="btn btn-mini btn-danger delete-job {{job.key().id()}}" data-job-id="{{job.key().id()}}" data-action="delete"><i class="icon-remove icon-white"></i>  Delete</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No deleted jobs at the moment</h5>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+                                       
+            <hr>
+
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+
+        <script src="../../scripts/admin/vendors/jquery-1.9.1.min.js"></script>
+        <script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../scripts/admin/vendors/jGrowl/jquery.jgrowl.js"></script>
+        <script src="../../scripts/admin/assets/scripts.js"></script>        
+        <script src="../../scripts/js/ajax/jobs.admin.ajax.js"></script>
+
+    </body>
+
+</html>

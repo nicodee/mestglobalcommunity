@@ -1,0 +1,326 @@
+<center class="row-fluid" id="compose-msg">
+	<div class="span1"></div>
+
+	<div class="span7 pull-left" id="msg-container">						
+		<div class="row-fluid" id="msg-compose-container">
+
+			<div class="row-fluid">	
+				<div class="span6">	
+					<div class="input-prepend pull-left" id="new-msg-recipient-container">	
+						<span class="span2 add-on label-height" id="new-msg-recipient-label"><label>To:</label></span>
+						<div class="span10" id="msg-recipient">
+							<!-- <input class="pull-left" type="text" id="msg-receiver-input" name="msg-subject" disabled value="{{receiver.first_name}} {{receiver.last_name}}" data-receiver-id="{{receiver.key().id()}}"> -->
+						</div> 
+					</div>
+				</div>					
+
+				<div class="span6">
+					<div class="input-prepend pull-right" id="msg-type-container">
+						<span class="span5 add-on label-height" id="msg-type-label"><label>Type of conversation:</label></span>
+						<div class="span3" id="msg-select">
+							<select id="mail-selected">  
+								<option value="first-mtg">First contact and intro</option>
+								<option value="arrange-mtg">Arrange a meeting </option>
+								<option value="before-mtg">Prior to meeting</option>
+								<option value="after-mtg">After the meeting</option>
+								<option value="follow-up">Follow-up</option>
+							</select>
+						</div>
+					</div>
+				</div>	
+			</div>
+
+			<div class="row-fluid">
+				<div class="input-prepend pull-left" id="msg-subject-container">
+					<span class="span4 add-on label-height" id="msg-subject-label"><label>Subject:</label></span>
+						<input class="pull-left span8" type="text" id="msg-subject-input" name="msg-subject" placeholder="Seeking advice about email marketing">
+				</div>
+				<div class="input-prepend" id="msg-notify-container">
+					<span class="add-on label-height span4">Notify me at:</span>
+					<input class="span8" id="msg-sender-notify" size="" type="email" placeholder="email" >
+				</div>
+			</div>
+
+			<div class="row-fluid msg-content" id="msg-content-container">
+				<textarea name="" id="new_message" cols="30" rows="10"></textarea>
+			</div>
+
+			<div class="row-fluid" id="send-button-container">
+				<div class="span2 pull-right" id="send-button">
+					<button class="btn">Send</button>
+				</div>
+				<div class="span2 pull-right" id="cancel-button" style="margin-top: 10px; margin-right: 12px;">
+					<button class="btn">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="span4 pull-left" id="validate">
+		<p><strong>Useful tips</strong></p>
+		<div>
+
+			<!-- intro -->
+			<div id="first-mtg" class="row-fluid carousel slide tip-carousel">
+				<div id="myCarousel" class="carousel slide">
+					<ol class="carousel-indicators " >
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+						<li data-target="#myCarousel" data-slide-to="4"></li>
+						<li data-target="#myCarousel" data-slide-to="5"></li>
+						<li data-target="#myCarousel" data-slide-to="6"></li>
+					</ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="active item"><p>Introduce yourself and your company.</p></div>
+						<div class="item"><p>Highlight issues your company is facing.</p></div>
+						<div class="item"><p>How can he/she help you?</p></div>
+						<div class="item"><p>Set your expectations upfront.</p></div>
+						<div class="item"><p>Ask if they are willing to help.</p></div>
+						<div class="item"><p>Check for spelling.</p></div>
+						<div class="item"><p>Keep it short and crisp.</p></div>
+					</div>	
+					 <!-- Button to trigger modal -->
+					<a href="#mailsampleModal" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+				 	<!-- Modal -->
+					<div id="mailsampleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Introductory email sample</h3>
+						</div>
+						<div class="modal-body sample-body">
+							<p>Hi Jack,</p>
+							<p>I would like to introduce myself, Kwame I am one of the co-founders and the CTO for Jhello.</p>
+							<p>Jhello is an e-commerce marketing software that helps online merchants promote their products 
+							and drive traffic through leading comparison shopping engines. </p>
+							<p>We're growing rapidly in data volumes and also in merchant base. It has become necessary we 
+							take a look at our system architecture, UI and UX to cater for future expansion.
+							Your expertise and advice would be greatly needed as we embark on a roadmap to expansion.</p> 
+							<p>Can we please schedule an initial skype meeting with you to introduce the Jhello team? Will 
+							somewhere next week be an appropriate fit?</p>
+							<p>Regards,</p>
+						</div>
+						<div class="modal-footer"><button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button></div>			
+					</div>
+				</div>
+			</div>	
+				<!-- arrange mtg -->
+			<div id="arrange-mtg" class="row-fluid carousel slide tip-carousel">
+				<div id="myCarousel1" class="carousel slide">
+					<ol class="carousel-indicators " >
+						<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel1" data-slide-to="1"></li>
+						<li data-target="#myCarousel1" data-slide-to="2"></li>
+						<li data-target="#myCarousel1" data-slide-to="3"></li>
+						<li data-target="#myCarousel1" data-slide-to="4"></li>
+						<li data-target="#myCarousel1" data-slide-to="5"></li>
+						<li data-target="#myCarousel1" data-slide-to="6"></li>
+					</ol>
+
+					<div class="carousel-inner">
+						<div class="active item"><p>Have you decided on an agreeable time( Use international meeting planner).</p></div>
+						<div class="item"><p>Send a calendar invite with agenda.</p></div>
+						<div class="item"><p>Use Fuze for screen sharing.</p></div>
+						<div class="item"><p>Send screenshots/documentation if applicable.</p></div>
+						<div class="item"><p>Check for spelling.</p></div>
+						<div class="item"><p>Share contact details( Skype, Google etc).</p></div>
+						<div class="item"><p>Keep it short and crisp.</p></div>
+					</div>
+					<!-- sample modal -->
+					<!-- Button to trigger modal -->
+					<a href="#mailsampleModal2" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+					 <!-- Modal -->
+					<div id="mailsampleModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Meeting arrangement email sample</h3>
+						</div>
+						<div class="modal-body sample-body">
+							<p>Hi Kyle/Chris,</p>
+							<p>I wanted to reach out to everyone regarding our meeting on Thursday. First is to confirm if every one is 
+							ok with the time 15:00 -16:00 GMT on Thursday. We are ready and will be happy to jump on the call. :). 
+							Secondly, we have come up with some areas we'll like to have discussions on. </p>
+							<p>We'll want Kyle and Chris to be able to log into the app to have the experience of the flow of the app. </p>
+							<p>Please find below username and password to a test account and the Login url:<br />
+							username:(demo userid)<br />
+							password:(pwd)<br />
+							login url :(login url for the company)<br />
+							Agenda of meeting of the meeting is suggested as below:<br />
+							1. Introduction of (your company) team and (your company) company  followed by introduction by Kyle 
+							and Chris<br />
+							2. We present our technical challenges. (User experience and interface, Database optimisation and finetuning)<br />
+							3. Roadmap to 50,000 merchants <br />
+							4. General strategies going forward. Tools and services that can help us in our business operations<br />
+							5. General feedback - etsy merchant base, its technical resources available to serve your merchants and 
+							lessons we can learn from
+							6. In what specific areas of the business can Kyle and Chris help with. <br />
+							7. Any other questions that may come up. The agenda is also quite open and dependant on the time 
+							available. </p>
+							<p>We'll suggest we do the meeting over skype and if this suggestion is ok, we can share our skype 
+							usernames prior to the meeting. <br />
+							(your name): (Skype ID)</p>
+							<p>Let us know if there are any suggestions and concerns.  We appreciate your decision to help and thanks 
+							so much. </p>
+							<p>Cheers!</p>
+						</div>
+						<div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div>					
+					</div>
+				</div>
+			</div>	
+			<!-- before the mtg -->
+			<div id="before-mtg" class="row-fluid carousel slide tip-carousel">
+				<div id="myCarousel2" class="carousel slide">
+					<ol class="carousel-indicators " >
+						<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel2" data-slide-to="1"></li>
+						<li data-target="#myCarousel2" data-slide-to="2"></li>
+						<li data-target="#myCarousel2" data-slide-to="3"></li>
+						<li data-target="#myCarousel2" data-slide-to="4"></li>
+					</ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="active item"><p>Send a calendar invite with agenda· </p></div>
+						<div class="item"><p>Setup demo account and include log-in details if applicable·</p></div>
+						<div class="item"><p>Use Fuze for screen sharing.</p></div>
+						<div class="item"><p>Send screenshots/Documentation if applicable.</p></div>
+						<div class="item"><p>Check for spelling.</p></div>
+						<div class="item"><p>Keep it short and crisp.</p></div>
+					</div>
+					 <!-- sample modal -->
+					 <!-- Button to trigger modal -->
+					<a href="#mailsampleModal3" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+					 <!-- Modal -->
+					<div id="mailsampleModal3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Before the meeting email sample</h3>
+						</div>
+						<div class="modal-body sample-body">
+							<p>Hi (advisor)</p>
+							<p>Hope you are having a great day. Just a gentle reminder for our meeting tomorrow( 12th July) at 
+							5.00 p.m GMT.<br>
+							 Attached is a pdf of ABC’s UI / UX concepts (both new and old).<br>
+							I have created a login accounts for Nikki, Kim and Alicen which are below:<br>
+							- App URL: (URL goes here)<br>
+							- Username: Your respective XXXX email addresses<br>
+							- Password: "roo" without the quotes.<br>
+							Kindly let us know if you need any clarification.</p>
+							<p>Thanks</p>                                
+						</div>
+						<div class="modal-footer">
+							<button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- after mtg -->
+			<div id="after-mtg" class="row-fluid carousel slide tip-carousel">
+				<div id="myCarousel3" class="carousel slide">
+					<ol class="carousel-indicators " >
+						<li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel3" data-slide-to="1"></li>
+						<li data-target="#myCarousel3" data-slide-to="2"></li>
+						<li data-target="#myCarousel3" data-slide-to="3"></li>
+						<li data-target="#myCarousel3" data-slide-to="4"></li>
+					</ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="active item"><p>Send summary of your interaction· </p></div>
+						<div class="item"><p>Action points with deadlines and who is responsible for them·</p></div>
+						<div class="item"><p>Next steps?</p></div>
+						<div class="item"><p>Ask for feedback about overall interaction.</p></div>
+						<div class="item"><p>Thank them for their time and effort.</p></div>
+					</div>
+				</div>
+				<!-- sample modal -->
+				<!-- Button to trigger modal -->
+				<a href="#mailsampleModal4" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+				 <!-- Modal -->
+				<div id="mailsampleModal4" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">After meeting email sample</h3>
+					</div>
+					<div class="modal-body sample-body">
+						<p>Hello all,</p>
+						<p>Thanks you for taking time out of your busy schedule. Here is a summary of what we discussed.</p>
+						<p>1. Finish the project by the midnight of 18th of August. </p>
+						<p>2. Work on the details of the signup page (change all selections to checkboxes)</p>
+						<p>3. Start work on the message center tonight and admin panel next week.</p>
+						<p>4. A mid week meeting (decided on 1500GMT after the meeting) to 
+						give an update and a status report. Pick up on potential red flags.</p>
+						<p>5. Create a sub-domain and host it pending the actual domain being created by Vic's contact. We (Nick 
+						and Elorm ) are not responsible for any delays with respect to domain. </p>
+						<p>6. Final wrap up on the mid night of the 18th of August, 2013. A demo to Ani and Vic. </p>
+						<p>I hope i covered everything but if there are any omissions kindly reply with the update.</p>
+						<p>Will be sending out calendar invites for our next meeting.</p>
+						<p>Thank you all.</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+				</div>
+			</div>					 	
+			<!-- follow up -->
+			<div id="follow-up" class="row-fluid carousel slide tip-carousel">
+				<div id="myCarousel4" class="carousel slide">
+					<ol class="carousel-indicators " >
+						<li data-target="#myCarousel4" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel4" data-slide-to="1"></li>
+						<li data-target="#myCarousel4" data-slide-to="2"></li>
+						<li data-target="#myCarousel4" data-slide-to="3"></li>
+						<li data-target="#myCarousel4" data-slide-to="4"></li><li data-target="#myCarousel4" data-slide-to="5"></li>
+					</ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="active item"><p>Send summary of what you have been since the last meeting.</p></div>
+						<div class="item"><p>Any deadlines or bottlenecks faced?</p></div>
+						<div class="item"><p>What would you like to achieve in the next meeting.</p></div>
+						<div class="item"><p>Send screenshots/Documentation if applicable.</p></div>
+						<div class="item"><p>Checked for Spelling?</p></div>
+						<div class="item"><p>Keep it short and crisp.</p></div>
+					</div>
+					<!-- Carousel nav -->
+					<!-- ========================================================================================= -->
+					<!-- sample modal -->
+					<!-- Button to trigger modal -->
+					<a href="#mailsampleModal5" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+					<!-- Modal -->
+					<div id="mailsampleModal5" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Follow up email sample</h3>
+						</div>
+						<div class="modal-body sample-body">
+							<p>Hi (advisor)</p>
+							<p>Hope this mail finds you well. Thanks for the session you had with the team last week. It was very resourceful. We have started implementing most of the stuff we discussed about. </p>
+							<p>With regards to our next meeting, i will like us to delve more deeper into design:</p>
+							<p> ● with respect to our new mockup designs, what is your perceptions on color choice, typo, and the general user flow?</p>
+							<p>● how do we get access to high quality images and photos for our landing page and other branding stuff. Is it possible to get someone to help us out with quality photos or some recommended resource we can leverage on? </p>
+							<p>● with respect to (company name) idea, what are some of the elements we can use in our photos (the mint website has got stationaries, stickygram has got a man holding a stickygram)?</p>
+							<p>● how do you work with images and photos, what tools do you use in converting images into 
+							smaller sizes without loosing quality?</p>
+							<p>The remaining questions are more personal to me us the team's designer:</p>
+							<p> ● how is your daily schedule like as a designer at (company name)?</p>
+							<p> ● what tools and resources do you use in implementing your daily tasks?</p>
+							<p>● how do you derive inspiration as a designer?</p>
+							<p>● in general, what constitutes a design department (how many designers will be appropriate with a startup)?</p>
+							<p>Looking forward to our next meeting.</p>
+							<p>Best regards,</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						</div>
+					</div> 	
+				</div>		
+			</div>
+
+		 </div>
+	</div>
+
+</center>

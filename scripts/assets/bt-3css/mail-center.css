@@ -1,0 +1,27 @@
+ul {
+	list-style: none;
+}
+
+li {
+	text-decoration: none;
+}
+.main-body-container{
+	margin-top: 15px;
+}
+
+.sidebar > ul {
+	list-style: none;
+}
+
+.sidebar li{
+	margin: 15px;
+	padding: 10px;
+	border: 1px solid #333;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.sidebar li:hover{
+	background-color: #333;
+	color: #fff;
+}

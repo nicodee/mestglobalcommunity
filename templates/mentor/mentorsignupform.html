@@ -1,0 +1,473 @@
+<html>
+	<head>
+		<link href="../../scripts/iCheck/skins/line/aero.css" rel="stylesheet">
+		<link href="../../scripts/iCheck/skins/flat/aero.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css">
+
+		<link rel="stylesheet" href="../../options/src/jquery.navgoco.css" type="text/css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../../scripts/css/mentorsignupform.css">	
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">	
+		<style>
+			.topic_option{
+				width: 50%;				
+			}
+			#topic_options .listblock .option, .listblock{
+				width: 98%;
+			}
+			#right_topic {
+				float: right;
+				margin-bottom: 80px;
+			}
+			#left_topic {
+				float: left;
+				margin-bottom: 40px;
+			}
+			#topics ul li ul li {
+				width: 45%;
+				font-size: 12px;
+			}
+			#topics li {
+				width: 102%;
+			}
+		</style>
+		<!-- start Dropifi --> <script type='text/javascript' src='https://s3.amazonaws.com/dropifi/js/widget/dropifi_widget.min.js'></script><script type='text/javascript'>document.renderDropifiWidget('3d30d4694620ba915f500aa173223521-1384729609090');</script> <!-- end Dropifi -->
+  	</head>
+	<body>
+		<div>
+
+			<div class="mest-log" style="padding-left: 10%;">
+				<a href="/">
+					<img src="../../scripts/assets/img/MEST-LOGO1.webp" alt="" height="75" width="162">
+				</a>
+			</div>
+			<div class="navigationbar"></div>
+		</div>
+		<!-- multistep form -->
+		<form id="msform">
+			<!-- progressbar -->
+			<ul id="progressbar">
+				<li class="active">Choose a program</li>
+				<li>Expertise</li>
+				<li>Industry</li>
+				<li>Email And Timezone</li>
+				<li>Brief Bio</li>
+				<li>Done</li>
+			</ul>
+			<!-- fieldsets -->
+			<fieldset>
+				<div class="row-fluid" id="program-selection">
+						<ul>
+							<li>
+								<p class="fs-title">I am applying for the </p>
+							</li>
+							<li>
+								<select id="programs" name="programs">
+									<option data-value='Subject Area Mentor' value="subject-area-mentor">Subject Area Mentor</option>
+									<option data-value='MBA Consultant' value="mba-consultant">MBA Consultant</option>
+									<option data-value='Senior Advisor' value="snr-advisor">Senior Advisor</option>
+									<option data-value='Expert in Residence' value="experts-in-residence">Expert-In-Residence</option> 
+					            </select>
+							</li>
+							<li>
+								<p class="fs-title">program</p>
+							</li>
+						</ul>
+					</div>	
+				<div class="row-fluid" id="program-details" >
+						<p id="subject-area-mentor" class="fs-subtitle">
+							Subject Area Mentors have expertise within a specific area (such as infrastructure scaling, email marketing, branding etc.) and can help a company resolve a challenge they’re having in that space. <br><br>
+							<b>Commitment:</b> From as little as a one-time phone call to a longer term commitment, depending on the mentor’s interest and availability.
+						</p>
+						<p id="mba-consultant" class="hidden-program fs-subtitle">
+							MBA students and recent business school graduates support our top companies in many ways. They: <br><br>
+								
+								&bull;provide feedback on competitive analysis, market research, and financial projections	<br>
+
+								&bull;prepare pitch decks and coach founders during fundraising <br>
+
+								&bull;make argued recommendations on the best growth options to the start&ndash;up&apos;s board and executive team <br><br>	
+
+							MBA consultants are encouraged to connect with our entrepreneurs weekly via Skype or e-mail, and are offered the opportunity to travel to Accra at least once to conduct a workshop and meet the entrepreneurs in person. MEST Incubator will cover housing, travel and provide three meals a day during their time in Accra. <br><br>
+
+							Commitment: MBAs can expect to spend an average of 2 to 4 hours a week working with the CEO of the company (based in Ghana) and the MEST Incubator team (based in San Francisco) + 1 week on the ground in Accra.
+						</p>
+						<p id="snr-advisor" class="hidden-program fs-subtitle">
+							Senior Advisors are highly experienced, trusted professionals who work closely with one of our portfolio companies. The advisor offers insight based on his or her long industry experience, and makes introductions to other experts and potential partners. 
+							Advisors might also be invited to support fundraising and recruitment campaigns. 
+							<br><br>
+							Commitment: Our ideal advisor joins monthly calls with the company as well as quarterly board meetings. Advisors who commit to support a company for the long term might be offered board seats and company equity.
+						</p>
+						<p id="experts-in-residence" class="hidden-program fs-subtitle">
+							Experts in Residence are mid-career professionals who travel to Accra, Ghana for 6 to 8 weeks to share their expertise with MEST entrepreneurs. As an Expert in Residence, you will augment the expertise of the resident Teaching and Incubator Fellows with your 5-10 years of real-world experience in your field.
+							<br><br>
+							The ideal Expert in Residence has an entrepreneurial spirit, a sense of adventure, a positive outlook, and an eager willingness to share knowledge. You will be working with Fellows to help MEST students and companies create globally	competitive software companies. MEST covers housing and 3 meals per day during the weekday.
+							<br><br>
+							<b>Commitment:</b> 6-8 weeks in Accra, Ghana.
+						</p>
+				</div>
+				<input type="button" name="next" class="next action-button" value="Next" />
+			</fieldset>
+
+			<fieldset>
+				<p class="fs-title">I am comfortable giving advice in the following areas:</p>
+					<div id="topic_options">	
+	            		<div class="left_topic topic_option" id="left_topic">
+
+				            <div class="listblock" id="topics">
+					            <ul id="demo2" class="option">
+
+					                <li class="active"><a href="#">ANALYTICS</a>
+					                    <ul>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Analytics" data-value="Data Mining"><label>Data Mining</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Analytics" data-value="Funnels"><label>Funnels</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Analytics" data-value="Google Analytics"><label>Google Analytics</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Analytics" data-value="Mobile Analytics"><label>Mobile Analytics</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Analytics" data-value="Web Analytics"><label>Web Analytics</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">BUSINESS DEVELOPMENT</a>
+					                    <ul>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Business development" data-value="Customer Development"><label>Customer Development</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Business development" data-value="Customer Service"><label>Customer Service</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Business development" data-value="Market Research"><label>Market Research</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Business development" data-value="Partnerships Sponsorship"><label>Partnerships/Sponsorship</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Business development" data-value="Sales"><label>Sales</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">DESIGN</a>
+					                    <ul>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Game Design"><label>Game Design</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Graphic Design"><label>Graphic Design</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Infographics"><label>Infographics</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Interactive Design"><label>Interactive Design</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Product Design"><label>Product Design</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="UI"><label>UI</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="Usability Testing"><label>Usability Testing</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Design" data-value="UX"><label>UX</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">PROJECT MANAGEMENT</a>
+					                    <ul>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Project Management" data-value="Agile Product Development"><label>Agile Product Development</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Project Management" data-value="Lean Startup Methodology"><label>Lean Startup Methodology</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Project Management" data-value="Project Management Tools"><label>Project Management Tools</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Project Management" data-value="Scrum"><label>Scrum</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">SALES</a>
+					                    <ul>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Sales" data-value="Sales Funnel"><label>Sales Funnel</label>
+											<li><input type="checkbox" data-type="expertise" data-expertise="Sales" data-value="Sales Management"><label>Sales Management</label>
+	                                        </li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Sales" data-value="Sales Process"><label>Sales Process</label>
+	                                        </li>
+	                                        </li>
+					                    </ul>
+					                </li>
+
+									<li class="active"><a href="#">FINANCIAL/ACCOUNTING</a>
+					                    <ul>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Financial accounting" data-value="Accounting Best Practices"><label>Accounting Best Practices</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Financial accounting" data-value="Accounting Software"><label>Accounting Software</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Financial accounting" data-value="Financial Models"><label>Financial Models</label></li>
+					                    </ul>
+					                </li>
+					            </ul>
+				            </div>
+			            </div>					
+	            		<div class="right_topic topic_option" id="right_topic">
+
+				            <div class="listblock" id="topics">
+					            <ul id="demo2" class="option">
+					               
+					                <li class="active"><a href="#">MARKETING</a>
+					                    <ul>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Affiliate Marketing"><label>Affiliate Marketing</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Branding"><label>Branding</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Email Marketing"><label>Email Marketing</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Guerilla Marketing"><label>Guerilla Marketing</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Internet Marketing"><label>Internet Marketing</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Pricing"><label>Pricing</label></li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Marketing" data-value="Viral Marketing"><label>Viral Marketing</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">HUMAN RESOURCES</a>
+										<ul>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Human resources" data-value="Coaching And Leadership"><label>Coaching And Leadership</label></li>
+											<li><input type="checkbox" data-type="expertise" data-expertise="Human resources" data-value="Hiring"><label>Hiring</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Human resources" data-value="Interviewing"><label>Interviewing</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Human resources" data-value="Recruitment"><label>Recruitment</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Human resources" data-value="Training"><label>Training</label></li>
+										</ul>
+					                </li>
+
+					                <li class="active"><a href="#">LEGAL</a>
+					                    <ul>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Contract Formulation"><label>Contract Formulation</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Copyrighting"><label>Copyrighting</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Incorporation"><label>Incorporation</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Intellectual Property"><label>Intellectual Property</label></li>
+					                        <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Licensing"><label>Licensing</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Negotiations"><label>Negotiation</label></li>
+		                                    <li><input type="checkbox" data-type="expertise" data-expertise="Legal" data-value="Trademarks"><label>Trademarks</label></li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">OPERATIONS</a>
+					                    <ul>
+											<li><input type="checkbox" data-type="expertise" data-expertise="Operations" data-value="Process Optimization"><label>Process Optimization</label>
+	                                        </li>
+	                                        <li><input type="checkbox" data-type="expertise" data-expertise="Operations" data-value="Quality Assurance/ Management"><label>Qualtiy Assurance/ Management</label>
+	                                        </li>
+					                    </ul>
+					                </li>
+
+					                <li class="active"><a href="#">TECHNOLOGY</a>
+					                  <ul>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Advanced Web Applications"><label>Advanced Web Applications</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Algorithms"><label>Algorithms</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Analytics"><label>Analytics</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Android"><label>Android</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Artificial Intelligence"><label>Artificial Intelligence</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Big Data"><label>Big Data</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Computer Graphics"><label>Computer Graphics</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Copywriting"><label>Copywriting</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Database"><label>Database</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Data Mining"><label>Data Mining</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="HTML5"><label>HTML5</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Infrastructure Scaling"><label>Infrastructure Scaling</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Interactive User Interfaces"><label>Interactive User Interfaces</label></li>
+										<li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="iOS"><label>iOS</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Java"><label>Java</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="J2ME"><label>J2ME</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Linux"><label>Linux</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Mathematics"><label>Mathematics</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="NLP"><label>NLP</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Networking"><label>Networking</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="NoSQL + Memcached"><label>NoSQL + memcached</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="PHP"><label>PHP</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Performace Optimization"><label>Performace Optimization</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Python"><label>Python</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Ruby on Rails"><label>Ruby On Rails</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Security"><label>Security</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="SEO"><label>SEO</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="Server Side"><label>Server Side</label></li>
+	                                    <li><input type="checkbox" data-type="expertise" data-expertise="Technology" data-value="System Analysis And Design"><label>System Analysis And Design</label></li>
+					                  </ul>
+					                </li>
+
+					            </ul>
+				            </div>
+			            </div>					
+			        </div>
+
+					<input type="button" name="previous" class="previous action-button" value="Previous" />
+					<input type="button" name="next" class="next action-button" value="Next" />
+					
+			</fieldset>
+
+			<fieldset>
+				<p class="fs-title">I have experience in the following industries:</p>
+				<div class="row-fluid fs-subtitle" id="sectors">
+					<ul class="nav"><span>
+						<li><input type="checkbox" data-type="industry" data-value="Advertising"><label>Advertising</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Clean Tech"><label>Clean Tech</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Cloud Services"><label>Cloud Services</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Education"><label>Education</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Enterprise Software"><label>Enterprise Software</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Events"><label>Events</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Fashion"><label>Fashion</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Financial Services"><label>Financial Services</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Games"><label>Games</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Hardware"><label>Hardware</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Healthcare"><label>Healthcare</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Media"><label>Media</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Mobile"><label>Mobile</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Music"><label>Music</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Payments"><label>Payments</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Photography"><label>Photography</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Recruting"><label>Recruiting</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Retail"><label>Retail</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="SMB"><label>SMB</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Social Media"><label>Social Media</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Social Impact"><label>Social Impact</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Sports"><label>Sports</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Travel"><label>Travel</label></li>
+						<li><input type="checkbox" data-type="industry" data-value="Video"><label>Video</label></li>
+					</span></ul>
+				</div>
+				<input type="button" name="previous" class="previous action-button" value="Previous" />
+				<input type="button" name="next" class="next action-button" value="Next" />
+			</fieldset>
+
+			<fieldset>
+				<div class="row-fluid">
+					<div class="row-fluid">
+						<p class="fs-title">
+											Your privacy is very important to us. Your email 
+							          		address will only be available to the MEST 
+							          		entrepreneurs who you are mentoring, and will never be 
+							          		published or sold.
+							          	</p>
+						<div class="span6" id="left">
+							<div class="left-container">
+								<div class="row-fluid fs-subtitle" id="method-of-contact-text">
+									<span>
+									</span>
+									<ul>
+										<li class="method-label pull-left">
+											<label>Email:</label>
+										</li>
+										<li class="method-value pull-">
+											<input type="text" name="email" value="" placeholder="john.doe@domain.com" id="email">
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="span6" id="right">
+							<div class="left-container">
+								<div class="row-fluid fs-subtitle" id="method-of-contact-text">
+									<span>
+									</span>
+									<ul>
+										<li class="method-label pull-left">
+											<label>Timezone:</label>
+										</li>
+										<li class="method-value pull-right">
+											<select name="DropDownTimezone" id="DropDownTimezone" class="fs-subtitle">
+												<option value="GMT -12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
+												<option value="GMT -11:00">(GMT -11:00) Midway Island, Samoa</option>
+												<option value="GMT -10:00">(GMT -10:00) Hawaii</option>
+												<option value="GMT -9:00">(GMT -9:00) Alaska</option>
+												<option value="GMT -8:00">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+												<option value="GMT -7:00">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+												<option value="GMT -6:00">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+												<option value="GMT -5:00">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+												<option value="GMT -4:00">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+												<option value="GMT -3:30">(GMT -3:30) Newfoundland</option>
+												<option value="GMT -3:00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+												<option value="GMT -2:00">(GMT -2:00) Mid-Atlantic</option>
+												<option value="GMT -1:00">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+												<option value="GMT +0:00" selected="selected">(GMT 0:00) Western Europe Time, London, Lisbon, Casablanca</option>
+												<option value="GMT +1:00">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+												<option value="GMT +2:00">(GMT +2:00) Kaliningrad, South Africa</option>
+												<option value="GMT +3:00">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+												<option value="GMT +3:30">(GMT +3:30) Tehran</option>
+												<option value="GMT +4:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+												<option value="GMT +4:30">(GMT +4:30) Kabul</option>
+												<option value="GMT +5:00">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+												<option value="GMT +5:30">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+												<option value="GMT +5:45">(GMT +5:45) Kathmandu</option>
+												<option value="GMT +6:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+												<option value="GMT +7:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+												<option value="GMT +8:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+												<option value="GMT +9:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+												<option value="GMT +9:30">(GMT +9:30) Adelaide, Darwin</option>
+												<option value="GMT +10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+												<option value="GMT +11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+												<option value="GMT +12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+											</select>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+					<input type="button" name="previous" class="previous action-button" value="Previous" />
+					<input type="button" name="next" class="next action-button" value="Next" />
+				
+			</fieldset>
+
+
+			<fieldset>
+				<section id="summary">
+					<article id="brief-bio">
+						<p class="fs-title">
+							Tell us about yourself. In a few sentences, kindly describe your professional background, your skillset, and your personal interests. This brief bio will be shown to our community of entrepreneurs.
+							<small>
+								(optional)
+							</small>
+						</p>
+						<textarea name="short-bio" rows="4" cols="25000" placeholder="Brief biography" id="summary-text"></textarea>
+					</article>
+					<article id="referral">	
+						<p class="fs-title">
+							One last thing: how did you hear about MEST?
+						</p>
+					</article>		
+				 </section>
+				 <section  class="row-fluid" id="method-of-referral">
+				 	<ul>
+				 		<li><input type="checkbox"><label>Internet search</label></li>
+						<li><input type="checkbox"><label>Referral from a friend</label></li>
+						<li><input type="checkbox"><label>Press mention</label></li>
+				 		<li><input type="checkbox"><label>LinkedIn</label></li>
+						<li><input type="checkbox"><label>Event</label><input type="text" placeholder="(please specify)"></li>
+				 		<li><input type="checkbox"><label>Other</label><input type="text" placeholder="(please specify)"></li>
+				 	</ul>
+				 </section>
+					<i class="fa-4x fa fa-cog fa-spin" style="color: #7bb7fa; display:none"></i>
+					<input type="button" name="previous" class="last previous action-button" value="Previous"/>
+					<input type="submit" name="submit" class="last submit action-button" value="Submit" id="submit-form"/>
+			</fieldset>
+
+
+			<fieldset>
+				<section class="center">
+						<p class="fs-title" id="success_msg">
+						</p>
+				 </section>
+				<input type="submit" name="submit" class="action-button" value="Close" id="submit-form"/>
+			</fieldset>
+		</form>
+
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    	<div id="dialog-confirm" title="Delete this item?" style="display:none;">
+		  <p>
+		  	<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;">
+		  	</span>
+		  	This item will be permanently deleted.
+		  </p>
+		</div>
+		<div id="duplicate-user" title="ERROR" style="display:none;">
+		  <p>User already exists.</p>
+		</div>
+
+		<input type="text" value="{{user_data}}" id="userdata">
+    	<!-- jQuery -->		
+		<script src="../../scripts/js/mentorsignup/jquery-1.9.1.js" type="text/javascript"></script>
+		<script src="../../scripts/js/mentorsignup/jquery-ui.js"></script>
+		<script src="../../scripts/bootstrap/js/bootstrap.js"></script>
+		<!-- jQuery easing plugin -->
+		<script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>
+		<script src="../../scripts/js/mentorsignup/mentorsignupform.js" type="text/javascript"></script>
+    	<script src="../../scripts/iCheck/jquery.icheck.js"></script>
+		<script src="../../scripts/js/mentorsignup/jquery.browser.js"></script>
+	    <script type="text/javascript" src="../../scripts/js/ajax/mentorsignupform.ajax.js"></script> 
+        <script type="text/javascript" src="../../options/src/jquery.navgoco.js"></script>
+		<script>
+			$(function() {
+			// $( "#accordion" ).accordion();
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    $('.option').navgoco();
+			});
+		</script>
+		  
+	</body>
+</html>
+
+
+
+

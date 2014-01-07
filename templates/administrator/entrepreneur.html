@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Entrepreneur</title>
+        <!-- Bootstrap -->
+
+
+        <link href="../../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/admin/assets/styles.css" rel="stylesheet" media="screen">
+
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Entrepreneurs</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>   {{user.first_name}} {{user.last_name}} <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a tabindex="-1" href="/signout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="/admin"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/entrepreneur" id="admin-entrepreneur"><i class="icon-chevron-right"></i> Entrepreneurs </a>
+                        </li>
+                        <li>
+                            <a href="/admin/mentor" id="admin-mentor"><i class="icon-chevron-right"></i> Mentors </a>
+                        </li>
+                        <li>
+                            <a href="/admin/resources"><i class="icon-chevron-right"></i> Resources</a>
+                        </li>
+                        <li>
+                            <a href="/search"><i class="icon-chevron-right"></i> Search </a>
+                        </li>
+                         <li>
+                            <a href="/messages"><i class="icon-chevron-right"></i> Message Center </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class=" pull-left muted">Entrepreneurs pending confirmation</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{new_entrepreneurs.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                <div class="span12">
+                                    {% if new_entrepreneurs.count()>0 %}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Company</th>
+                                                <th>Role</th>
+                                                <th>Date created</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for new_entrepreneur in new_entrepreneurs %}
+                                            <tr class="pending {{new_entrepreneur.key().id()}}">
+                                                {% set count = count+1 %}
+                                                <td>
+                                                    <a href="{{new_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{new_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href="{{new_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{new_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{new_entrepreneur.first_name}} {{new_entrepreneur.last_name}}</a>
+                                                </td>
+                                                    {% set roles = new_entrepreneur.positions %}
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.company}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.title}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">{{new_entrepreneur.created.strftime("%d %B %Y %H:%M")}}</td>
+                                                <td>
+                                                    <button class="btn btn-mini confirm-user-btn confirm {{new_entrepreneur.key().id()}}" data-id="{{new_entrepreneur.key().id()}}" data-profile="entrepreneur" data-action="confirm">confirm</button>
+                                                    <button class="btn btn-mini btn-primary confirm-user-btn decline {{new_entrepreneur.key().id()}}" data-id="{{new_entrepreneur.key().id()}}" data-profile="entrepreneur"  data-action="decline">decline</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No pending requests at the moment</h5>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    
+                                                                               
+                    <!-- CONFIRMED ENTREPRENEURS -->
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class=" pull-left muted">Confirmed Entrepreneurs</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{approved_entrepreneurs.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                <div class="span12">
+                                    {% if approved_entrepreneurs.count()>0 %}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Company</th>
+                                                <th>Role</th>
+                                                <th>Date confirmed</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for approved_entrepreneur in approved_entrepreneurs %}
+                                            <tr class="pending {{approved_entrepreneur.key().id()}}">
+                                                {% set count = count+1 %}
+                                                <td>
+                                                    <a href="{{approved_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{approved_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href="{{approved_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{approved_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{approved_entrepreneur.first_name}} {{approved_entrepreneur.last_name}}</a>
+                                                </td>
+                                                    {% set roles = approved_entrepreneur.positions %}
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.company}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.title}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">{{approved_entrepreneur.confirmed.strftime("%d %B %Y %H:%M")}}</td>
+                                                <td>
+                                                    <button class="btn btn-mini btn-primary remove-user {{approved_entrepreneur.key().id()}}" data-id="{{approved_entrepreneur.key().id()}}" data-profile="entrepreneur"   data-action="remove">Remove</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No confirmed entrepreneurs at the moment</h5>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+                    <!-- DECLINED REQUESTS -->
+                    <div class="declined row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class=" pull-left muted">Declined Requests</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{declined_entrepreneurs.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                <div class="span12">
+                                    {% if declined_entrepreneurs.count()>0 %}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Company</th>
+                                                <th>Role</th>
+                                                <th>Date declined</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for declined_entrepreneur in declined_entrepreneurs %}
+                                            <tr class="pending {{declined_entrepreneur.key().id()}}">
+                                                {% set count = count+1 %}
+                                                <td>
+                                                    <a href="{{declined_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{declined_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href="{{declined_entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{declined_entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{declined_entrepreneur.first_name}} {{declined_entrepreneur.last_name}}</a>
+                                                </td>
+                                                    {% set roles = declined_entrepreneur.positions %}
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.company}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">
+                                                    {% if roles.count>0 %}
+                                                        {% for role in roles %}
+                                                            {% if role.is_current %}
+                                                                {{role.title}},
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        None
+                                                    {% endif %}
+                                                </td>
+                                                <td class="small-font">{{declined_entrepreneur.declined.strftime("%d %B %Y %H:%M")}}</td>
+                                                <td>
+                                                    <button class="btn btn-mini confirm-user-btn confirm {{declined_entrepreneur.key().id()}}" data-id="{{declined_entrepreneur.key().id()}}" data-profile="entrepreneur" data-action="confirm">Restore</button>
+                                                    <button class="btn btn-mini btn-primary delete-user {{declined_entrepreneur.key().id()}}" data-id="{{declined_entrepreneur.key().id()}}" data-profile="entrepreneur" data-action="remove">Remove</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                            
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No declined requests at the moment</h5>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>           
+        </div>
+        <!--/.fluid-container-->
+        <script src="../scripts/admin/vendors/jquery-1.9.1.min.js"></script>
+        <script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../scripts/admin/assets/scripts.js"></script>
+        <script src="../scripts/js/admin/dashboard.js"></script>
+        <script src="../scripts/js/ajax/admin.confirm.user.ajax.js"></script>
+    </body>
+
+</html>

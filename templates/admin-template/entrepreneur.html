@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Entrepreneur</title>
+        <!-- Bootstrap -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="assets/styles.css" rel="stylesheet" media="screen">
+        <link href="vendors/jGrowl/jquery.jgrowl.css" rel="stylesheet" media="screen">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Admin Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Anirudh Narla<i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">Profile</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a tabindex="-1" href="login.html">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
+
+                                </a>
+                                <ul class="dropdown-menu" id="menu1">
+                                    <li>
+                                        <a href="#">Tools <i class="icon-arrow-right"></i>
+
+                                        </a>
+                                        <ul class="dropdown-menu sub-menu">
+                                            <li>
+                                                <a href="#">Reports</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Logs</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Errors</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">SEO Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Other Link</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">Other Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Other Link</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Content <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">News</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Custom Pages</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Calendar</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a tabindex="-1" href="#">FAQ</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">User List</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Search</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Permissions</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="dashboard.html"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a href="entrepreneur.html"><i class="icon-chevron-right "></i> Entrepreneur Mail</a>
+                        </li>
+                        <li>
+                            <a href="mentor.html"><i class="icon-chevron-right"></i> Mentor Mail</a>
+                        </li>
+                        <li>
+                            <a href="admin-settings.html"><i class="icon-chevron-right"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/span-->
+                            <h1>Activities</h1>
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left activity-header">
+                                    <ul>
+                                        <li>Entrepreneur</li>
+                                        <li># unique mentors contacted</li>
+                                        <li>Weekly response ratio</li>
+                                        <li>response ratio</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+
+
+                                    ==========================================================
+
+                                    <div class="accordion" id="accordion1">
+                                      <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                          <a class="accordion-toggle activitiy-body" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+                                               <ul>
+                                                   <li>Jane Doe</li>
+                                                   <li>rate</li>
+                                                   <li>67%</li>
+                                                   <li></li>
+                                               </ul>
+                                               
+                                          </a>
+                                        </div>
+                                        <div id="collapseOne" class="accordion-body collapse in ">
+                                          <div class="accordion-inner activitiy-body">
+                                           <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>To</th>
+                                                <th>Message type</th>
+                                                <th>Ent/mentor messages</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            
+                                
+                                        </tbody>
+                                    </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                     
+                                    </div>
+                                    
+                                    <div class="accordion" id="accordion3">
+                                      <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                          <a class="accordion-toggle activitiy-body" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                               <ul>
+                                                   <li>Jane Doe</li>
+                                                   <li>rate</li>
+                                                   <li>67%</li>
+                                                   <li></li>
+                                               </ul>
+                                               
+                                          </a>
+                                        </div>
+                                        <div id="collapseThree" class="accordion-body collapse in ">
+                                          <div class="accordion-inner activitiy-body">
+                                           <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>To</th>
+                                                <th>Message type</th>
+                                                <th>Ent/mentor messages</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Stuart</td>
+                                                <td>Setup Coaching call</td>
+                                                <td>3/2</td>
+                                            </tr>
+                                            
+                                
+                                        </tbody>
+                                    </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                     
+                                    </div>
+
+
+
+
+
+                                    ==========================================================
+                                    <!-- <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Entrepreneur</th>
+                                                <th># unique mentors contacted</th>
+                                                <th>Weekly response ratio</th>
+                                                <th>response ratio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Vincent</td>
+                                                <td>Gabriel</td>
+                                                <td>@gabrielva</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Vincent</td>
+                                                <td>Gabriel</td>
+                                                <td>@gabrielva</td>
+                                            </tr>
+                                        </tbody>
+                                    </table> -->
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    
+            <hr>
+
+            <footer>
+                <p>&copy; MEST MENTOR PLATFORM 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+        <script src="vendors/jquery-1.9.1.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="vendors/jGrowl/jquery.jgrowl.js"></script>
+        <script src="assets/scripts.js"></script>
+        <script>
+        $(function() {
+            $('.tooltip').tooltip();	
+			$('.tooltip-left').tooltip({ placement: 'left' });	
+			$('.tooltip-right').tooltip({ placement: 'right' });	
+			$('.tooltip-top').tooltip({ placement: 'top' });	
+			$('.tooltip-bottom').tooltip({ placement: 'bottom' });
+
+			$('.popover-left').popover({placement: 'left', trigger: 'hover'});
+			$('.popover-right').popover({placement: 'right', trigger: 'hover'});
+			$('.popover-top').popover({placement: 'top', trigger: 'hover'});
+			$('.popover-bottom').popover({placement: 'bottom', trigger: 'hover'});
+
+			$('.notification').click(function() {
+				var $id = $(this).attr('id');
+				switch($id) {
+					case 'notification-sticky':
+						$.jGrowl("Stick this!", { sticky: true });
+					break;
+
+					case 'notification-header':
+						$.jGrowl("A message with a header", { header: 'Important' });
+					break;
+
+					default:
+						$.jGrowl("Hello world!");
+					break;
+				}
+			});
+        });
+        </script>
+    </body>
+
+</html>

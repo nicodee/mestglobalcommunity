@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../../scripts/rateit/src/rateit.css" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<link href="../../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="../../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="../../scripts/css/search/search.css" rel="stylesheet" media="screen">
+		<link href="../../scripts/css/search-result.css" rel="stylesheet" media="screen">
+		<link href="../../scripts/iCheck/skins/line/green.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../scripts/css/mentorcaption.css">
+		<link rel="stylesheet" type="text/css" href="../../scripts/css/captionstyle.css">
+		<link href="../../scripts/iCheck/skins/flat/purple.css" rel="stylesheet">
+		<link href="../../scripts/iCheck/skins/flat/pink.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../scripts/css/search/search-result-mentor.css">
+		<link rel="stylesheet" type="text/css" href="../../scripts/css/search/custom.css">
+	</head>
+
+	
+	<body>
+		<div id="navigation-bar" class="row">
+			<div class="navbar navbar-inverse navbar-fixed-top">
+			    <div class="navbar-inner">
+			        <div class="container">
+			          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			          <div class="nav-collapse collapse pull-right">
+			            <ul class="nav">
+			              <li class="active">
+			                <a href="/search">Search</a>
+			              </li>
+			               <li class="">
+			                <a href="#">Favorites</a>
+			              </li>
+			              <li class="">
+			                <a href="/messages">Messages</a>
+			              </li>
+			              <li class="pull-right">
+			                <a href="/signout">Signout</a>
+			              </li>
+			            </ul>
+			          </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div id="row-fluid">
+			<div class="container-fluid">
+			  <div class="row-fluid">
+			    <div class="span2 pull-left" id="search-side-bar">
+			    	<div class="accordion" id="accordion2">
+			    	  <div class="accordion-group">
+					    <div class="accordion-heading">
+					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+					        Type <i class="icon-circle-arrow-down pull-right icon-white icon" onmouseover="this.className='icon-circle-arrow-down pull-right icon'" onmouseout="this.className='icon-circle-arrow-down pull-right icon-white icon'"></i>
+					      </a>
+					    </div>
+					    <div id="collapseOne" class="accordion-body collapse in">
+					      <div class="accordion-inner item" id="no-of-resources">
+					        <p>Resources (0)</p>
+					      </div>
+					      <div class="accordion-inner item" id="no-of-mentors">
+					        <p>Mentors (0)</p>
+					      </div>
+					      <div class="accordion-inner item" id="no-of-applicants">
+					        <p>Job applicants (0)</p>
+					      </div>
+					      <div class="accordion-inner item">
+					        <p>Freelancers (0)</p>
+					      </div>
+					      
+					      <div class="accordion-inner item">
+					        <!-- <p>Post a job</p> -->
+
+					        <p><a href="#upload-resource" role="button" class="" id="new-resource" data-toggle="modal">Post a job</a></p>
+
+
+					        <div class="pull-right"> 
+                                    <!-- Modal -->
+                                    <div id="upload-resource" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      <div class="modal-header">
+                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                                        <h3 id="myModalLabel">Post a job</h3>
+                                      </div>
+                                      <form action="{{upload}}" method="POST" enctype="multipart/form-data">
+                                          <div class="modal-body">
+                                                <input class="newJobmodal" type="text" placeholder="Title"><br>
+                                                <textarea class="newJobmodal" rows="5" cols="450" placeholder="Brief description"></textarea><br>
+                                                <input type="text" name="user_id" value="{{user_id}}" style="display:none">
+
+                                                <div class="accordion" id="accordionJob">
+                                                  <div class="accordion-group">
+                                                    <div class="accordion-heading">
+                                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionJob" href="#collapseJob">
+                                                        Expertise<i class="icon-circle-arrow-down pull-right icon-white icon" onmouseover="this.className='icon-circle-arrow-down pull-right icon'" onmouseout="this.className='icon-circle-arrow-down pull-right icon-white icon'"></i>
+                                                      </a>
+                                                    </div>
+                                                    <div id="collapseJob" class="accordion-body collapse">
+                                                      <div class="accordion-inner">
+                                                        
+														<div class="row-fluid">
+															<div class=" job-tags" >
+																<p>BUSINESS DEVELOPMENT</p>
+																<ul>
+																	<li><input type="checkbox">Sales</li>
+																	<li><input type="checkbox">Customer service</li>
+																	<li><input type="checkbox">Pitching</li>
+																	<li><input type="checkbox">Fundraising</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>DESIGN</p>
+																<ul>
+																	<li><input type="checkbox">Graphic design</li>
+																	<li><input type="checkbox">Product design</li>
+																	<li><input type="checkbox">UX/UI</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>LEGAL</p>
+																<ul>
+																	<li><input type="checkbox">Contracts</li>
+																	<li><input type="checkbox">Incorporation</li>
+																	<li><input type="checkbox">Intellectual property</li>
+																	<li><input type="checkbox">Licensing</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>CUSTOMER DEVELOPMENT</p>
+																<ul>
+																	<li><input type="checkbox">Analytics</li>
+																	<li><input type="checkbox">Product/market fit</li>
+																	<li><input type="checkbox">Conversion</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>HUMAN RESOURCES</p>
+																<ul>
+																	<li><input type="checkbox">Hiring</li>
+																	<li><input type="checkbox">Motivation</li>
+																	<li><input type="checkbox">Coaching and leadership</li>
+																	<li><input type="checkbox">Teamwork</li>
+																	<li><input type="checkbox">Interviewing</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>TECHNOLOGY</p>
+																<ul>
+																	<li><input type="checkbox"><label>iOS</label></li>
+																	<li><input type="checkbox"><label>SEO</label></li>
+																	<li><input type="checkbox"><label>PHP</label></li>
+																	<li><input type="checkbox"><label>Java</label></li>
+																	<li><input type="checkbox"><label>J2ME</label></li>
+																	<li><input type="checkbox"><label>Linux</label></li>
+																	<li><input type="checkbox"><label>Python</label></li>
+																	<li><input type="checkbox"><label>Android</label></li>
+																	<li><input type="checkbox"><label>Database</label></li>
+																	<li><input type="checkbox"><label>Big Data</label></li>
+																	<li><input type="checkbox"><label>Security</label></li>
+																	<li><input type="checkbox"><label>Analytics</label></li>
+																	<li><input type="checkbox"><label>Algorithms</label></li>
+																	<li><input type="checkbox"><label>Networking</label></li>
+																	<li><input type="checkbox"><label>Server side</label></li>
+																	<li><input type="checkbox"><label>Methematics</label></li>
+																	<li><input type="checkbox"><label>Data Mining</label></li>
+																	<li><input type="checkbox"><label>Ruby on Rails</label></li>
+																	<li><input type="checkbox"><label>Computer Graphics</label></li>
+																	<li><input type="checkbox"><label>NoSQL + memchahed</label></li>
+																	<li><input type="checkbox"><label>Infrastructure scaling</label></li>
+																	<li><input type="checkbox"><label>Artificial Intelligence</label></li>
+																	<li><input type="checkbox"><label>Performance/Optimization</label></li>
+																	<li><input type="checkbox"><label>Advanced Web Applications</label></li>
+																	<li><input type="checkbox"><label>Natural Language Processing</label></li>
+																	<li><input type="checkbox"><label>System Analysis and Design</label></li>
+																	<li><input type="checkbox"><label>Interactive User Interfaces/ Direct Manipulation</label></li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>OPERATIONS</p>
+																<ul>
+																	<li><input type="checkbox">Procurement</li>
+																	<li><input type="checkbox">Supply chain</li>
+																</ul>
+															</div>
+															<hr>
+															<div class=" job-tags" >
+																<p>STRATEGY MARKETING</p>
+																<ul>
+																	<li><input type="checkbox">Advertising</li>
+																	<li><input type="checkbox">Competitive analysis</li>
+																	<li><input type="checkbox">Copyrighting</li>
+																	<li><input type="checkbox">Email marketing</li>
+																	<li><input type="checkbox">Growth and scaling</li>
+																	<li><input type="checkbox">Marketing strategy</li>
+																	<li><input type="checkbox">Pricing</li>
+																	<li><input type="checkbox">SEO</li>
+																</ul>
+															</div>
+
+														</div>
+
+
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="accordion-group">
+                                                    <div class="accordion-heading">
+                                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionJob" href="#collapseJob2">
+                                                        Industry<i class="icon-circle-arrow-down pull-right icon-white icon" onmouseover="this.className='icon-circle-arrow-down pull-right icon'" onmouseout="this.className='icon-circle-arrow-down pull-right icon-white icon'"></i>
+                                                      </a>
+                                                    </div>
+                                                    <div id="collapseJob2" class="accordion-body collapse">
+                                                      <div class="accordion-inner">
+                                                        <div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Analytics</li>
+																<li><input type="checkbox" >Advertising</li>
+																<li><input type="checkbox" >Cloud services</li>
+																<li><input type="checkbox" >Education</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Enterprise software</li>
+																<li><input type="checkbox" >Events</li>
+																<li><input type="checkbox" >Fashion</li>
+																<li><input type="checkbox" >Financial services</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Games</li>
+																<li><input type="checkbox" >Green</li>
+																<li><input type="checkbox" >Hardware</li>
+																<li><input type="checkbox" >Healthcare</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Local</li>
+																<li><input type="checkbox" >Media</li>
+																<li><input type="checkbox" >Mobile</li>
+																<li><input type="checkbox" >Music</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Payments</li>
+																<li><input type="checkbox" >Photography</li>
+																<li><input type="checkbox" >Productive tools</li>
+																<li><input type="checkbox" >Recruting</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Retail</li>
+																<li><input type="checkbox" >Sharing</li>
+																<li><input type="checkbox" >Small business</li>
+																<li><input type="checkbox" >Social impact</li>
+															</ul>
+														</div>	
+														<hr>
+														<div class="job-tags">	
+															<ul>
+																<li><input type="checkbox" >Sports</li>
+																<li><input type="checkbox" >Travel</li>
+																<li><input type="checkbox" >Video</li>
+															</ul>
+														</div>	
+                                                        	
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                
+                                              
+                                                <input class="newJobmodal " type="file" name="file">
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                            <button class="btn btn-primary"  type="submit">Post job</button>
+                                          </div>
+                                      </form>
+                                    </div>
+
+                                    </div>
+					      </div>
+					    </div>
+					  </div>
+					  
+					</div>
+			    </div>
+			    <div class="span9 pull-left" id="search-main">
+			    	
+			    	<div id="search-fields" class="row-fluid">
+			    		<ul class="nav nav-pills">
+						  <li id="topic-nav" class="active"><a href="#topics" data-toggle="tab">Expertise</a></li>
+								<input type="hidden" name="search-button-data-sectors" id="search-button-data-sectors" value="[]">
+								<input type="hidden" name="search-button-data-topics"  id="search-button-data-topics" value="[]">
+						  <li class="" id="sector-nav"><a href="#sectors" data-toggle="tab">Industry</a></li>
+						</ul>
+						<div class="tab-content item row-fluid " id="tab-content">
+							<div class="tab-pane row-fluid active" id="topics">
+								<div class="span12 first"> 
+									
+									<!-- <div class="row-fluid">
+
+										<div id="business-development" class="span12 tp">
+											<label>BUSINESS DEVELOPMENT</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Sales</label></li>
+											<li><input type="checkbox"><label>Market Research</label></li>
+											<li><input type="checkbox"><label>Customer service</label></li>
+											<li><input type="checkbox"><label>Customer Development</label></li>
+											<li><input type="checkbox"><label>Partnerships/Sponsorship</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">	
+										<div id="design" class="span12 tp">
+											<label>DESIGN</label>
+											<ul><span>
+											<li><input type="checkbox"><label>UI</label></li>
+											<li><input type="checkbox"><label>UX</label></li>
+											<li><input type="checkbox"><label>Infographics</label></li>
+											<li><input type="checkbox"><label>Product design</label></li>
+											<li><input type="checkbox"><label>Graphic design</label></li>
+											<li><input type="checkbox"><label>Usability testing</label></li>
+											<li><input type="checkbox"><label>Interactive design</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">			
+										<div id="project-mgt" class="span12 tp">
+											<label>PROJECT MANAGEMENT</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Scrum</label></li>
+											<li><input type="checkbox"><label>Lean startup methodology</label></li>
+											<li><input type="checkbox"><label>Project management tools</label></li>
+											<li><input type="checkbox"><label>Agile product development</label></li>
+										</div>
+									</div>
+									<hr>	
+									<div class="row-fluid">
+										<div id="legal" class="span12 tp">
+											<label>LEGAL</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Licensing</label></li>
+											<li><input type="checkbox"><label>Trademarks</label></li>
+											<li><input type="checkbox"><label>Negotiation</label></li>
+											<li><input type="checkbox"><label>Copyrighting</label></li>
+											<li><input type="checkbox"><label>Incorporation</label></li>
+											<li><input type="checkbox"><label>Contract formulation</label></li>
+											<li><input type="checkbox"><label>Intellectual property</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">		
+										<div id="finance-accounting" class="span12">
+											<label>FINANCE/ ACCOUNTING</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Financial Models</label></li>
+											<li><input type="checkbox"><label>Accounting software</label></li>
+											<li><input type="checkbox"><label>Accounting best practices</label></li></span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">		
+										<div id="customer-development" class="span12 tp">
+											<label>CUSTOMER DEVELOPMENT</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Analytics</label></li>
+											<li><input type="checkbox"><label>Conversion</label></li>
+											<li><input type="checkbox"><label>Product/market fit</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">
+										<div id="human-resources" class="span12 tp">
+											<label>HUMAN RESOURCES</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Hiring</label></li>
+											<li><input type="checkbox"><label>Training</label></li>
+											<li><input type="checkbox"><label>Recruitment</label></li>
+											<li><input type="checkbox"><label>Interviewing</label></li>
+											<li><input type="checkbox"><label>Coaching and leadership</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">		
+										<div id="operations" class="span12 tp">
+											<label>OPERATIONS</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Process Optimization</label></li>
+											<li><input type="checkbox"><label>Quality Assurance/ Management</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">		
+										<div id="strategy-marketing" class="span12 tp">
+											<label>STRATEGY/MARKETING</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Pricing</label></li>
+											<li><input type="checkbox"><label>Branding</label></li>
+											<li><input type="checkbox"><label>Marketing</label></li>
+											<li><input type="checkbox"><label>Email marketing</label></li>
+											<li><input type="checkbox"><label>Viral marketing</label></li>
+											<li><input type="checkbox"><label>Brand Management</label></li>
+											<li><input type="checkbox"><label>Process Management</label></li>
+											<li><input type="checkbox"><label>Guerilla Marketing</label></li>
+											<li><input type="checkbox"><label>Internet Marketing</label></li>
+											<li><input type="checkbox"><label>Affiliate marketing</label></li>
+										</div>		
+									</div>
+									<hr>
+									<div class="row-fluid">
+										<div id="technology" class="span12 tp">
+											<label>TECHNOLOGY</label>
+											<ul><span>
+											<li><input type="checkbox"><label>iOS</label></li>
+											<li><input type="checkbox"><label>SEO</label></li>
+											<li><input type="checkbox"><label>PHP</label></li>
+											<li><input type="checkbox"><label>Java</label></li>
+											<li><input type="checkbox"><label>J2ME</label></li>
+											<li><input type="checkbox"><label>Linux</label></li>
+											<li><input type="checkbox"><label>Python</label></li>
+											<li><input type="checkbox"><label>Android</label></li>
+											<li><input type="checkbox"><label>Database</label></li>
+											<li><input type="checkbox"><label>Big Data</label></li>
+											<li><input type="checkbox"><label>Security</label></li>
+											<li><input type="checkbox"><label>Analytics</label></li>
+											<li><input type="checkbox"><label>Algorithms</label></li>
+											<li><input type="checkbox"><label>Networking</label></li>
+											<li><input type="checkbox"><label>Server side</label></li>
+											<li><input type="checkbox"><label>Methematics</label></li>
+											<li><input type="checkbox"><label>Data Mining</label></li>
+											<li><input type="checkbox"><label>Ruby on Rails</label></li>
+											<li><input type="checkbox"><label>Computer Graphics</label></li>
+											<li><input type="checkbox"><label>NoSQL + memchahed</label></li>
+											<li><input type="checkbox"><label>Infrastructure scaling</label></li>
+											<li><input type="checkbox"><label>Artificial Intelligence</label></li>
+											<li><input type="checkbox"><label>Performance/Optimization</label></li>
+											<li><input type="checkbox"><label>Advanced Web Applications</label></li>
+											<li><input type="checkbox"><label>Natural Language Processing</label></li>
+											<li><input type="checkbox"><label>System Analysis and Design</label></li>
+											<li><input type="checkbox"><label>Interactive User Interfaces/ Direct Manipulation</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">
+										<div id="sales" class="span12 tp">
+											<label>SALES</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Sales funnel</label></li>
+											<li><input type="checkbox"><label>Sales process</label></li>
+											<li><input type="checkbox"><label>Sales Management</label></li>
+											</span></ul>
+										</div>
+									</div>
+									<hr>
+									<div class="row-fluid">			
+										<div id="fundraising" class="span12 tp">
+											<label>FUNDRAISING</label>
+											<ul><span>
+											<li><input type="checkbox"><label>Pitching</label></li>
+											<li><input type="checkbox"><label>Fundraising strategy</label></li>
+											<li><input type="checkbox"><label>Financial Projections</label></li>
+											</span></ul>
+										</div>	
+									</div> -->
+
+									<!-- ========================================== -->
+
+
+                                                <div class="row resource">                                                        
+                                                    <div class="span12">                
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Strategy/ Marketing <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Pricing">Pricing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Branding">Branding</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Marketing">Marketing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Email marketing">Email marketing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Viral marketing">Viral marketing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Brand management">Brand management</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Process management">Process management</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Guerilla marketing">Guerilla marketing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Internet marketing">Internet marketing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="strategy marketing" data-value="Affiliate marketing">Affiliate marketing</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div> 
+                                                        <div class="dropdown dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Business Development <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="business development" data-value="Sales">Sales</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="business development" data-value="Marketing research">Market research</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="business development" data-value="Customer service">Customer service</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="business development" data-value="Customer development">Customer development</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="business development" data-value="Partnerships sponsorship">Partnerships/Sponsorship</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Design <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="UX">UX</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="UI">UI</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="Infographics">Infographics</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="Product design">Product design</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="Graphic design">Graphic design</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="Usability testing">Usability testing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="design" data-value="Interactive design">Interactive design</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div> 
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Human Resources <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="human resources" data-value="Hiring">Hiring</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="human resources" data-value="Training">Training</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="human resources" data-value="Recruitment">Recruitment</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="human resources" data-value="Interviewing">Interviewing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="human resources" data-value="Coaching and leadership">Coaching and leadership</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Customer Development <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="customer development" data-value="Analytics">Analytics</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="customer development" data-value="Conversion">Conversion</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="customer development" data-value="Product market fit">Product/market fit</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Operations <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="operations" data-value="Process optimization">Process optimization</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="operations" data-value="Quality assurance management">Qualtiy assurance/ Management</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>                                                 
+                                                   <!--  </div>  
+
+                                                    <div class="span6 pull-right"> -->
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Project Management <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="project management" data-value="Scrum">Scrum</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="project management" data-value="Lean startup methodology">Lean startup methodology</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="project management" data-value="Project management tools">Project management tools</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="project management" data-value="Agile product development">Agile product development</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div> 
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Legal <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Licensing">Licensing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Trademarks">Trademarks</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Negotiations">Negotiation</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Copyrighting">Copyrighting</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Incorporation">Incorporation</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Contract formulation">Contract formulation</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="legal" data-value="Intellectual property">Intellectual property</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div> 
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Finance/ Accounting <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="finance accounting" data-value="Financial models"> Financial models</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="finance accounting" data-value="Accounting software">Accounting software</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="finance accounting" data-value="Accounting best practices">Accounting best practices</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>  
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Sales <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="sales" data-value="Sales funnel">Sales funnel</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="sales" data-value="Sales process">Sales process</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="sales" data-value="Sales management">Sales management</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Fundraising <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="fundraising" data-value="Pitching">Pitching</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="fundraising" data-value="Fundraising strategy">Fundraising strategy</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="fundraising" data-value="Financial projections">Financial projections</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown dropdown">
+                                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                                Technology <b class="caret"></b>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="iOS">iOS</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="SEO">SEO</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="PHP">PHP</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Java">Java</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="J2ME">J2ME</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Linux">Linux</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Python">Python</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Android">Android</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Database">Database</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Big data">Big data</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Security">Security</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Analytics">Analytics</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Algorithms">Algorithms</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Networking">Networking</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Server side">Server side</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Mathematics">Mathematics</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Data mining">Data mining</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Ruby on rails">Ruby on rails</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Computer graphics">Computer graphics</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="NoSQL + memcached">NoSQL + memcached</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Infrastructure scaling">Infrastructure scaling</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Artificial intelligence">Artificial intelligence</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Performace optimization">Performace optimization</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Advanced web applications">Advanced web applications</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Copyrighting">Copyrighting</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Natural language processing">Natural language processing</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="System analysis and design">System analysis and design</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="checkbox"><input type="checkbox" data-type="expertise" data-expertise="technology" data-value="Interactive user interfaces direct manipulation">Interactive user interfaces/ Direct manipulation</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div> 
+                                                    </div>                         
+                                                </div>
+								<!-- 			<div class="accordion" id="jobTAGS">
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseOne1">
+		        BUSINESS DEVELOPMENT <span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseOne1" class="accordion-body collapse in">
+		      <div class="accordion-inner">
+		       <ul>
+		         <li><input type="checkbox"><label>Sales</label></li>
+				<li><input type="checkbox"><label>Market Research</label></li>
+				<li><input type="checkbox"><label>Customer service</label></li>
+				<li><input type="checkbox"><label>Customer Development</label></li>
+				<li><input type="checkbox"><label>Partnerships/Sponsorship</label></li>
+		       </ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseTwo">
+		       DESIGN<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseTwo" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>UI</label></li>
+					<li><input type="checkbox"><label>UX</label></li>
+					<li><input type="checkbox"><label>Infographics</label></li>
+					<li><input type="checkbox"><label>Product design</label></li>
+					<li><input type="checkbox"><label>Graphic design</label></li>
+					<li><input type="checkbox"><label>Usability testing</label></li>
+					<li><input type="checkbox"><label>Interactive design</label></li>
+				</ul>
+			</div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseThree">
+		        LEGAL<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseThree" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Licensing</label></li>
+					<li><input type="checkbox"><label>Trademarks</label></li>
+					<li><input type="checkbox"><label>Negotiation</label></li>
+					<li><input type="checkbox"><label>Copyrighting</label></li>
+					<li><input type="checkbox"><label>Incorporation</label></li>
+					<li><input type="checkbox"><label>Contract formulation</label></li>
+					<li><input type="checkbox"><label>Intellectual property</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseFour">
+		        CUSTOMER DEVELOPMENT<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseFour" class="accordion-body collapse">
+		      <div class="accordion-inner">  
+			<ul>
+				<li><input type="checkbox"><label>Analytics</label></li>
+				<li><input type="checkbox"><label>Conversion</label></li>
+				<li><input type="checkbox"><label>Product/market fit</label></li>
+			</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseFive">
+		      HUMAN RESOURCES<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseFive" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Hiring</label></li>
+					<li><input type="checkbox"><label>Training</label></li>
+					<li><input type="checkbox"><label>Recruitment</label></li>
+					<li><input type="checkbox"><label>Interviewing</label></li>
+					<li><input type="checkbox"><label>Coaching and leadership</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseSix">
+		        PROJECT MANAGEMENT<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseSix" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Scrum</label></li>
+					<li><input type="checkbox"><label>Lean startup methodology</label></li>
+					<li><input type="checkbox"><label>Project management tools</label></li>
+					<li><input type="checkbox"><label>Agile product development</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseSeven">
+		        FINANCE/ ACCOUNTING<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseSeven" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Financial Models</label></li>
+					<li><input type="checkbox"><label>Accounting software</label></li>
+					<li><input type="checkbox"><label>Accounting best practices</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseEight">
+		       OPERATIONS<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseEight" class="accordion-body collapse">
+		      <div class="accordion-inner">       
+				<ul>
+					<li><input type="checkbox"><label>Process Optimization</label></li>
+					<li><input type="checkbox"><label>Quality Assurance/ Management</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseNine">
+		        STRATEGY/MARKETING<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseNine" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Pricing</label></li>
+					<li><input type="checkbox"><label>Branding</label></li>
+					<li><input type="checkbox"><label>Marketing</label></li>
+					<li><input type="checkbox"><label>Email marketing</label></li>
+					<li><input type="checkbox"><label>Viral marketing</label></li>
+					<li><input type="checkbox"><label>Brand Management</label></li>
+					<li><input type="checkbox"><label>Process Management</label></li>
+					<li><input type="checkbox"><label>Guerilla Marketing</label></li>
+					<li><input type="checkbox"><label>Internet Marketing</label></li>
+					<li><input type="checkbox"><label>Affiliate marketing</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseTen">
+		        TECHNOLOGY<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseTen" class="accordion-body collapse">
+		      <div class="accordion-inner">
+		        
+				<ul>
+					<li><input type="checkbox"><label>iOS</label></li>
+					<li><input type="checkbox"><label>SEO</label></li>
+					<li><input type="checkbox"><label>PHP</label></li>
+					<li><input type="checkbox"><label>Java</label></li>
+					<li><input type="checkbox"><label>J2ME</label></li>
+					<li><input type="checkbox"><label>Linux</label></li>
+					<li><input type="checkbox"><label>Python</label></li>
+					<li><input type="checkbox"><label>Android</label></li>
+					<li><input type="checkbox"><label>Database</label></li>
+					<li><input type="checkbox"><label>Big Data</label></li>
+					<li><input type="checkbox"><label>Security</label></li>
+					<li><input type="checkbox"><label>Analytics</label></li>
+					<li><input type="checkbox"><label>Algorithms</label></li>
+					<li><input type="checkbox"><label>Networking</label></li>
+					<li><input type="checkbox"><label>Server side</label></li>
+					<li><input type="checkbox"><label>Methematics</label></li>
+					<li><input type="checkbox"><label>Data Mining</label></li>
+					<li><input type="checkbox"><label>Ruby on Rails</label></li>
+					<li><input type="checkbox"><label>Computer Graphics</label></li>
+					<li><input type="checkbox"><label>NoSQL + memchahed</label></li>
+					<li><input type="checkbox"><label>Infrastructure scaling</label></li>
+					<li><input type="checkbox"><label>Artificial Intelligence</label></li>
+					<li><input type="checkbox"><label>Performance/Optimization</label></li>
+					<li><input type="checkbox"><label>Advanced Web Applications</label></li>
+					<li><input type="checkbox"><label>Natural Language Processing</label></li>
+					<li><input type="checkbox"><label>System Analysis and Design</label></li>
+					<li><input type="checkbox"><label>Interactive User Interfaces/ Direct Manipulation</label></li>
+				</ul>
+			</div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseEleven">
+		        SALES<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseEleven" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Sales funnel</label></li>
+					<li><input type="checkbox"><label>Sales process</label></li>
+					<li><input type="checkbox"><label>Sales Management</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="accordion-group">
+		    <div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent="#jobTAGS" href="#collapseTwelve">
+		        FUNDRAISING<span <b class="caret pull-right"></b></span> 
+		      </a>
+		    </div>
+		    <div id="collapseTwelve" class="accordion-body collapse">
+		      <div class="accordion-inner">
+				<ul>
+					<li><input type="checkbox"><label>Pitching</label></li>
+					<li><input type="checkbox"><label>Fundraising strategy</label></li>
+					<li><input type="checkbox"><label>Financial Projections</label></li>
+				</ul>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+									<!-- ============================================ -->
+								</div>																						
+							</div>
+							<div class="tab-pane row-fluid" id="sectors">
+								<ul><span>
+								<li><input type="checkbox" ><label>Analytics</label></li>
+								<li><input type="checkbox" ><label>Advertising</label></li>
+								<li><input type="checkbox" ><label>Cloud services</label></li>
+								<li><input type="checkbox" ><label>Education</label></li>
+								<li><input type="checkbox" ><label>Enterprise software</label></li>
+								<li><input type="checkbox" ><label>Events</label></li>
+								<li><input type="checkbox" ><label>Fashion</label></li>
+								<li><input type="checkbox" ><label>Financial services</label></li>
+								<li><input type="checkbox" ><label>Games</label></li>
+								<li><input type="checkbox" ><label>Green</label></li>
+								<li><input type="checkbox" ><label>Hardware</label></li>
+								<li><input type="checkbox" ><label>Healthcare</label></li>
+								<li><input type="checkbox" ><label>Local</label></li>
+								<li><input type="checkbox" ><label>Media</label></li>
+								<li><input type="checkbox" ><label>Mobile</label></li>
+								<li><input type="checkbox" ><label>Music</label></li>
+								<li><input type="checkbox" ><label>Payments</label></li>
+								<li><input type="checkbox" ><label>Photography</label></li>
+								<li><input type="checkbox" ><label>Productive tools</label></li>
+								<li><input type="checkbox" ><label>Recruting</label></li>
+								<li><input type="checkbox" ><label>Retail</label></li>
+								<li><input type="checkbox" ><label>Sharing</label></li>
+								<li><input type="checkbox" ><label>Small business</label></li>
+								<li><input type="checkbox" ><label>Social impact</label></li>
+								<li><input type="checkbox" ><label>Sports</label></li>
+								<li><input type="checkbox" ><label>Travel</label></li>
+								<li><input type="checkbox" ><label>Video</label></li>
+								</span></ul>
+							</div>
+						</div>
+			    	</div>	 -->
+
+			    	<div id="search-results-tags" class="item row-fluid">
+						<ul ><span>
+						</span></ul>
+			    	</div>
+			    	
+			    	<div id="search-results-all" class="row-fluid">
+			    		
+			    		<div class="item row-fluid" id="resources">
+
+			    			<div class="row-fluid" id="resources-label"><label><h5>Resources</h5></label></div>
+			    			<div class="row-fluid search-result-resource" id="search-result">
+			    			<div class="row-fluid">
+			    			<div class="row-fluid found-resource" id="found-resource">
+				    			<div class="row-fluid" id="found-resource-text">
+				    				<div class="span1"><img class="resource-icon" src="../../scripts/img/resource.png" onmouseover="this.src='../../scripts/img/resource-black.png'" onmouseout="this.src='../../scripts/img/resource.png'"></div>
+				    				<div class="span10" id="resource-text">
+				    					<span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </span>
+				    				</div>
+				    				<div class="span1"><img class="favorite-icon" src="../../scripts/img/favorites.png" onmouseover="this.src='../../scripts/img/favorites-black.png'" onmouseout="this.src='../../scripts/img/favorites.png'" ></div>
+				    			</div>
+				    			<div class="row-fluid">
+				    				<div class="span7 offset5">
+				    					<div class="row-fluid" id="resource-captions">
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/comment.png" onmouseover="this.src='../../scripts/img/comment-black.png'" onmouseout="this.src='../../scripts/img/comment.png'">
+						    					&nbsp;<span> 4 comments</span>
+						    				</div>
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/download.png" onmouseover="this.src='../../scripts/img/download-black.png'" onmouseout="this.src='../../scripts/img/download.png'">
+						    					&nbsp;<span>download</span>
+						    				</div>
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    				</div>
+				    					</div>
+				    				</div>
+				    			</div>
+			    			</div>
+			    			<div class="row-fluid found-resource" id="found-resource">
+				    			<div class="row-fluid" id="found-resource-text">
+				    				<div class="span1"><img class="resource-icon" src="../../scripts/img/resource.png" onmouseover="this.src='../../scripts/img/resource-black.png'" onmouseout="this.src='../../scripts/img/resource.png'"></div>
+				    				<div class="span10" id="resource-text">
+				    					<span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </span>
+				    				</div>
+				    				<div class="span1"><img class="favorite-icon" src="../../scripts/img/favorites.png" onmouseover="this.src='../../scripts/img/favorites-black.png'" onmouseout="this.src='../../scripts/img/favorites.png'" ></div>
+				    			</div>
+				    			<div class="row-fluid">
+				    				<div class="span7 offset5">
+				    					<div class="row-fluid" id="resource-captions">
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/comment.png" onmouseover="this.src='../../scripts/img/comment-black.png'" onmouseout="this.src='../../scripts/img/comment.png'">
+						    					&nbsp;<span> 4 comments</span>
+						    				</div>
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/download.png" onmouseover="this.src='../../scripts/img/download-black.png'" onmouseout="this.src='../../scripts/img/download.png'">
+						    					&nbsp;<span>download</span>
+						    				</div>
+						    				<div class="span4">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    					<img class="" src="../../scripts/img/heart.png" onmouseover="this.src='../../scripts/img/heart-black.png'" onmouseout="this.src='../../scripts/img/heart.png'">
+						    				</div>
+				    					</div>
+				    				</div>
+				    			</div>
+			    			</div>
+			    			</div>
+			    		</div>
+			    		</div>
+
+			    		<div class="item row-fluid" id="mentors">
+			    			<div class="row-fluid" id="mentor-label"><label><h5>Mentors</h5></label></div>
+			    			<div class="row-fluid search-result-mentor">
+			    				<ul class="grid cs-style-3">
+							    </ul>
+			    			</div>
+			    		</div>
+
+			    		<div class="item row-fluid" id="job-applicants">
+			    			<div class="row-fluid" id="job-applicant-label"><label><h5>Job applicants</h5></label></div>
+			    			<div class="row-fluid search-result-job-applicant">
+				    			<ul class="grid cs-style-3"></ul>
+			    			</div>
+			    		</div>
+
+			    		<div class="row-fluid" id="full-profile-mentor">
+			    			<div class="row-fluid" id="full-profile-nav">					
+
+								<!-- MODAL========== -->
+								 
+								<!-- Modal -->
+								<div id="myModal" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-header">
+								    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+								    <h3 id="myModalLabel">Mentor Profile</h3>
+								  </div>
+								  <div class="modal-body">
+								    <div class="cover-banner" id="mentor-full-view"> <!-- mentor profile begins -->	
+					    			<div class="row-fluid" id="full-profile-content">
+					    				<div class="span7 item" id="full-profile-content-left">
+
+
+					    					 <div class="" id="mentor-full-view"> <!-- mentor profile begins -->	
+								    			<div class="row item" id="profile-head">
+											    	
+														<div class="span5" id="profile-brief-img">
+															<ul class="grid">
+														        <li class="">
+														          <figure class="">
+														            <div>
+														            	<img  id="modal-pic" src="" alt="picture">
+														            </div>
+														          </figure>
+														        </li>
+														    </ul>
+										            		<input type="hidden" id="backing6">
+															<div class="rateit" id="rateit5" data-rateit-min="0"  data-rateit-ispreset="true">
+															</div>
+														</div>
+														<div class="span7" id="profile-brief-text">
+															<div class="row-fluid">
+																<label id="profile-name">
+																	<h3 id="mentor-profile-name">
+																		<strong>
+																		</strong>
+																	</h3>
+																</label>
+																<span>
+																	<label id="profile-company-position">
+																		<p></p>
+																	</label>
+																</span>
+															</div>
+															<div class="row-fluid" id="profile-brief-location">
+																<span></span>
+															</div>
+															<div class="row-fluid" id="profile-brief-schedule">
+									    						<span></span>
+															</div>
+														</div>
+													
+								    			</div>
+								    		</div>	
+
+					    					<div class="row-fluid"  id="profile-summary">
+					    						<div class="row-fluid" id="profile-summary-label"><label><h5>SUMMARY</h5></label></div>
+					    						<div class="row-fluid"  id="profile-summary-content">
+						    						<span>
+							    						<p></p>
+						    						</span>
+						    					</div>
+					    					</div>
+					    					<div class="row-fluid" id="profile-resume">
+					    						<div class="profile-resume-label"><label><h5>EXPERIENCE</h5></label></div>
+					    						<div class="row-fluid" id="profile-resume-list">
+					    						</div>
+					    					</div>
+					    					<div class="row-fluid" id="profile-education">
+					    						<div class="profile-education-label"><label><h5>Education</h5></label></div>
+					    						<div class="row-fluid" id="profile-education-list">
+					    						</div>
+					    					</div>
+					    				</div>
+					    				<div class="span4 pull-left" id="full-profile-content-right">
+											
+											<div class="row-fluid skills" id="profile-brief-skills-tags">
+												<div class="row-fluid tags" id="">
+					    							<label>ENDORSED FOR</label>
+					    						</div>
+												<span> </span>
+											</div>
+
+				    						<div class="row-fluid skills" id="industries">
+				    							<div class="row-fluid tags" id="">
+					    							<label>INDUSTRIES</label>
+					    						</div>
+				    							<span></span>
+				    						</div>
+
+				    						<div class="row-fluid skills" id="expertise">
+				    							<div class="row-fluid tags" id="">
+					    							<label>EXPERTISE</label>
+					    						</div>
+				    							<span></span>
+				    						</div>
+
+					    					<div class="row-fluid item" id="commments-and-ratings">
+					    						<div class="row-fluid"><label><p>COMMENTS/RATINGS</p></div>
+					    						<div class="row-fluid" id="comments-container">
+					    						</div>
+					    						<div class="row-fluid" id="new-comment-container">
+					    							<div class="row-fluid" id="new-comment-textarea">
+						    							<textarea id="comment-textarea"></textarea>
+					    							</div>
+					    							<div class="row-fluid" id="comment-submit-container">
+						    							<button id="comment-submit-button" class="pull-right btn">Submit</button>
+					    							</div>
+					    						</div>
+					    					</div>
+
+					    				</div>
+					    			</div>									
+								</div> <!-- mentor profile ends -->
+
+								  </div>
+								  <div class="modal-footer">
+								    <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+								    <form method="POST" action="/messages?action=send-message" class="pull-right">
+								    	<button id="compose-message" class="btn btn-primary send-message">SEND MESSAGE</button>
+		    							<input type="text" id="receiver_id" name="receiver_id" style="display:none" value="hello">
+								    <form>
+								  </div>
+								</div>
+								 <!-- MODAL =============== -->
+								
+								<!-- TRY OUT ENDS=========================================== -->
+			    			</div>
+							
+			    			
+			    		</div>	
+			    	</div>	
+
+			    </div>
+			  </div>
+			</div>
+		</div> <!-- results container ends -->
+
+
+		<script src="../../scripts/js/modernizr.custom.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="../../scripts/rateit/src/jquery.rateit.js" type="text/javascript"></script>
+    	<script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
+    	<script src="../../scripts/iCheck/jquery.icheck.js"></script>
+    	<script src="../../scripts/iCheck/iCheck.inputStyle.js"></script>
+    	<script src="../../scripts/js/toucheffects.js"></script>
+    	<script src="../../scripts/js/ajax/ajax_calls.js"></script>
+		<script type="text/javascript">
+		    $(function () {
+				$('#rateit5').rateit({ max: 5, step: 0.5, backingfld: '#backing6' }); 
+			});
+		</script> 
+		<script>
+			$('.dropdown-menu').on('click', function(e) {
+			    if($(this).hasClass('dropdown-menu-form')) {
+			        e.stopPropagation();
+			    }
+			});
+		</script>
+	</body>
+</html>

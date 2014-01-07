@@ -1,0 +1,314 @@
+{% if new_mentors.count()>0 %}
+<!-- =====================PENDING======================= -->
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Mentors pending confirmation</div>
+            <div class="pull-right">
+                <span class="badge badge-info">{{new_mentors.count()}}</span>
+            </div>
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped pending_mentors">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        {% set count = 0 %}
+                        {% for new_mentor in new_mentors %}
+                        <tr class="pending {{new_mentor.key().id()}}">
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{new_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{new_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{new_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{new_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{new_mentor.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{new_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{new_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{new_mentor.last_name}}</a>
+                            </td>
+                            <td>
+                                {{new_mentor.programs[0].program_type}}
+                            </td>
+                            <td>
+                                <button class="btn confirm-mentor-btn confirm {{new_mentor.key().id()}}" data-id="{{new_mentor.key().id()}}" data-action="confirm">Confirm</button>
+                                <button class="btn confirm-mentor-btn decline {{new_mentor.key().id()}}" data-id="{{new_mentor.key().id()}}" data-action="decline">Decline</button>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div>
+{% endif %}
+
+{% if mentors|length > 0%}
+<!-- =====================MENTORS===================== -->
+<div class="row-fluid Mentor">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Mentors</div>
+            <div class="pull-right">
+                <span class="badge badge-info">{{mentors|length}}</span>
+            </div>
+        </div>  
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped Mentor">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        {% set count = 0 %}
+                        {% for mentor in mentors %}
+                        <tr>
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{mentor.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{mentor.last_name}}</a>
+                            </td>
+                            <td>
+                                {{mentor.programs[0].program_type}}
+                            </td>
+                            <td><button class="btn btn-mini btn-primary remove-mentor" data-id="{{mentor.key().id()}}">Remove</button></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div>
+{% endif %}
+
+ {% if mba_mentors|length > 0%}
+<!-- ===================MBA CONSULTANTS============== -->
+<div class="row-fluid MBA-Consultant">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">MBA Consultants</div>
+            <div class="pull-right">
+                <span class="badge badge-info">{{mba_mentors|length}}</span>
+            </div>
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped MBA-Consultant">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                         {% set count = 0 %}
+                        {% for mba_mentor in mba_mentors %}
+                        <tr>
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{mba_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mba_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{mba_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mba_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{mba_mentor.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{mba_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{mba_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{mba_mentor.last_name}}</a>
+                            </td>
+                            <td>
+                                {{mba_mentor.programs[0].program_type}}
+                            </td>
+                            <td><button class="btn btn-mini btn-primary remove-mentor" data-id="{{mba_mentor.key().id()}}">Remove</button></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div>
+{% endif %}
+
+{% if senior_mentors|length> 0%}
+<!-- ================SNR ADVISORS================= -->
+<div class="row-fluid Senior-advisor">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Senior Advisors</div>
+            <div class="pull-right">
+                <span class="badge badge-info">{{senior_mentors|length}}</span>
+            </div>
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped Senior-advisor">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        {% set count = 0 %}
+                        {% for senior_mentor in senior_mentors %}
+                        <tr>
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{senior_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{senior_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{senior_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{senior_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{senior_mentor.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{senior_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{senior_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{senior_mentor.last_name}}</a>
+                            </td>
+                            <td>
+                                {{senior_mentor.programs[0].program_type}}
+                            </td>
+                            <td><button class="btn btn-mini btn-primary remove-mentor" data-id="{{senior_mentor.key().id()}}">Remove</button></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div>
+{% endif %}
+
+{% if expert_mentors|length> 0%}
+<!-- ========================EXPERTS===================== -->
+<div class="row-fluid Expert-in-residence">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Experts in residence</div>
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped Expert-in-residence">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        {% set count = 0 %}
+                        {% for expert_mentor in expert_mentors %}
+                        <tr>
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{expert_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{expert_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{expert_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{expert_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{expert_mentor.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{expert_mentor.linkedin_profile}}" onclick="javascript:void window.open('{{expert_mentor.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{expert_mentor.last_name}}</a>
+                            </td>
+                            <td>
+                                {{expert_mentor.programs[0].program_type}}
+                            </td>
+                            <td><button class="btn btn-mini btn-primary remove-mentor" data-id="{{expert_mentor.key().id()}}">Remove</button></td>
+                        </tr>
+
+                        {% endfor%}
+                        {% set count = count+expert_mentors|length+1 %}
+                        <tr>
+                            <td>{{count}}</td>
+                            
+                            <td><a href="mentor-details.html">Neal Hanch</a></td>
+                            <td>Meltwater Incubator</td>
+                            <td>MD</td>
+                            <td><button class="btn btn-mini btn-primary">Remove</button></td>
+                        </tr>
+                        {% set count = count+1 %}
+                        <tr>
+                            <td>{{count}}</td>
+                            <td><a href="mentor-details.html">Unni Krishnan</a></td>
+                            <td>Meltwater Entrepreneurial School of Technology</td>
+                            <td>Snr Faculty</td>
+                            <td><button class="btn btn-mini btn-primary">Remove</button></td>
+                        </tr>
+                        {% set count = count+1 %}
+                        <tr>
+                            <td>{{count}}</td>
+                            <td><a href="mentor-details.html">Ekua Odum<a/></td>
+                            <td>Meltwater Entrepreneurial School of Technology</td>
+                            <td>MD</td>
+                            <td><button class="btn btn-mini btn-primary">Remove</button></td>
+                        </tr>
+                        {% set count = count+1 %}
+                        <tr>
+                            <td>{{count}}</td>
+                            <td><a href="mentor-details.html">Jorn Lyseggen<a/></td>
+                            <td>Meltwater Incubator</td>
+                            <td>Founder/ Board Chair</td>
+                            <td><button class="btn btn-mini btn-primary">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+</div>
+{% endif %}

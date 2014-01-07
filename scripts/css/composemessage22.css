@@ -1,0 +1,202 @@
+/*{
+	border: 1px solid #cccccc;
+	border: 1px solid #f7f7f9;
+	/*padding:5px;*/
+html{
+	background-color: (255, 255, 255, 0.2);
+}
+div{
+	/*border:1px solid red;*/
+}
+
+body{
+	background: #969696;
+	/*background: url(../img/background3.jpg);*/
+	/*color: #fff;*/
+}
+
+#msg-wrap{
+	padding: 25px;
+	/*background-color: rgba(73,138,243, 0.2);*/
+	background-color: #e5e5e5;
+	
+	}
+.msg-content textarea, 
+.btn{
+	width: 100%;	
+}
+
+#msg-subject input{
+	width: 97%;	
+}
+
+.msg-content textarea{
+	resize: vertical;
+	min-height: 250px;
+	overflow: hidden;
+}
+
+.btn{
+	border-radius: 0px;
+}
+#msg-container, #validate{
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+#msg-container, #msg-select, #msg-subject{
+	margin-left: 0;
+}
+#validate{
+	margin-left: 90px;
+	/*background-color: rgba(73,138,243, 0.2);*/
+	background-color: #e5e5e5;
+	padding: 15px;
+}
+#msg-select select{
+	margin-bottom: 0;
+	width: 100%;
+	margin-left: 10px;
+}
+#msg-type-label p{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 0;
+}
+
+#valid-second{
+
+}
+
+#checkbox-headings, #checkboxes, #tip-carousel{
+	/*border:1px solid gray;*/
+	margin-top: 15px;
+	padding: 5px;
+
+}
+.msg-details{
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	vertical-align: middle;
+	padding-bottom: 0px
+
+}
+
+#msg-content{
+	margin-bottom: 20px;
+}
+
+#msg-history{
+	margin-top: -80px;
+}
+
+#mentor-inbox{
+	padding-left: 15px;
+	padding-top: 5px;
+	margin-bottom: 2px;
+	margin-left: 0;
+}
+
+
+#mentor-inbox:nth-child(even) {background: #D8D8D8}
+#mentor-inbox:nth-child(odd) {background: #FFF}
+
+#mentor-inbox:hover{
+	background-color: whitesmoke;
+	border-left: 5px solid #A4A4A4;
+	padding-left: 10px;
+	
+}
+
+
+#send-button-container{
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*nav bar++++++++++++++++++++++++++++++++++++++++++++++++*/
+.navbar{
+	/*box-shadow: 0 0 5px 6px grey;*/
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+div.navbar-inner, div.navbar-inner li{
+	background: #262626;
+	
+}
+
+.navbar .navbar-inner ul li a{
+	text-shadow: none;
+	margin-top: 8px;
+
+}
+.navbar .navbar-inner ul li a:hover{
+	color: #e5e5e5;
+
+}
+.signup-buttons{
+	margin-top: -5px;
+}
+
+#message-link ul li{
+	display: inline;
+	margin-left: 5px;
+	margin-top: 8px;
+	color: white;
+	
+}
+#message-link ul li a{
+	color: #777777;
+	text-decoration: none;
+}
+#message-link ul li a i{
+	margin-right: 5px;
+}
+#message-link ul li a:hover{
+	color: #fff;
+}
+#profile-pic{
+	width: 50px;
+	height: 50px;
+}
+
+/*+++++++++++++++++++++++++ nav bar ends++++++++++++++++++++++++++++++++++=*/
+
+/*footer++++++++++++++++++++++++++++++++++++++++++*/
+footer.nav{
+ 	
+ 	background: #262626;
+ 	color: white;
+ 	text-align: center;
+ }
+
+ #copyright{
+ 	margin: auto;
+ }
+
+ #social-media ul{
+ 	list-style: none;
+ }
+
+ #social-media li{
+ 	display: inline;
+ 	margin: 5px;
+ }	
+ /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

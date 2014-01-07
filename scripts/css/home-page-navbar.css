@@ -1,0 +1,42 @@
+.navbar{
+	/*box-shadow: 0 0 5px 6px grey;*/
+	margin-top: 0px;
+}
+
+.navbar-inner{
+	background: #151515;
+}
+
+.navbar-inner li {
+	text-decoration: none;
+
+}
+.navbar .navbar-inner ul li a{
+	text-shadow: none;
+}
+
+.navbar .navbar-inner ul li a:hover{
+	color: #e5e5e5;
+	border-bottom: 2px solid #5882FA;
+}
+
+ /*footer*/
+footer.nav{
+ 	
+ 	background: #262626;
+ 	color: white;
+ 	text-align: center;
+ }
+
+ #copyright{
+ 	margin: auto;
+ }
+
+ #social-media ul{
+ 	list-style: none;
+ }
+
+ #social-media li{
+ 	display: inline;
+ 	margin: 5px;
+ }

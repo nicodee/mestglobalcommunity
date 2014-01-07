@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Message Center</title>
+		<!-- // <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+		<link href="../scripts/css/css3-gmail-style.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="../scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="../scripts/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+		<!-- <link rel="stylesheet" type="text/css" href="../scripts/css/search-result.css"> -->
+		<link rel="stylesheet" type="text/css" href="../scripts/css/message-center.css">
+
+		<!-- start Dropifi --> <script type='text/javascript' src='https://s3.amazonaws.com/dropifi/js/widget/dropifi_widget.min.js'></script><script type='text/javascript'>document.renderDropifiWidget('3d30d4694620ba915f500aa173223521-1384729609090');</script> <!-- end Dropifi -->
+</head>
+
+<body style="background:#fafafa">
+
+	<!-- =============================================== NAVBAR =========================================== -->
+  <div id="wrap">
+    <div id="navigation-bar" class="row">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+              <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <div class="nav-collapse collapse pull-right">
+                  <ul class="nav">
+                    <li class="">
+                      <a href="/search">Search</a>
+                    </li>
+                    <li class="active">
+                      <a href="/messages">Messages</a>
+                    </li>
+                    <li class="pull-right">
+                      <a href="/signout">Signout</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>  
+   <!-- ================================== NAVBAR ==================================================-->
+ <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+ <!-- =================================== INBOX ACTIONS ============================================ -->
+  {% if compose == False %}
+  <div class="tabbable" id="mail-tabs"> 
+
+      <div id="mail">
+
+          <ul class="grouped hideit" >
+              <li>
+              	<select id="mail-select">
+              	<option value="all-mail">All</option>
+              	<option value="mentor-mail">Mentor</option>
+              	<option value="applicant-mail">Applicant</option>
+              </select>
+              </li>
+              <li><a href="#" class="bttn icon folder display-inbox" data-msg-type="sent">Sent</a></li>
+              <li><a href="#" class="bttn mark_read">Mark as Read</a></li>
+              <li><a href="#" class="bttn mark_unread">Mark as Unread</a></li>
+              <li><a href="#" class="bttn icon delete">Delete</a></li>
+          </ul>
+
+          <form class="form-search pull-right hideit" id="mail-search">
+              <div class="input-append">
+                <input class="span5 search-query" id="appendedInput" type="text" placeholder="search mail">
+                <span class="add-on">Search</span>
+              </div>
+          </form>
+<!-- ============================ INBOX ACTIONS ENDS ============================================ -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ============================ INBOX VIEW  ============================================ -->
+
+        <table class="table table-bordered mailinbox" style="border-collapse:collapse; margin-top:10px;" border="0" cellpadding="5" cellspacing="3">
+          <thead class="hideit inbox-header">
+              <tr>
+          {% if messages.count() > 0%}
+                  <th class="head1 aligncenter"><input type="checkbox" class="checkall" /></th>
+                  <th class="head0">&nbsp;</th>
+                  <th class="head1">From</th>
+                  <th class="head0">Subject</th>
+                  <th class="head1 attachement">&nbsp;</th>
+                  <th class="head0">Date</th>
+          {% else %}
+                  <th class="head0 aligncenter" colspan='6' >You have no new messages</th>
+              </tr>
+          </thead>
+          {% endif %}
+          <tbody class="inbox-container hideit">
+            {% for message in messages %}
+              <tr class="{{message.status}} message-item" id="{{message.key().id()}}">
+                  <td class="aligncenter favorite"><input type="checkbox" class="checkbox" name="" data-message-id="{{message.key().id()}}"/></td>
+                  <td class="star">
+                  {% if message.starred == "True" %}
+                    <a class="msgstar starred" data-message-id="{{message.key().id()}}"></a></td>
+                  {% else %}
+                    <a class="msgstar" data-message-id="{{message.key().id()}}"></a></td>
+                  {% endif %}
+                  <td  class="title" data-message-id="{{message.key().id()}}" id="msg_sender_name">{{message.sender.first_name}} {{message.sender.last_name}}</td>
+                  <td><a href="#" class="title" data-message-id="{{message.key().id()}}">{{message.subject}}</a></td>
+                  <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                  <td class="date">{{message.created.ctime()}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tbody id="opened-message">
+          </tbody>
+      </table>             
+      </div><!--  mail list ends -->
+
+    </div>
+<!-- ============================ INBOX VIEW ENDS ============================================ -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--================================ MAIL METADATA ============================================--> 
+		<center class="row-fluid" id="main-body">
+<!-- ==================================== METADATA ============================================== -->
+				<div class="row-fluid" id="meta-data">
+					<div class="row-fluid">
+							
+						<div class="row-fluid">
+							<div class="input-prepend span7" id="msg-recipient-container">
+								<span class="add-on label-height">To:</span><input class="span12" id="msg-recipient-input" size="" type="text" disabled>
+							</div>
+						</div>
+						<div class="row-fluid ">
+							<div class="input-prepend span7" id="msg-notify-container">
+								<span class="add-on label-height">Notify me at:</span><input class="span12" id="msg-sender-notify" size="" type="email" placeholder="email" >
+							</div>
+						 </div>
+						 <div class="row-fluid ">
+							<div class="input-prepend span7" id="msg-subject-container">
+								<span class="add-on label-height">Subject:</span><input class="span12" id="msg-subject-input" size="" type="text">
+							</div>
+						</div>
+					</div>
+				</div>  
+ <!-- ================================= METADATA ENDS =========================================== -->
+ <!-- ///////////////////////////////////////////////////////////////////////////////////////////// -->
+ <!-- ================================ COMPOSE MAIL ============================================= -->
+				<div class="row-fluid" id="msg-compose-container">
+					 <div class="row-fluid msg-content" id="msg-content-container">
+						 <textarea name="msg-content" placeholder="Message here" id="msg-content"></textarea>
+					 </div>
+					 <div class="row-fluid" id="reply-button-container">
+						 <div class="row-fluid " id="send-button">
+							<a href="#" class="btn pull-right span2 send-reply-message" id="send-reply-message"><i class="icon-share-alt"></i> <strong>Send</strong></a>
+							<a href="#" class="btn pull-right span2" id="cancel-reply"><i class="icon-remove-sign"></i> <strong>Cancel</strong></a>
+						 </div>
+					 </div>
+				</div>
+ <!-- ====================================== COMPOSE MAIL ENDS================================================ -->
+ <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+ <!-- ======================================= MESSAGE CONFIRM =============================================== -->
+				<div id="alert" class="offset3">
+						<div class="alert alert-success fade in">
+						<a class="close " data-dismiss="alert" href="#">&times;</a>
+						Message successfully sent
+					</div>
+					<div class="alert alert-warning fade in">
+						<a class="close" data-dismiss="alert" href="#">&times;</a>
+						Message was NOT sent. Try again
+					</div>
+				</div>
+
+				<div class="row-fluid" id="msg-container">
+					<div class="row-fluid">
+							
+						<div class="row-fluid ">
+							<div class="input-prepend span7" id="msg-recipient-container">
+								<span class="add-on label-height">To:</span><input class="span12" id="msg-recipient-input" size="" type="text" disabled>
+							</div>
+						</div>
+						 <div class="row-fluid ">
+							<div class="input-prepend span7" id="msg-subject-container">
+								<span class="add-on label-height">Subject:</span><input class="span12" id="msg-subject-input" size="" type="text" disabled>
+							</div>
+						</div>
+						<div class="row-fluid" id="msg-compose-container">
+							 <div class="row-fluid msg-content" id="msg-content-container">
+								 <textarea name="msg-content" disabled></textarea>
+							 </div>
+							 <div class="row-fluid" id="reply-button-container">
+								 <div class="row-fluid " id="send-button">
+									<a href="#" class="btn pull-right span2 send-reply-message" id="send-reply-message"><i class="icon-share-alt"></i> <strong>Back to inbox</strong></a>
+									<!-- <a href="#" class="btn pull-right span2" id="cancel-reply"><i class="icon-remove-sign"></i> <strong>Cancel</strong></a> -->
+								 </div>
+							 </div>
+						</div>
+
+					</div>
+				</div>  
+<!-- ======================================= MESSAGE CONFIRM =============================================== -->
+		</center>  
+ 
+
+{% elif compose == True %}
+<!-- ====================================== MESSAGE COMPOSE ================================================= -->
+
+<center class="row-fluid" id="compose-msg-one">
+		<div class="span1"></div>
+		<div class="span7 pull-left" id="msg-container">
+
+				<!-- <div id="msg-wrap"> -->
+						<!-- <div class="row-fluid">
+							<div class="input-prepend span6 pull-left" id="msg-recipient-container">
+								<span class="add-on">To:</span><input class="span6" id="msg-recipient-input" size="" type="text" disabled>
+							</div>
+							 
+							<div class="input-prepend span6 pull-left" id="msg-subject-container">
+								<span class="add-on">Subject:</span><input class="span12" id="msg-subject-input" size="" type="text">
+							</div>
+						</div> -->
+						
+			<div class="row-fluid" id="msg-compose-container">
+					<div class="row-fluid">				
+						<div class="input-prepend pull-left" id="new-msg-recipient-container">	
+								<span class="span2 add-on label-height" id="new-msg-recipient-label"><label>To:</label></span>
+								<div class="span10" id="msg-recipient">
+										<input class="pull-left" type="text" id="msg-receiver-input" name="msg-subject" disabled value="{{receiver.first_name}} {{receiver.last_name}}" data-receiver-id="{{receiver.key().id()}}">
+								</div> 
+						</div>
+
+						<!-- <div class="row-fluid ">
+						<div class="input-prepend span7" id="msg-recipient-container">
+							<span class="add-on label-height">To:</span><input class="span12" id="msg-recipient-input" size="" type="text" disabled>
+						</div>
+					</div> -->
+
+						<div class=" input-prepend pull-right" id="msg-type-container">
+								<span class="span5 add-on label-height" id="msg-type-label"><label>Type of conversation:</label></span>
+								<div class="span3" id="msg-select">
+										<select id="mail-selected">  
+												<option value="first-mtg">First contact and intro</option>
+												<option value="arrange-mtg">Arrange a meeting </option>
+												<option value="before-mtg">Prior to meeting</option>
+												<option value="after-mtg">After the meeting</option>
+												<option value="follow-up">Follow-up</option>
+										</select>
+								</div>
+						</div>
+					</div>
+					<div class="input-prepend row-fluid" id="msg-subject-container">
+							<span class="span2 add-on label-height" id="msg-subject-label"><label>Subject:</label></span>
+							<div class="span8" id="msg-subject">
+									<input class="pull-left" type="text" id="msg-subject-input" name="msg-subject" placeholder="Seeking advice about email marketing">
+							</div> 
+					</div>
+					<div class="row-fluid msg-content" id="msg-content-container">
+						<textarea name="" id="new_message" cols="30" rows="10"></textarea>
+					</div>
+					<div class="row-fluid" id="send-button-container">
+							<div class="span2 pull-right" id="send-button">
+									<button class="btn">Send</button>
+							</div>
+							<div class="span2 pull-right" id="cancel-button" style="margin-top: 10px; margin-right: 12px;">
+									<button class="btn">Cancel</button>
+							</div>
+					</div>
+				</div>
+		</div>
+						<!-- </div>   -->
+		<div class="span4 pull-left" id="validate">
+						
+			<!-- <p>Before sending, please complete the checklist.</p> -->
+			<p><strong>Useful tips</strong></p>
+			<div>
+				<!-- intro -->
+				<div id="first-mtg" class="row-fluid carousel slide tip-carousel">
+					<div id="myCarousel" class="carousel slide">
+						  <ol class="carousel-indicators " >
+						    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						    <li data-target="#myCarousel" data-slide-to="1"></li>
+						    <li data-target="#myCarousel" data-slide-to="2"></li>
+						    <li data-target="#myCarousel" data-slide-to="3"></li>
+						    <li data-target="#myCarousel" data-slide-to="4"></li>
+						    <li data-target="#myCarousel" data-slide-to="5"></li>
+						    <li data-target="#myCarousel" data-slide-to="6"></li>
+						  </ol>
+						  <!-- Carousel items -->
+						  <div class="carousel-inner">
+						    <div class="active item"><p>Introduce yourself and your company.</p></div>
+						    <div class="item"><p>Highlight issues your company is facing.</p></div>
+						    <div class="item"><p>How can he/she help you?</p></div>
+						    <div class="item"><p>Set your expectations upfront.</p></div>
+						    <div class="item"><p>Ask if they are willing to help.</p></div>
+						    <div class="item"><p>Check for spelling.</p></div>
+						    <div class="item"><p>Keep it short and crisp.</p></div>
+
+						  </div>
+							
+							 <!-- Button to trigger modal -->
+						<a href="#mailsampleModal" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+					 	<!-- Modal -->
+						<div id="mailsampleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel">Introductory email sample</h3>
+							</div>
+							<div class="modal-body sample-body">
+								<p>Hi Jack,
+
+								<p>I would like to introduce myself, Kwame I am one of the co-founders and the CTO for Jhello. </p>
+
+								<p>Jhello is an e-commerce marketing software that helps online merchants promote their products 
+
+								and drive traffic through leading comparison shopping engines. </p>
+
+								<p>We're growing rapidly in data volumes and also in merchant base. It has become necessary we 
+
+								take a look at our system architecture, UI and UX to cater for future expansion.
+
+								Your expertise and advice would be greatly needed as we embark on a roadmap to expansion.</p> 
+
+								<p>Can we please schedule an initial skype meeting with you to introduce the Jhello team? Will 
+
+								somewhere next week be an appropriate fit?</p>
+
+								<p>Regards,</p>
+							</div>
+							<div class="modal-footer"><button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button></div>			
+						</div>
+					</div>
+				</div>	
+		<!-- ====================================================== -->
+				<!-- arrange mtg -->
+				<div id="arrange-mtg" class="row-fluid carousel slide tip-carousel">
+					
+					<div id="myCarousel1" class="carousel slide">
+						  <ol class="carousel-indicators " >
+						    <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+						    <li data-target="#myCarousel1" data-slide-to="1"></li>
+						    <li data-target="#myCarousel1" data-slide-to="2"></li>
+						    <li data-target="#myCarousel1" data-slide-to="3"></li>
+						    <li data-target="#myCarousel1" data-slide-to="4"></li>
+						    <li data-target="#myCarousel1" data-slide-to="5"></li>
+						    <li data-target="#myCarousel1" data-slide-to="6"></li>
+						  </ol>
+						  
+						  <div class="carousel-inner">
+						    <div class="active item"><p>Have you decided on an agreeable time( Use international meeting planner).</p></div>
+						    <div class="item"><p>Send a calendar invite with agenda.</p></div>
+						    <div class="item"><p>Use Fuze for screen sharing.</p></div>
+						    <div class="item"><p>Send screenshots/documentation if applicable.</p></div>
+						    <div class="item"><p>Check for spelling.</p></div>
+						    <div class="item"><p>Share contact details( Skype, Google etc).</p></div>
+						    <div class="item"><p>Keep it short and crisp.</p></div>
+
+						  </div>
+
+						 <!-- ========================================================================================= -->
+						 <!-- sample modal -->
+						 <!-- Button to trigger modal -->
+						<a href="#mailsampleModal2" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+						 <!-- Modal -->
+						<div id="mailsampleModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel">Meeting arrangement email sample</h3>
+							</div>
+							<div class="modal-body sample-body">
+								<p>Hi Jack, Teresa:</p>
+
+								<p>I wanted to reach out to everyone regarding our meeting on Thursday, September 19th. Kindly confirm if you’re both ok with vidchatting at 15:00-16:00 GMT.</p>
+
+								<ol>
+								 	<li>Here’s the login info for a demo of the app: 
+										<ul>
+											<li>login url: (login url)</li>
+											<li>username: (demo userid)</li>
+											<li>password: (pwd)</li>
+										</ul>
+									<li>Here’s an agenda outlining the areas we’d like to discuss: [Short, five-point agenda]</li>
+								
+									<li>Finally, kindly let me know if you’re OK vidchatting via Skype, or if there’s another service you’d prefer. If Skype works for you, please let me know your Skype IDs. Mine is [<em> insert Skype ID</em>]. </li>
+								 
+								 </ol>
+
+								<p>Cheers,</p>
+								<p>Kwesi</p>
+
+							</div>
+							<div class="modal-footer"><button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button></div>					
+						</div>
+					</div>
+				</div>	
+		<!--============================================================ -->
+				<!-- before the mtg -->
+				<div id="before-mtg" class="row-fluid carousel slide tip-carousel">
+						 
+					<div id="myCarousel2" class="carousel slide">
+					  <ol class="carousel-indicators " >
+					    <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+					    <li data-target="#myCarousel2" data-slide-to="1"></li>
+					    <li data-target="#myCarousel2" data-slide-to="2"></li>
+					    <li data-target="#myCarousel2" data-slide-to="3"></li>
+					    <li data-target="#myCarousel2" data-slide-to="4"></li>
+					  </ol>
+					  <!-- Carousel items -->
+					  <div class="carousel-inner">
+					    <div class="active item"><p>Send a calendar invite with agenda· </p></div>
+					    <div class="item"><p>Setup demo account and include log-in details if applicable·</p></div>
+					    <div class="item"><p>Use Fuze for screen sharing.</p></div>
+					    <div class="item"><p>Send screenshots/Documentation if applicable.</p></div>
+					    <div class="item"><p>Check for spelling.</p></div>
+					    <div class="item"><p>Keep it short and crisp.</p></div>
+					  </div>
+
+
+						 <!-- ========================================================================================= -->
+						 <!-- sample modal -->
+						 <!-- Button to trigger modal -->
+						<a href="#mailsampleModal3" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+						 <!-- Modal -->
+						<div id="mailsampleModal3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+										<h3 id="myModalLabel"> 48 hours prior to meeting email sample</h3>
+								</div>
+								<div class="modal-body sample-body">
+										<p>Hi Jack,</p>
+										<p>Hope you’re doing well. This is a reminder for our meeting in two days, on September 19th, at 17.00 GMT.</p>
+										<p>Here’s the login info for the app demo:</p>
+												<ul>
+													<li>login url: (login url)</li>
+													<li>username:(demo userid)</li>
+													<li>password:(pwd)</ulli>
+												</ul>
+										<p>Here’s an agenda outlining the areas we’d like to discuss: [<em>Short, five-point agenda</em>]</p>
+										<ol>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ol>
+										<p>Many thanks, and talk to you soon!</p>
+										<p>Regards,</br>
+										Kwame</p>
+                        
+								</div>
+								<div class="modal-footer">
+										<button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+								</div>
+						</div>
+					</div>
+				</div>
+		<!-- ========================================================== -->
+				<!-- after mtg -->
+				<div id="after-mtg" class="row-fluid carousel slide tip-carousel">
+						
+					<div id="myCarousel3" class="carousel slide">
+					  <ol class="carousel-indicators " >
+					    <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
+					    <li data-target="#myCarousel3" data-slide-to="1"></li>
+					    <li data-target="#myCarousel3" data-slide-to="2"></li>
+					    <li data-target="#myCarousel3" data-slide-to="3"></li>
+					    <li data-target="#myCarousel3" data-slide-to="4"></li>
+					  </ol>
+					  <!-- Carousel items -->
+					  <div class="carousel-inner">
+					    <div class="active item"><p>Send summary of your interaction· </p></div>
+					    <div class="item"><p>Action points with deadlines and who is responsible for them·</p></div>
+					    <div class="item"><p>Next steps?</p></div>
+					    <div class="item"><p>Ask for feedback about overall interaction.</p></div>
+					    <div class="item"><p>Thank them for their time and effort.</p></div>
+					  </div>
+
+					  <!-- Carousel nav -->
+					  <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+					</div>
+					 <!-- ========================================================================================= -->
+					 <!-- sample modal -->
+					 <!-- Button to trigger modal -->
+					<a href="#mailsampleModal4" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+					 <!-- Modal -->
+					<div id="mailsampleModal4" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel"> Within 48 hours after meeting email sample</h3>
+						</div>
+						<div class="modal-body sample-body">
+							
+							<p>Hello all,</p>
+
+							<p>Once again, on behalf of the entire Jhello team, I’d like to thank you for making the time to support us. Your insight so far has been invaluable.</p>
+
+							<p>Here is a summary of action items.</p>
+							<ol>
+								<li>Kwame: change all selections to checkboxes</li>
+								<li>Kwame: start work on the message center tonight and admin panel next week. [Kwame]</li>
+								<li>Jack: make email introduction to the person who scaled Facebook’s technical infrastructure</li>
+							</ol>
+
+							<p>We tentatively set a date for a follow-up meeting on October 19th at 17:00 GMT. I’ll send out calendar invites momentarily. </p>
+
+							<p>Kindly let me know if I omitted anything in this summary, and I look forward to speaking again in a few weeks!</p>
+
+							<p>Regards,</p>
+							<p>Kwame</p>
+
+						</div>
+						<div class="modal-footer">
+								<button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						</div>
+					</div>
+				</div>					 	
+		<!-- ============================================================ --> 
+				<!-- follow up -->
+				 <div id="follow-up" class="row-fluid carousel slide tip-carousel">
+		
+					<div id="myCarousel4" class="carousel slide">
+					  <ol class="carousel-indicators " >
+					    <li data-target="#myCarousel4" data-slide-to="0" class="active"></li>
+					    <li data-target="#myCarousel4" data-slide-to="1"></li>
+					    <li data-target="#myCarousel4" data-slide-to="2"></li>
+					    <li data-target="#myCarousel4" data-slide-to="3"></li>
+					    <li data-target="#myCarousel4" data-slide-to="4"></li><li data-target="#myCarousel4" data-slide-to="5"></li>
+					  </ol>
+					  <!-- Carousel items -->
+					  <div class="carousel-inner">
+					    <div class="active item"><p>Send summary of what you have been since the last meeting.</p></div>
+					    <div class="item"><p>Any deadlines or bottlenecks faced?</p></div>
+					    <div class="item"><p>What would you like to achieve in the next meeting.</p></div>
+					    <div class="item"><p>Send screenshots/Documentation if applicable.</p></div>
+					    <div class="item"><p>Checked for Spelling?</p></div>
+					    <div class="item"><p>Keep it short and crisp.</p></div>
+					  </div>
+						 <!-- Carousel nav -->
+						  <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+						  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+								<!-- ========================================================================================= -->
+								<!-- sample modal -->
+								<!-- Button to trigger modal -->
+							 <a href="#mailsampleModal5" role="button" class="btn sample-btn" data-toggle="modal">view smaple</a>
+
+								<!-- Modal -->
+							 <div id="mailsampleModal5" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								 <div class="modal-header">
+										 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										 <h3 id="myModalLabel">Follow up email sample</h3>
+								 </div>
+								 <div class="modal-body sample-body">
+									<p>Hi Beth,</p>
+
+									<p>Hope you’re doing well. </p>
+
+									<p>Thanks once again for the session you had with the team last week. It was extremely helpful. We’ve started implementing most of the things we discussed. </p>
+
+									<p>With regards to our next meeting, I’d like us to delve more deeply into design:</p>
+									<ul>
+										<li>We changed the color palette, typography, and the general user flow of the test site to encourage the creation of multiple widgets. Do you think the changes support this objective?  </li>
+										<li>How can we get access to high quality images for our landing page. In your estimation, which is the best stock photography site?</li>
+										<li>What does your daily schedule look like as a designer at Apple?</li>
+										<li>What tools and resources do you use in doing your daily tasks?</li>
+										<li>How do you derive inspiration as a designer?</li>
+									</ul>
+
+									<p>Looking forward to our next meeting.</p>
+
+									<p>Best regards,</p>
+									<p>Ama</p>
+
+								 </div>
+								 <div class="modal-footer">
+										 <button class="btn sample-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+										 <!-- <button class="btn btn-primary">Back</button> -->
+								 </div>
+							</div> 	
+					</div>		
+				</div>
+ <!-- ========================================================================================== -->
+			<div class="row-fluid"  id="valid-second">
+					<!-- <div class="row-fluid" id="checkbox-headings">
+					</div> -->
+					<!-- <div class="row-fluid checkboxes">
+							<p><b>Message checklist</b></p>
+							<label class="checkbox">
+								<input type="checkbox" value="">
+								Have you clearly explained the purpose of the call?
+								</label><br />
+								<label class="checkbox">
+										<input type="checkbox" value="">
+										Short and sharp?
+								</label><br />
+								<label class="checkbox">
+										<input type="checkbox" value="">
+										Did you send an agenda? (it does not need to be long!)
+								</label><br />
+								<label class="checkbox">
+										<input type="checkbox" value="">
+										Have you checked for spelling mistakes?
+								</label><br />
+								<label class="checkbox">
+										<input type="checkbox" value="">
+										Did you leave your contact details? (Skype, Google Hangouts)
+								</label>
+					</div>
+					<hr> -->
+			</div>
+					<!-- ============================= -->
+		</div>
+	 </div>
+
+		 </center>
+		 
+ {% endif %}
+
+
+<!-- <<<<<<< HEAD -->
+     <!-- </div>  -->
+
+
+     <!-- ============================= COMPOSE MESSAGE ENDS ============================================================-->
+      <div id="push"></div>
+    </div>   
+     <!-- footer -->
+     <div id="footer" >
+        <div class="container">
+            <h4>MEST GLOBAL NETWORK  &mdash; shaping the future!</h4>
+
+            <p><a href="#">&#169;2013   meltwater entreprenuerial school of technology</a></p>
+        </div>
+    </div>
+    <!-- footer -->
+
+
+<!-- scripts go here   -->
+<script src="../scripts/bootstrap/js/bootstrap.js"></script>
+<script src="../scripts/js/jquery-2.0.3.min.js"></script>
+<script src="../scripts/bootstrap/js/bootstrap.js"></script>
+<script src="../scripts/js/ajax/msgCenterAjax.js"></script>
+<script src="../scripts/js/noty/jquery.noty.js"></script>
+<script src="../scripts/js/noty/layouts/top.js"></script>
+<script src="../scripts/js/nicEdit-latest.js"></script> 
+<script src="../scripts/js/message-center.js"></script>
+  {% if compose== True%}
+  <script type="text/javascript">
+        bkLib.onDomLoaded(
+          function() { 
+            area2 = new nicEditor({fullPanel : true}).panelInstance('new_message');
+          }
+        );
+      </script>
+  {% endif %}
+<script type="text/javascript">
+	var sent = noty({text: 'Your message has been sent successfully'});
+</script>
+</body>
+</html>

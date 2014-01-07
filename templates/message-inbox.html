@@ -1,0 +1,104 @@
+<!DOCTYPE html>		
+<html>
+<head>
+
+	<title>Message Center </title>
+
+	<meta charset="utf-8">
+    <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keyowrds" content="mentor, tech africa, mest, tech, entrepreneur, entrepreneurship">
+    <link rel="stylesheet" href="../scripts/assets/css/bs.min.css">
+	<link rel="stylesheet" href="../scripts/assets/bt-3css/message-inbox.css">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+			<div class="collapse navbar-collapse navHeaderCollapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="#">Messages</a></li>
+					<li><a href="/search">Search</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nicodemus<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/signout">Logout</a></li>
+						</ul>
+					</li>	
+				</ul>
+			</div>	
+		</div>
+	</div>
+	<div class="">
+		<div class="col-md-5">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row mail-categories text-center mail-nav category" data-category="{{category}}">
+						<a href="/messages/inbox"><div class="col-md-6 bar {{category|inbox_type('inbox')}}"><small>Inbox</small></div></a>
+						<a href="/messages/sent"><div class="col-md-6  {{category|inbox_type('sent')}}"><small>Sent</small></div></a>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="row mail-categories text-center mail-nav">
+						<a><div class="col-md-4 mass bar" data-action="mark-as-read"><small>Mark as read</small></div></a>
+						<a><div class="col-md-5 mass bar" data-action="mark-as-unread"><small>Mark as unread</small></div></a>
+						<a><div class="col-md-3 mass" data-action="delete"><small>Delete</small></div></a>
+					</div>
+				</div>				
+			</div>
+				
+			<div class="row mail-categories messages">
+				{% if messages.count() > 0 %}
+					{% for message in messages %}
+						<div data-msg-id="{{message.key().id()}}" class="mail-item {{message.status}}">
+							<div class="row">
+								<div class="col-sm-1">
+									<div class="mail-meta check"><input type="checkbox"></div>
+								</div>						
+								<div class="col-sm-11">
+									<div class="row">
+										<div class="mail-meta name col-sm-7">{{message.sender.first_name}} {{message.sender.last_name}}</div>
+										<div class="mail-meta date col-sm-5"><small>{{message.created.strftime("%d %b %Y  %H:%M")}} {{message.created.strftime("%p")|lower}}</small></div>						
+									</div>					
+									<div class="row msg-content">
+										<div class="mail-meta subject"><small>{{ message.subject|truncate(50, true) }}</small></div>
+									</div>							
+								</div>						
+							</div>
+						</div>
+					{% endfor %}
+				{% else %}
+					<h3 style="padding:20px; color: #777; text-align: center;">
+						You have no new messages
+					</h3>
+				{% endif %}
+			</div>				
+		</div>
+		<div class="col-md-7 pull-right mail-content-holder">
+
+			<div class="row mail-content" style="text-align: center; color: #777; margin-top: 7%;">
+			  <h3>	
+				Select a message on the left to view its contents 
+			  </h3>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<!-- <p class="navbar-text pull-left">Footer here</p> -->
+		</div>
+	</div>
+
+	<!-- ================= Scripts ================== -->
+	<script src="../scripts/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="../scripts/assets/js/bs.min.js"></script>
+    <script src="../scripts/assets/js/message-inbox.js"></script>
+</body>
+</html>

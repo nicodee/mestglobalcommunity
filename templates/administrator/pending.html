@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Tables</title>
+        <!-- Bootstrap -->
+        <link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="../scripts/admin/assets/styles.css" rel="stylesheet" media="screen">
+        <link href="../scripts/admin/assets/DT_bootstrap.css" rel="stylesheet" media="screen">
+        <link href="../scripts/admin/assets/pending.css" rel="stylesheet" media="screen">
+
+        <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="vendors/flot/excanvas.min.js"></script><![endif]-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="../scripts/admin/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Admin Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Anirudh Narla<i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a tabindex="-1" href="/signout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="dashboard.html">Dashboard</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="/admin"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li >
+                            <a href="/admin/entrepreneur"><i class="icon-chevron-right "></i> Entrepreneur</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mentor"><i class="icon-chevron-right"></i> Mentor</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/pending"><i class="icon-chevron-right"></i> Pending Requests</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/span-->
+                <div class="span9" id="content">
+
+                    {% if mentors.count() > 0 %}
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header navbar-inverse">
+                                <div class="muted pull-left">Mentors</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                									<table class="table table-striped">
+              						              <thead>
+              						                <tr>
+              						                  <th>#</th>
+              						                  <th>First Name</th>
+              						                  <th>Last Name</th>
+                                            <th>Status</th>
+              						                </tr>
+              						              </thead>
+              						              <tbody>
+                                          {% set count = 0 %}
+                                          {% for mentor in mentors %}
+                                            <tr>
+                                              {% set count = count +1 %}
+                                              <td>{{count}}</td>
+                                              <td>{{mentor.first_name}}</td>
+                                              <td>{{mentor.last_name}}</td>
+                                              <td><a href="#" onClick="MyWindow=window.open('{{mentor.linkedin_profile}}','MyWindow',width=300,height=150);">Confirm</a></td>
+                                            </tr>
+                                          {% endfor %}
+              						              </tbody>
+          						            </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    {% endif %}
+
+                    {% if entrepreneurs.count() > 0 %}
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Entrepreneurs</div>
+                                   <div class="pull-right"><span class="badge badge-important">{{entrepreneurs.count()}}</span></div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                									<table class="table table-striped">
+            						              <thead>
+            						                <tr>
+            						                  <th>#</th>
+            						                  <th>First Name</th>
+            						                  <th>Last Name</th>
+            						                  <th>Status</th>
+            						                </tr>
+            						              </thead>
+            						              <tbody>
+                                        {% set count = 0 %}
+                                        {% for entrepreneur in entrepreneurs %}
+              						                <tr>
+                                            {% set count = count +1 %}
+              						                  <td>{{count}}</td>
+              						                  <td><a href="#" onClick="MyWindow=window.open('{{entrepreneur.linkedin_profile}}','MyWindow',width=300,height=150);">{{entrepreneur.first_name}}</a></td>
+              						                  <td><a href="#" onClick="MyWindow=window.open('{{entrepreneur.linkedin_profile}}','MyWindow',width=300,height=150);">{{entrepreneur.last_name}}</a></td>
+              						                  <td><button class="btn-danger confirm-ent" data-id="{{entrepreneur.key().id()}}" >Confirm</button></td>
+              						                </tr>
+                                        {% endfor %}
+            						              </tbody>
+          						            </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    {% endif %}
+
+                    {% if applicants.count() > 0 %}
+                     <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Applicants</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <table class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>First Name</th>
+                                          <th>Last Name</th>
+                                          <th>Status</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% set count = 0 %}
+                                        {% for applicant in applicants %}
+                                          <tr>
+                                            {% set count = count +1 %}
+                                            <td>{{count}}</td>
+                                            <td>{{applicant.first_name}}</td>
+                                            <td>{{applicant.last_name}}</td>
+                                            <td><a href="#" onClick="MyWindow=window.open('{{applicant.linkedin_profile}}','MyWindow',width=300,height=150), fullscreen=no;">Confirm</a></td>
+                                          </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    {% endif %}
+                     <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Resources</div>
+                                <div class="pull-right"><a href="#"><span class="resource label label-info">Upload resource</span></a></div>
+                                <div class="pull-right"><a href="#"><span class="resource label label-info">Remove resource</span></a></div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <table class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Title</th>
+                                          <th>Category</th>
+                                          <th>Uploaded by</th>
+                                          <th>Date/ Time</th>
+                                          <th>Views</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>1</td>
+                                          <td>Mark</td>
+                                          <td>Otto</td>
+                                          <td>@mdo</td>
+                                          <td>@mdo</td>
+                                          <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                          <td>2</td>
+                                          <td>Jacob</td>
+                                          <td>Thornton</td>
+                                          <td>@fat</td>
+                                          <td>@mdo</td>
+                                          <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                          <td>3</td>
+                                          <td>Larry</td>
+                                          <td>the Bird</td>
+                                          <td>@twitter</td>
+                                          <td>@mdo</td>
+                                          <td>@mdo</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                   
+                </div>
+            </div>
+            <hr>
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+
+        <script src="../scripts/admin/vendors/jquery-1.9.1.js"></script>
+        <script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../scripts/admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
+
+
+        <script src="../scripts/admin/assets/scripts.js"></script>
+        <script src="../scripts/admin/assets/DT_bootstrap.js"></script>
+        <script src="../scripts/admin/assets/pending.js"></script>
+
+
+        <script>
+        $(function() {
+            
+        });
+        </script>
+    </body>
+
+</html>

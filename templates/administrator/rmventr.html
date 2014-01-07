@@ -1,0 +1,52 @@
+{% if entrepreneurs|length > 0%}
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">{{entrepreneur_type}}</div>
+            <div class="pull-right">
+                <span class="badge badge-info">{{entrepreneurs|length}}</span>
+            </div>
+        </div>
+        <div class="block-content collapse in">
+            
+            
+            <div class="span12">
+               <table class="table table-striped MBA-Consultant">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        {% set count = 0 %}
+                        {% for entrepreneur in entrepreneurs %}
+                        <tr>
+                            {% set count = count+1 %}
+                            <td>
+                                <a href="{{entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{count}}</a>
+                            </td>
+                            <td>
+                                <a href="{{entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{entrepreneur.first_name}}</a>
+                            </td>
+                            <td>
+                                <a href="{{entrepreneur.linkedin_profile}}" onclick="javascript:void window.open('{{entrepreneur.linkedin_profile}}','1380632813670','width=700,height=500,toolbar=0,menubar=1,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">{{entrepreneur.last_name}}</a>
+                            </td>
+                            <td>
+                                {{entrepreneur.programs[0].program_type}}
+                            </td>
+                            <td><button class="btn btn-mini btn-primary remove-entrepreneur" data-id="{{entrepreneur.key().id()}}">Remove</button></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    
+    </div>
+    <!-- /block -->
+{% endif %}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Admin settings</title>
+        <!-- Bootstrap -->
+
+        <link href="../../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/admin/assets/styles.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/admin/vendors/jGrowl/jquery.jgrowl.css" rel="stylesheet" media="screen">
+
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="../../scripts/admin/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top">
+             <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Admin Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Anirudh Narla<i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a tabindex="-1" href="/signout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="dashboard.html">Dashboard</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="/admin"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/admin/entrepreneur"><i class="icon-chevron-right"></i> Entrepreneur </a>
+                        </li>
+                        <li >
+                            <a href="/admin/mentor"><i class="icon-chevron-right"></i> Mentor</a>
+                        </li>
+                        <li >
+                            <a href="/admin/freelancers"><i class="icon-chevron-right"></i>Freelancers</a>
+                        </li>
+                        <li>
+                            <a href="/admin/resources"><i class="icon-chevron-right"></i> Resources</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/settings"><i class="icon-chevron-right"></i>Settings</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/span-->
+                <div class="row span9" id="activity-row">
+                    
+                
+                            <div class= "span4">
+                                <h1>Settings</h1>
+                            </div>
+                            
+                </div>
+
+                <!-- =====================FREELANCERS PENDING======================= -->
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Admin Accounts</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+                                   <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>First name</th>
+                                                <th>Last name</th>
+                                                <th>Role</th>
+                                                <th></th>
+                                               
+                                                
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Anirudh </td>
+                                                <td>Narla</td>
+                                                <td>Business Fellow</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button class="btn btn-mini btn-primary">remove</button>
+                                                   
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Vicky</td>
+                                                <td>Hope Haynes</td>
+                                                <td>PR and Communications</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button class="btn btn-mini btn-primary">remove</button>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Michael </td>
+                                                <td>Sczymanski</td>
+                                                 <td>Business Development Consultant</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button class="btn btn-mini btn-primary">remove</button>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Neal</td>
+                                                <td>Hansch</td>
+                                                <td>Incubator MD</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button class="btn btn-mini btn-primary">remove</button>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+                  
+                    
+            <hr>
+
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+
+        <script src="../../scripts/admin/vendors/jquery-1.9.1.min.js"></script>
+        <script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../scripts/admin/vendors/jGrowl/jquery.jgrowl.js"></script>
+        <script src="../../scripts/admin/assets/scripts.js"></script>
+
+<!-- ====================================== -->
+<!-- Load JQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Load jquery.cookie plugin (optional) -->
+    <script type="text/javascript" src="../../options/src/jquery.cookie.js"></script>
+    <!-- Load jquery.navgoco plugin js and css files -->
+    <script type="text/javascript" src="../../options/src/jquery.navgoco.js"></script>
+    <link rel="stylesheet" href="../../options/src/jquery.navgoco.css" type="text/css" media="screen" />
+<!-- ======================================== -->
+        <script>
+        $(function() {
+            $('.tooltip').tooltip();    
+            $('.tooltip-left').tooltip({ placement: 'left' });  
+            $('.tooltip-right').tooltip({ placement: 'right' });    
+            $('.tooltip-top').tooltip({ placement: 'top' });    
+            $('.tooltip-bottom').tooltip({ placement: 'bottom' });
+
+            $('.popover-left').popover({placement: 'left', trigger: 'hover'});
+            $('.popover-right').popover({placement: 'right', trigger: 'hover'});
+            $('.popover-top').popover({placement: 'top', trigger: 'hover'});
+            $('.popover-bottom').popover({placement: 'bottom', trigger: 'hover'});
+
+            $('.notification').click(function() {
+                var $id = $(this).attr('id');
+                switch($id) {
+                    case 'notification-sticky':
+                        $.jGrowl("Stick this!", { sticky: true });
+                    break;
+
+                    case 'notification-header':
+                        $.jGrowl("A message with a header", { header: 'Important' });
+                    break;
+
+                    default:
+                        $.jGrowl("Hello world!");
+                    break;
+                }
+            });
+        });
+        </script>
+
+<!-- ================================ -->
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('.nav').navgoco();
+        });
+        </script>
+        <!-- ============================ -->
+    </body>
+
+</html>

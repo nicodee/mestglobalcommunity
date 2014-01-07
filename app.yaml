@@ -1,0 +1,34 @@
+application: mestglobalcommunity
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /scripts
+  static_dir: scripts
+
+- url: /options
+  static_dir: options
+
+- url: /_ah/mail/.+
+  script: handle_incoming_email.app
+  login: admin
+
+- url: /.*
+  script: mestglobalcommunity.app
+
+libraries:
+- name: webapp2
+  version: "2.5.1"
+
+- name: jinja2
+  version: latest
+
+inbound_services:
+- mail
+

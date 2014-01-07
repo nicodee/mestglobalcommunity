@@ -1,0 +1,373 @@
+#confirm-body{
+	width: 100%;
+	height: 200px;
+	margin: auto;
+	text-align: center;
+	padding: 25px 15px 15px 15px;
+	/*background-color: #E7EBF2;*/
+}
+
+h4{
+	font-size:70;
+	border-bottom: 50px;
+}
+
+p{
+	font-size: 18;
+	line-height: 1;
+	
+}
+.button{
+	width: 250px;
+	height: 56px;
+	border: 1px solid gray;
+	color: #000;
+	font-weight: bold;
+	font-size: 25;
+	background-color: #e5e5e5;
+	border-radius: 10px;
+}
+
+#tour-button{
+	margin-top: 50px;
+}
+
+hr{
+	color: blue;
+}
+
+#background-img{
+	width: 140%;
+	height: 250px;
+	margin-top: -71;
+	max-height: 200px;
+
+}
+
+.cover-banner{
+	/*background-image: url('minc.jpg');*/
+	background-repeat: no-repeat;
+	width: 100%;
+	background-size: cover;
+	height: 250px;
+	margin-top: -72px;
+
+}
+
+#middle-box{
+	margin: auto;
+	padding: auto;
+	width: 860px;
+	/*border: 1px solid red;*/
+	background-size: ;
+}
+
+#profile-pic{
+	width: 150px;
+	height: 150px;
+	/*border-radius: 100%;*/
+	border: 5px solid  #D7D7D7;
+	margin: auto;
+	margin-left: 20%;
+	
+}
+
+.social-contact{
+margin: auto;
+margin-top: 20px;
+}
+
+.social-contact ul li{
+	display: inline;
+	text-decoration: none;
+	width: 80px;
+	height: 80px;
+	margin: 15px;
+}
+.social-contact ul li a:hover{
+	border: #000;
+}
+#social-contact{
+	margin-left: 146px;
+}
+#mentor-name{
+	margin-left: 125px;
+	font-weight: bold;
+	margin-top: 55px;
+}
+#applicant-bio{
+	height: 100px;
+	padding: 5px;
+}
+
+div{
+	/*border: 1px solid black;*/
+}
+
+#applicant-bio{
+width: 100%;
+padding: 0;
+}
+
+
+.linkedin-profile, .submitted-profile{
+	width: 40%;
+	padding: 3%;
+}
+
+#full-profile-content{
+	margin: auto;
+	margin-bottom: 60px;
+}
+
+#mentor-full-view{
+	margin-top: 0px;
+	padding-top: 0px;
+	
+}	
+
+#full-profile-content-left{
+	width: 63%;
+	margin-left: 0px;
+}
+
+ #full-profile-content-left, 
+ #commments-and-ratings, #recent-activity, 
+ #send-message-button{
+	padding: 10px 20px 10px 20px;
+}
+
+#full-profile-content-right{
+	margin-left: 1.3%;
+}
+
+.item #resources, .item #mentors, 
+.item #job-applicants{
+	padding: 0px;
+}
+
+/*modal==========================*/
+#myModal{
+	background-color: #D7D7D7;
+	width: 925px;
+	margin-left: -400px;
+	/*height: 700px;*/
+}
+#profile-head{
+	margin-left: auto;
+	padding: 0;
+}
+
+#mentor-profile-name,
+#profile-position h4,
+#profile-company h4 {
+	font-size: 19px;
+}
+
+#profile-brief-text {
+	padding-top: 0px;	
+}
+#profile-brief-img ul {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 10px;
+}
+
+#profile-company-position p , #profile-brief-skills-tags p{
+	font-size: 15px;
+}
+
+.skills {
+	padding: 10px 20px 10px 20px;
+	margin-top: 12px;
+	background: #fff;
+	margin-bottom: 1.3%;
+}
+
+#profile-brief-skills-tags {
+	margin-top: 0px;
+}
+
+.grid figure figcaption img, #modal-fav-image{
+	width: 24px;
+	height: 24px;	
+	position: absolute;
+	cursor: pointer;
+	opacity: 1;
+}	
+
+.grid figure figcaption img:hover, #modal-fav-image:hover{
+	opacity: 0.7;
+}	
+
+#modal-fav-image {
+	right: 369px;
+	bottom: 375px;
+}
+
+
+.grid figure figcaption img {
+	right: 24px;
+}
+
+#sectors ul li label,
+#topics ul li label,
+#search-results-tags ul li label {
+	float: left;
+	margin-left: 11px;
+	/*margin-top: 11px;*/
+}
+
+#sectors ul li .icheckbox_flat-purple,
+#topics ul li .icheckbox_flat-pink,
+#search-results-tags ul li .icheckbox_flat-purple,
+#search-results-tags ul li .icheckbox_flat-pink {
+	float: left;
+}
+
+#sectors li, 
+#search-results-tags li {
+	list-style: none;
+	/*margin: 0 10px 9px 0px;*/
+	display: inline;
+	float: left;
+	/*padding: 4px;*/
+}
+
+#search-results-tags li{
+	margin: 0 10px 9px 0px;
+}
+
+#sectors li{
+	width: 23%;
+}
+
+
+#topics li {
+	list-style: none;
+	margin: 5px 10px 7px 0;
+	/*display: inline;*/
+	float: left;
+	display: table;
+	/*line-height: 0;*/
+	/*content: "";*/
+	/*clear: both;*/
+	width: 30%;	
+}
+
+#topics .tp {
+	/*margin-top: 20px;*/
+}
+
+#topics .span9 {
+	padding-left: 20px;
+}
+
+#topics .span3 {
+	margin-left: 0px;
+}
+
+#profile-brief-skills-tags ul li , 
+#expertise span ul li,
+#industries span ul li,
+.schedule-item li{
+	list-style: none;
+	float: left;
+	margin-right: 5px;
+	display: inline-block;
+	/*background: linear-gradient(to bottom,rgba(21,21,21,1) 1%,rgba(21,21,21,1) 30%,rgba(26,26,26,1) 50%,rgba(34,34,34,1) 80%);*/
+	/*color: #fff;*/
+	background-color: #e5e5e5;
+	color: #000;
+	padding: 0px;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	font-size: 12px;
+}
+
+/*#profile-brief-skills-tags ul li,*/
+/*.schedule-item li {
+	background-color: #616168;
+}*/
+
+/*.schedule-item .day {
+	background-color: rgb(102, 81, 101);
+}*/
+
+/*.schedule-item .start-time,
+.schedule-item .end-time,
+.schedule-item .time-zone ,*/
+.schedule-item .time{
+	/*background-color: rgb(235, 107, 107);*/
+	/*background-color: #55698A;*/
+	/*background-color: #e5e5e5;*/
+	margin-right: 90px;
+}
+
+/*#expertise span ul li{
+	background-color: #756A6B;
+	background-color: #616168;
+}*/
+
+/*#industries span ul li,
+#expertise span ul li,
+#profile-brief-skills-tags ul li{
+	background-color: #55698A;*/
+	/*background-color: #616168;
+	background-color: #e5e5e5;
+}*/
+
+#profile-brief-skills-tags ul, 
+#expertise span ul,
+#industries span ul,
+.schedule-item	{
+	margin-left: 0;
+}
+
+.tags label,  
+#profile-brief-schedule label{
+	margin-bottom: -6px;
+	margin-top: 5px;
+	display: block;
+}
+
+#comment-textarea {
+	width: 95%;
+	resize: vertical;
+}
+
+#comments-container {
+border-bottom: 1px solid #e5e5e5;
+margin-bottom: 20px;
+}
+
+#comment-item {
+	padding-top: 5px;
+}
+
+#comment-item img {
+	width: 12px;
+	margin-right: 8px;
+	margin-top: -5px;
+	cursor: pointer;
+}
+
+#comment-item img:hover {
+	width: 13px;
+}
+
+.delete {
+	margin-left: 23px;
+}
+
+#search-fields .nav.nav-pills {
+	margin-bottom: 0px;
+}
+
+
+#search-fields .nav-pills li {
+	width: 47.5%;
+	margin: 0 2% 0 0;
+}

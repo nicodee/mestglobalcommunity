@@ -1,0 +1,33 @@
+<thead class="hideit inbox-header">
+    <tr>
+      {% if messages.count() > 0%}
+        <th class="head1 aligncenter"><input type="checkbox" class="checkall" /></th>
+        <th class="head0">&nbsp;</th>
+        <th class="head1">From</th>
+        <th class="head0">Subject</th>
+        <th class="head1 attachement">&nbsp;</th>
+        <!-- <th class="head0">Date</th> -->
+      {% else %}
+        <th class="head0 aligncenter" colspan='6' >You have no new messages</th>
+    </tr>
+</thead>
+{% endif %}
+<tbody class="inbox-container hideit">
+  {% for message in messages %}
+    <tr class="{{message.status}} message-item" id="{{message.key().id()}}">
+      <td class="aligncenter favorite"><input type="checkbox" class="checkbox" name="" data-message-id="{{message.key().id()}}"/></td>
+      <td class="star">
+      {% if message.starred == "True" %}
+        <a class="msgstar starred" data-message-id="{{message.key().id()}}"></a></td>
+      {% else %}
+        <a class="msgstar" data-message-id="{{message.key().id()}}"></a></td>
+      {% endif %}
+      <td class="title" data-message-id="{{message.key().id()}}" id="msg_sender_name">{{message.sender.first_name}} {{message.sender.last_name}}</td>
+      <td><a href="#" class="title" data-message-id="{{message.key().id()}}">{{message.subject}}</a></td>
+      <!-- <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td> -->
+      <td class="date">{{message.created.ctime()}}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+<tbody id="opened-message"></tbody>
+

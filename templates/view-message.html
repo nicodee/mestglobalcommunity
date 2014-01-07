@@ -1,0 +1,20 @@
+<div class="row mail-content">
+	<div class="col-md-12 msg-display">
+		<div class="col-md-12">
+			<div class="row mail-subject">
+				<h4>{{message.subject}}</h4>
+			</div>
+			<div class="row sender-n-date">
+				<h5>From: {{message.sender.first_name}} {{message.sender.last_name}}</h5>
+				<h5><small>Date: {{message.created.strftime("%d %b %Y  %H:%M")}} {{message.created.strftime("%p")|lower}}</small></h5>
+			</div>
+			<hr>
+			<div class="row mail-body" data-msg-content="{{message.content}}">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row  mail-content-options-holder">
+	<a href="/messages/reply/{{message.key().id()}}"><div class="col-md-2 mail-content-options reply pull-right">Reply</div></a>
+	<a><div class="col-md-2 mail-content-options pull-right delete" data-msg-id="{{message.key().id()}}">Delete</div></a>
+</div>

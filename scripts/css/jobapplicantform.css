@@ -1,0 +1,23 @@
+.span6 .fs-subtitle, #method-of-referral .fs-subtitle {
+	font-size: 14px;
+}
+
+#summary {
+	margin-top: 44px;
+	width: 40%;
+	margin: auto;
+	text-align: left;
+	/*margin-left: 18%;*/
+}
+
+#method-of-contact-text, #brief-bio{
+	margin-top: 20px;
+}
+
+#method-of-contact-text ul {
+	margin-top: 38px;
+}
+
+#summary-text {
+	width: 523px;
+}

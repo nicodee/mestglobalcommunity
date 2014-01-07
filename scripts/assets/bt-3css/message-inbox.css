@@ -1,0 +1,146 @@
+body{
+	background-color: #f5f5f5;
+}
+
+.mail-item{
+	/*border-bottom: 1px solid #f5f5f5;*/
+	border-top: 1px solid #f5f5f5;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	cursor: pointer;
+	color: #000;
+}
+
+.mail-item:first-child {
+	border-top: none;
+}
+
+.mail-content, 
+.mail-categories, 
+.mail-content-options {
+	background-color: #fff;
+	margin: 2px;
+	padding: 10px;
+}
+
+.mail-content-options-holder{
+	margin-right: 0px;
+	text-align: center;
+}
+
+.mail-content-options {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.mail-categories.mail-nav {
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 0 1px 4px -1px rgba(0,0,0,0.5);
+}
+
+.mail-categories.mail-nav a{
+	color: #777;	
+}
+
+.mail-categories.mail-nav a:hover{
+	color: #428bca;
+	text-decoration: none;
+}
+
+.mail-nav .active{
+	color: #428bca;
+	font-weight: bold;
+}
+
+.mail-categories.messages {
+	padding-top: 0px;
+}
+
+.mail-meta.date {
+	text-align: right;
+}
+
+.mail-meta.check input {
+	width: 18px;
+	height: 18px;
+	margin: 20px 0 0 10px;
+}
+
+.mail-categories.messages{
+	max-height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;  
+	box-shadow: 0 1px 4px -1px rgba(0,0,0,0.5);
+	/*height: 500px;*/
+}
+
+.mail-item.active,
+.mail-item.active .mail-meta.name,
+.mail-item.active.read .mail-meta.name,
+.mail-item.active.unread .mail-meta.name {
+	color: blue;
+}
+
+.msg-content {
+	margin-left: 0px;
+}
+
+.mail-content,
+.mail-content-options {
+	box-shadow: 0 1px 4px -1px rgba(0,0,0,0.5);
+	border-radius: 2px;
+}
+
+.mail-item.read .mail-meta.name {
+	font-weight: normal;
+	color: #000;
+}
+
+.mail-item.unread .mail-meta.name {
+	font-weight: bold;
+	color: #000;
+}
+
+.mass,
+.mail-content-options {
+	cursor: pointer;
+}
+
+.mail-item ,
+.mail-content-options {
+	color: #777;
+}
+
+.mail-content-options.delete:hover{
+	color: red; 
+	-webkit-box-shadow: 0 2px 2px -1px red;
+	box-shadow: 0 2px 2px -1px red;
+}
+
+.mail-content-options.reply:hover{
+	color: green; 
+	-webkit-box-shadow: 0 2px 2px -1px green;
+	box-shadow: 0 2px 2px -1px green;
+}
+
+.mail-content {
+	max-height: 500px;
+	overflow-y: auto;
+	padding: 20px;
+	padding-bottom: 30px;
+}
+
+.mail-categories .bar {
+	border-right: 1px solid;
+}
+
+.mail-nav:hover{
+	-webkit-box-shadow: 0 2px 2px -1px #428bca;
+	box-shadow: 0 2px 2px -1px #428bca;
+}
+
+.mail-categories.mail-nav.category {
+	-webkit-box-shadow: 0 2px 2px -1px #428bca;
+	box-shadow: 0 2px 2px -1px #428bca;
+}

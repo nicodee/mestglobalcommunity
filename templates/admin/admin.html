@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<link href="../scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="../scripts/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+		<link href="../scripts/css/admin.css" rel="stylesheet" type="text/css">
+		<style>
+			.container{
+				margin-top: 2%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			{% for user in users%}
+			<div class="new_user_item row" id="">
+				<div class="new_user_name span5">{{user.first_name}} {{user.last_name}}</div>
+				<div class="new_user_linkedin span5" data-user-id="{{user.key().id()}}">
+					<a href="{{user.linkedin_profile}}" class="btn">View profile </a>
+				</div>
+				<div class="new_user_confirm span2" data-user-id="{{user.key().id()}}">
+					<a href="" class="btn">confirm</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+</html>

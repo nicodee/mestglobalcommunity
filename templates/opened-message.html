@@ -1,0 +1,22 @@
+{% if message %}
+  <tr class="opened-message-title" id="id-{{message.key().id()}}" data-id="{{message.key().id()}}">
+    <td colspan="6">
+      <h4 class="pull-right">From: <span class="opened-message-sender-name">{{message.sender.first_name}} {{message.sender.last_name}}</span></h4>
+      <h4 class="pull-left">Subject: <span class="opened-message-subject">{{message.subject}}</span> </h4>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6" id="opened-message-content">
+      <div>
+        <div id="read-msg-content" style="width: 1181px; margin: 0px 0px 10px; height: 126px;" disabled="" data-msg-content="{{message.content}}"></div>
+      </div>
+      <div class="row-fluid" id="opened-msg-options">
+        <a href="#" class="btn pull-right span1 opened-msg-option" id="go-to-inbox" data-id="{{message.key().id()}}">Back</a>
+        <a href="#" class="btn pull-right span1 opened-msg-option" id="reply-message" data-id="{{message.key().id()}}">Reply<strong></strong></a>
+        <a href="#" class="btn pull-right span1 opened-msg-option" id="delete-opened-message" data-id="{{message.key().id()}}">Delete</a>
+      </div>
+    </td>
+  </tr>
+{% endif %}
+      
+

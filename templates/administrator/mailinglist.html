@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Mailing List</title>
+        <!-- Bootstrap -->
+
+        <link href="../../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="../../scripts/admin/assets/styles.css" rel="stylesheet" media="screen">
+
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="../../scripts/admin/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top navbar-inverse">
+             <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Admin Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a tabindex="-1" href="/signout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="dashboard.html">Dashboard</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        <li>
+                            <a href="/admin"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/admin/entrepreneur"><i class="icon-chevron-right"></i> Entrepreneur </a>
+                        </li>
+                        <li >
+                            <a href="/admin/mentor"><i class="icon-chevron-right"></i> Mentor </a>
+                        </li>
+                        <li>
+                            <a href="/admin/freelance"><i class="icon-chevron-right"></i>Freelancers</a>
+                        </li>
+                        <li>
+                            <a href="/jobs"><i class="icon-chevron-right"></i>Jobs</a>
+                        </li>
+                        <li>
+                            <a href="/admin/resources"><i class="icon-chevron-right"></i> Resources</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/mailinglist"><i class="icon-chevron-right"></i>Mailing list</a>
+                        </li>
+                        <li>
+                            <a href="/admin/settings"><i class="icon-chevron-right"></i>Settings</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <div class="span9" id="content">
+                    
+                <!-- =====================Uploaded Jobs(Available)======================= -->
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="pull-left">Available</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{active_subscribers.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+                                    {% if active_subscribers.count()>0 %}
+                                    <table class="table table-striped available-job-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Subscription date</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for subscriber in active_subscribers %}
+                                            <tr class="job">
+                                                {% set count = count+1 %}
+                                                <td class="small-font">
+                                                    {{count}}
+                                                </td>
+                                                <td class="small-font">
+                                                    <a  class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="">{{subscriber.subscriber_name}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="">{{subscriber.subscriber_email}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a  class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="" data-toggle="modal">{{subscriber.status}}</a>
+                                                </td>
+                                                <td class="small-font">{{subscriber.created.strftime("%d %B %Y")}}</td>
+                                                <td class="small-font"></td>
+                                                <td class="small-font">
+                                                    <button class="btn btn-mini edit-job {{subscriber.key().id()}}" data-job-id="{{subscriber.key().id()}}" data-action="edit"><i class="icon-pencil"></i>  Edit</button>
+                                                    <button class="btn btn-mini btn-danger delete-job {{subscriber.key().id()}}" data-job-id="{{subscriber.key().id()}}" data-action="delete"><i class="icon-remove icon-white"></i>  Delete</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No jobs uploaded at the moment</h5>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>                  
+
+                   <!-- =====================Uploaded Jobs(Removed)======================= -->
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="pull-left">Removed</div>
+                                <div class="pull-right">
+                                    <span class="badge badge-info">{{inactvie_subscribers.count()}}</span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                
+                                
+                                <div class="span12">
+                                    {% if inactvie_subscribers.count()>0 %}
+                                    <table class="table table-striped available-job-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Subscription date</th>
+                                                <th>Date removed</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            {% set count = 0 %}
+                                            {% for subscriber in inactvie_subscribers %}
+                                            <tr class="job">
+                                                {% set count = count+1 %}
+                                                <td class="small-font job-item" data-job-id="{{subscriber.key().id()}}">
+                                                    {{count}}
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="" data-toggle="modal">{{subscriber.subscriber_name}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="" data-toggle="modal">{{subscriber.subscriber_email}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <a href=""  class="job-item" data-job-id="{{subscriber.key().id()}}" onclick="" data-toggle="modal">{{subscriber.status}}</a>
+                                                </td>
+                                                <td class="small-font">
+                                                    <span class="label label-important">
+                                                        {{subscriber.created.strftime("%d %B %Y")}}
+                                                    </span>
+                                                </td>
+                                                <td class="small-font">{{subscriber.unsubscribed.strftime("%d %B %Y")}}</td>
+                                                <td class="small-font"></td>
+                                                <td class="small-font">
+                                                    <button class="btn btn-mini btn-danger delete-job {{subscriber.key().id()}}" data-job-id="{{subscriber.key().id()}}" data-action="delete"><i class="icon-remove icon-white"></i>  Delete</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                    {% else%}
+                                        <h5 class="muted" style="text-align:center">No deleted jobs at the moment</h5>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <!-- /block -->
+                    </div>
+                                       
+            <hr>
+
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+
+        <script src="../../scripts/admin/vendors/jquery-1.9.1.min.js"></script>
+        <script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../scripts/admin/assets/scripts.js"></script>        
+        <!-- // <script src="../../scripts/js/ajax/jobs.admin.ajax.js"></script> -->
+
+    </body>
+
+</html>
