@@ -701,6 +701,62 @@ class MessagePageHandler(RequestHandler):
         else:
             self.response.write("Something went wrong somewhere!")
 
+class ComposeNewMessageHandler(RequestHandler):
+    def getUser(self, user_id):
+        return User.get_by_id(int(user_id))
+
+    def get(self, user_id):
+        if self.user:
+            user = User.get_by_id(int(self.user_id))
+            if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":   
+                message = {}     
+                message['receiver'] = self.getUser(user_id)
+                message['sender'] = self.getUser(self.user_id)
+                message['subject'] = "Subject: Seeking advice about email marketing"
+                self.render('message-compose.html', 
+                    category="Message Compose", 
+                    message=message,
+                    user=user)
+
+    
+    def post(self, user_id):
+        def getMessage(user, recipient):
+            #dict to hold message
+            message                     = {}
+
+            #determining how message will be saved
+            message['msg_type']         = "new message to"
+            message['category']         = self.request.get("type-of-email")
+            message['receiver_profile'] = recipient.user_profile #has to be the email of the receiver not the sender. Must change this
+            message['receiver']         = recipient
+            message['sender']           = user
+
+            #message details to be sent through mandrill
+            message['sender_email']       = user.alias
+            message['sender_name']        = user.first_name +" "+ user.last_name
+            message['receiver_email']     = recipient.email 
+            message['receiver_name']      = recipient.first_name +" "+ recipient.last_name
+            message['subject']            = self.request.get("subject")
+            message['content']            = self.request.get("message")
+            message['receiver_id']        = recipient.key().id()
+            message['notification_email'] = self.request.get("notify-email")
+            message['reply_to']           = user.alias #sender alias  
+            message['date']               = strftime("%a, %d %b %Y %X +0000", gmtime())  
+
+            return message
+
+        if self.user:
+            user =  self.getUser(self.user_id)
+            recipient_id = self.request.get("recipient")
+            recipient = self.getUser(recipient_id)
+            message = getMessage(user, recipient)
+            message_status = mailhandler.composeNewMail(message) 
+            print message_status
+            print type(message_status)
+            # self.response.write(message_status)
+            # if message_status ==
+            self.redirect("/messages/sent")
+
 class ComposeMessageHandler(RequestHandler):
     def get(self):
         if self.user:
@@ -1062,11 +1118,13 @@ app = webapp2.WSGIApplication([
                                 ('/serve/([^/]+)?', ServeHandler),
                                 ("/submit", SubmitHandler),
                                 ('/upload', UploadHandler),
+                                # ('/messages/compose', ComposeNewMessageHandler),
+                                ('/messages/compose/(\d+)', ComposeNewMessageHandler),
                                 # ('/messages', MessagePageHandler),
                                 ('/messages', InboxDefaultHandler),
                                 ('/messages/([^/]+)?', InboxHandler),
                                 ('/messages/reply/(\d+)', ReplyMessageHandler),
-                                ('/compose', ComposeMessageHandler),
+                                # ('/compose', ComposeMessageHandler),
                                 ("/search", SearchPageHandler),
                                 ("/delete", DeleteHandler),
                                 ('/signupmentor', MentorSignUpPageHandler),

@@ -35,479 +35,482 @@
 		</div>
 	</div>
 <!-- ==================================main body here ================================================== -->
-	<div class="msg-compose-main">
-		<div class="col-md-4 left-side">
-			<div class="row left-side-sub">
-				<div class="email-type" >
-					<select name="type-of-email" id="email-type" required class="btn-block"> Type of email
-						<option data-valid="default" value="default">Select a type of message</option>
-						<option data-valid="true" value="introduction">Introduction</option>
-						<option data-valid="true" value="arrange-a-meeting">Arrange a meeting</option>
-						<option data-valid="true" value="48hours-prior">48 hours prior to meeting</option>
-						<option data-valid="true" value="within-48hours"> Within 48 hours after meeting</option>
-						<option data-valid="true" value="follow-up">Follow-up</option>
-						<option data-valid="false" value="other">Other</option>
-					</select>
-				</div>
-				
-
-				<!-- ========================================= modal =========================================== -->
-				<!-- Intro mail sample -->
-				<div class="hideShow" id="introduction">
-					<div class="checklist">
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox">Briefly introduce yourself: mention your name, your role at your company, and your relationship with the MEST Incubator.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Briefly explain why you’re writing.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Mention how his/her experience is relevant to helping you.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Make a clear ask, such as an hour-long Skype call, or an introduction to someone.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Keep it short and to-the-point. The briefer and more specific you are, the greater the likelihood of receiving a response.
-						    </label>
-						</div><div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Check your spelling.
-						    </label>
-						</div>
+	<form action="/messages/compose/{{message.receiver.key().id()}}" method="post" id="message-form" parsley-validate>
+		<div class="msg-compose-main">
+			<div class="col-md-4 left-side">
+				<div class="row left-side-sub">
+					<div class="email-type" >
+						<select name="type-of-email" id="email-type" required class="btn-block"> Type of email
+							<option data-valid="default" value="default">Select a type of message</option>
+							<option data-valid="true" value="introduction">Introduction</option>
+							<option data-valid="true" value="arrange-a-meeting">Arrange a meeting</option>
+							<option data-valid="true" value="48hours-prior">48 hours prior to meeting</option>
+							<option data-valid="true" value="within-48hours"> Within 48 hours after meeting</option>
+							<option data-valid="true" value="follow-up">Follow-up</option>
+							<option data-valid="false" value="other">Other</option>
+						</select>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-					  VIEW SAMPLE
-					</button>
+					
 
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
+					<!-- ========================================= modal =========================================== -->
+					<!-- Intro mail sample -->
+					<div class="hideShow" id="introduction">
+						<div class="checklist">
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction">Briefly introduce yourself: mention your name, your role at your company, and your relationship with the MEST Incubator.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction"> Briefly explain why you’re writing.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction"> Mention how his/her experience is relevant to helping you.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction"> Make a clear ask, such as an hour-long Skype call, or an introduction to someone.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction"> Keep it short and to-the-point. The briefer and more specific you are, the greater the likelihood of receiving a response.
+							    </label>
+							</div><div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="introduction"> Check your spelling.
+							    </label>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+						  VIEW SAMPLE
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+							    <div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">Introductory email sample</h4>
+									</div>
+									<div class="modal-body">
+										<p>Hi Mary,</p>
+
+										<p>I’m Kwame, co-founder and CTO of Jhello, an incubator company at the Meltwater Entrepreneurial School of Technology Incubator. I’m writing to ask your advice on how to scale our technical infrastructure.</p>
+
+										<p>Jhello is a private social network for members of the African diaspora. We’re growing very rapidly, and we’re having difficulty handling the influx of sign-ups. Considering your experience scaling infrastructure for multiple social networks, I’d love to get your advice on how to do this most effectively.</p>
+
+										<p>Would it be possible to Skype for an hour sometime next week to discuss helpful strategies?</p>
+
+										<p>Regards,</p>
+
+										<p>Kwame Annan</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							    </div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</div>
+
+					<!-- Arranging a Meeting sample -->
+					<div class="hideShow" id="arrange-a-meeting">
+						<div class="checklist">
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Decide on a date and time that works for both of you.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Send a calendar invite with an agenda.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Share contact details (Skype, Google Hangouts etc).
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Set up demo account and include log-in details if applicable.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Send screenshots/documentation if applicable.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Use Fuze for screen sharing.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Check your Spelling.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="arrange-a-meeting"> Keep it short and crisp.
+							    </label>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal2">
+						  VIEW SAMPLE
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
 						    <div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">Introductory email sample</h4>
-								</div>
-								<div class="modal-body">
-									<p>Hi Mary,</p>
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="myModalLabel2">Arranging a meeting email sample</h4>
+						      </div>
+						      <div class="modal-body">
+								<p>Hi Mary,</p>
 
-									<p>I’m Kwame, co-founder and CTO of Jhello, an incubator company at the Meltwater Entrepreneurial School of Technology Incubator. I’m writing to ask your advice on how to scale our technical infrastructure.</p>
+								<p>Does a Skype call on Wednesday, June 11th, at 15:00-16:00 GMT work for you?</p>
 
-									<p>Jhello is a private social network for members of the African diaspora. We’re growing very rapidly, and we’re having difficulty handling the influx of sign-ups. Considering your experience scaling infrastructure for multiple social networks, I’d love to get your advice on how to do this most effectively.</p>
+								<ol>
+								 	<li>Here’s the login info for a demo of the app: 
+										<ul style="list-style-type:disc">
+											<li>login url: (login url)</li>
+											<li>username: (demo userid)</li>
+											<li>password: (pwd)</li>
+										</ul>
+									</li>
+									<li>Here’s my proposed agenda to guide the discussion:
+										<ul style="list-style-type:disc">
+											<li>An overview of the technologies we use at Jhello, and some growth and retention metrics</li>
+											<li>How we’ve tried to scale the system in the past</li>
+											<li>Feedback from you on what we’re doing now, and what we can improve</li>
+										</ul>
+									</li>
+								
+									<li>My Skype ID is kwameMINC. Kindly let me know yours, or let me know if you would prefer another means of communicating.</li>							 
+								</ol>
+								
+								<p>Looking forward to the conversation!</p>
 
-									<p>Would it be possible to Skype for an hour sometime next week to discuss helpful strategies?</p>
+								<p>Cheers,</p>
 
-									<p>Regards,</p>
+								<p>Kwame</p>
 
-									<p>Kwame Annan</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
 						    </div><!-- /.modal-content -->
-						</div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
-				</div>
-
-				<!-- Arranging a Meeting sample -->
-				<div class="hideShow" id="arrange-a-meeting">
-					<div class="checklist">
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Decide on a date and time that works for both of you.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Send a calendar invite with an agenda.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Share contact details (Skype, Google Hangouts etc).
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Set up demo account and include log-in details if applicable.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Send screenshots/documentation if applicable.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Use Fuze for screen sharing.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Check your Spelling.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Keep it short and crisp.
-						    </label>
-						</div>
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal2">
-					  VIEW SAMPLE
-					</button>
 
-					<!-- Modal -->
-					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					        <h4 class="modal-title" id="myModalLabel2">Arranging a meeting email sample</h4>
-					      </div>
-					      <div class="modal-body">
-							<p>Hi Mary,</p>
+					<!-- 48hours Prior mail sample -->
+					<div class="hideShow" id="48hours-prior">
+						<div class="checklist">
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="48hours-prior"> Send an email reminder about the meeting.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="48hours-prior"> Include agenda items.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="48hours-prior"> Proofread the email one more time before sending.
+							    </label>
+							</div>						
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal3">
+						  VIEW SAMPLE
+						</button>
 
-							<p>Does a Skype call on Wednesday, June 11th, at 15:00-16:00 GMT work for you?</p>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="myModalLabel3">48 hours prior to meeting email sample</h4>
+						      </div>
+						      <div class="modal-body">
 
-							<ol>
-							 	<li>Here’s the login info for a demo of the app: 
-									<ul style="list-style-type:disc">
-										<li>login url: (login url)</li>
-										<li>username: (demo userid)</li>
-										<li>password: (pwd)</li>
-									</ul>
-								</li>
-								<li>Here’s my proposed agenda to guide the discussion:
-									<ul style="list-style-type:disc">
-										<li>An overview of the technologies we use at Jhello, and some growth and retention metrics</li>
-										<li>How we’ve tried to scale the system in the past</li>
-										<li>Feedback from you on what we’re doing now, and what we can improve</li>
-									</ul>
-								</li>
+						        <p>Hi Mary,</p>
+
+						        <p>Hope you’re doing well. This is a quick reminder for our meeting in two days, on June 11th, at 15.00 GMT.</p>
+								
+						        <p>1) Here’s the login info for the app demo:</p>
+								<ul>
+							        <li>login url: (login url)</li>
+							        <li>username:(demo userid)</li>
+							        <li>password:(pwd)</li>
+								</ul>
+
+						        <p> 2) Agenda items:</p>
+								<ul>
+							        <li>An overview of the technologies we use at Jhello, and some growth and retention metrics</li>
+							        <li>How we’ve tried to scale the system in the past</li>
+							        <li>Feedback from you on what we’re doing now, and what we can improve</li>
+								</ul>
+
+						        <p>Many thanks, and talk to you soon!</p>
+
+						        <p>Regards,</p>
+
+						        <p>Kwame</p>
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</div>
+
+					<!-- Within 48 hours mail sample -->     
+					<div class="hideShow" id="within-48hours">
+						<div class="checklist">
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="within-48hours"> Thank them for their time and insight.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="within-48hours"> Detail action items with deadlines and who is responsible for them.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="within-48hours"> Define what the next steps will be.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="within-48hours"> Proofread the email one more time before sending.
+							    </label>
+							</div>
 							
-								<li>My Skype ID is kwameMINC. Kindly let me know yours, or let me know if you would prefer another means of communicating.</li>							 
-							</ol>
-							
-							<p>Looking forward to the conversation!</p>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal4">
+						  VIEW SAMPLE
+						</button>
 
-							<p>Cheers,</p>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="myModalLabel4">Within 48 hours after meeting email sample</h4>
+						      </div>
+						      <div class="modal-body">
 
-							<p>Kwame</p>
+						        <p>Hi Mary,</p>
 
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
+						        <p>Once again, on behalf of the entire Jhello team, I’d like to thank you for taking time out of your busy schedule to support us. Your insight so far has been invaluable.</p>
+
+						        <p> Here is a summary of action items.</p>
+								<ol>
+							        <li>Kwame: review technical documentation</li>
+							        <li>Nii: begin recruitment efforts - target is three more engineers</li>
+							        <li>Mary: make email introduction to the person who scaled Facebook’s technical infrastructure</li>
+								</ol>
+
+						        <p>We tentatively set a date for a follow-up meeting on October 19th at 17:00 GMT. I’ll send out calendar invites shortly.</p>
+
+						        <p>Kindly let me know if I omitted anything in this summary, and I look forward to speaking again in a few weeks!</p>
+
+						        <p>Regards,</p>
+
+						        <p>Kwame</p>
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</div>
+
+
+					<!-- Follow-up mail sample -->
+					<div class="hideShow" id="follow-up">
+						<div class="checklist">
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="follow-up"> Send summary of what you’ve been up to since the last meeting.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="follow-up"> Describe whatever challenges you faced executing mentor's recommendations.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="follow-up"> Include agenda items for the next meeting.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="follow-up"> Send screenshots/documentation if applicable.
+							    </label>
+							</div>
+							<div class="checkbox">
+							    <label>
+							      <input type="checkbox" parsley-group="follow-up"> Proofread the email one more time before sending.
+							    </label>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal5">
+						  VIEW SAMPLE
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="myModalLabel5">Follow-up email sample</h4>
+						      </div>
+						      <div class="modal-body">
+
+						        <p>Hi Mary,</p>
+
+						        <p>Hope you’re doing well. This message is in follow-up to the extremely helpful mentor call we had a few weeks ago. We’ve implemented most of your recommendations:</p>
+
+						        <p>With regards to our next meeting, I’d like us to delve more deeply into UI/UX:</p>
+								<ul>
+									<li>We changed the color palette, typography, and the general user flow of the test site to encourage the creation of multiple widgets. Do you think the changes support this objective?</li>
+									<li>Are there any UI/UX best practice resources you can direct me to?</li>
+									<li>Which member of your team handles UI/UX? Would you mind introducing me to that person?</li>
+								</ul>
+								
+						        <p>Looking forward to our next meeting.</p>
+
+						        <p>Regards,</p>
+
+						        <p>Kwame</p>
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</div>
+
+					<div class="tips">
+						<h3><strong>Some useful tips</strong></h3>
+						<div id="carousel-tips" class="carousel slide" data-ride="carousel">
+
+						  <!-- Wrapper for slides -->
+						  <div class="carousel-inner">
+						    <div class="item active">
+						      <p>Important: edit and proofread before hitting "Send." You only get one chance to make a good first impression, so make it count. :)</p>
+						    </div> 
+						    <div class="item ">
+						      <p>Use simple English, and say exactly what you mean. Aim for clarity, not impressiveness.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Put your most important point in the opening sentence or paragraph. If you put it in the middle or the bottom, it might not get seen.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Always enter a descriptive subject line. For example, instead of "Logo," try "Follow-up to logo design brainstorm"</p>
+						    </div>
+						    <div class="item ">
+						      <p>Be clear about what you’re asking. Being straight-forward makes it easy for the mentor to help you.</p>
+						    </div>
+						    <div class="item ">
+						      <p> Link to referenced documents or resources whenever possible. Don’t simply say “Kindly refer to the marketing plan document.” Instead, provide a link to that document. Make things as easy as possible for your reader.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Avoid using ALL CAPITALS - some people consider them to be the email equivalent of shouting.</p>
+						    </div>
+						    <div class="item ">
+						      <p>As a general rule, PLZ avoid textspeak (abbreviations and acronyms): you may be ROFLOL (rolling on the floor laughing out loud), but your reader may be left wondering WUWT (what's up with that).</p>
+						    </div>
+						    <div class="item ">
+						      <p>Be brief and polite. Remember to say “Please” and “Thank you.”</p>
+						    </div>
+						    <div class="item ">
+						      <p>If your message runs longer than two or three short paragraphs, consider (a) reducing the message, or (b) providing an attachment.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Add a signature block with appropriate contact information (in most cases, your name, business address, and phone number).</p>
+						    </div>
+						    <div class="item ">
+						      <p>Reply promptly to serious messages. If you need more than 24 hours to collect information or make a decision, send a brief response explaining the delay.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Stick to one topic for each email.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Avoid excessive compliments.</p>
+						    </div>
+						    <div class="item ">
+						      <p>Always, always proofread email before sending!</p>
+						    </div>
+						  </div>
+
+						  <!-- Controls -->
+						  <a class="left carousel-control" href="#carousel-tips" data-slide="prev">
+						    <span class="glyphicon glyphicon-chevron-left"></span>
+						  </a>
+						  <a class="right carousel-control" href="#carousel-tips" data-slide="next">
+						    <span class="glyphicon glyphicon-chevron-right"></span>
+						  </a>
+						</div>
+					</div>	
 				</div>
+			</div>				
 
-				<!-- 48hours Prior mail sample -->
-				<div class="hideShow" id="48hours-prior">
-					<div class="checklist">
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Send an email reminder about the meeting.
-						    </label>
+		
+			<!-- ======================================================================== -->
+			<div class="col-md-8">
+				<div class="row messagebox right">
+					<div class="messagebox-addresses">
+						<div class="col-md-4 holder">
+							<input class="form-control" type="text" id="recepient" value="To: {{message.sender.first_name}} {{message.sender.last_name}}" disabled>
 						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Include agenda items.
-						    </label>
+						<div class="col-md-1"></div>
+						<div class="col-md-7 holder">
+							<input class="form-control" name="notify-email" type="email" parsley-type="email" id="notify-email" placeholder="Send response notification to: {{user.notify_mail}}" required>
 						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Proofread the email one more time before sending.
-						    </label>
-						</div>						
+						<div class="col-md-11 holder">
+							<input class="form-control" name="subject" type="text" id="subject" maxlength="65" placeholder="{{message.subject|truncate(65, true)}}" required>
+						</div>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal3">
-					  VIEW SAMPLE
-					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					        <h4 class="modal-title" id="myModalLabel3">48 hours prior to meeting email sample</h4>
-					      </div>
-					      <div class="modal-body">
-
-					        <p>Hi Mary,</p>
-
-					        <p>Hope you’re doing well. This is a quick reminder for our meeting in two days, on June 11th, at 15.00 GMT.</p>
-							
-					        <p>1) Here’s the login info for the app demo:</p>
-							<ul>
-						        <li>login url: (login url)</li>
-						        <li>username:(demo userid)</li>
-						        <li>password:(pwd)</li>
-							</ul>
-
-					        <p> 2) Agenda items:</p>
-							<ul>
-						        <li>An overview of the technologies we use at Jhello, and some growth and retention metrics</li>
-						        <li>How we’ve tried to scale the system in the past</li>
-						        <li>Feedback from you on what we’re doing now, and what we can improve</li>
-							</ul>
-
-					        <p>Many thanks, and talk to you soon!</p>
-
-					        <p>Regards,</p>
-
-					        <p>Kwame</p>
-
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
+					<div>
+						<input type="text" style="display: none;" name="message" id="final-message">
+						<input type="text" style="display: none;" name="recipient" id="final-message" value="{{message.sender.key().id()}}">
+						<textarea id="message" class="form-control message" col="60"row="600" placeholder="Type away your message..."></textarea>
+					</div>					
 				</div>
-
-				<!-- Within 48 hours mail sample -->     
-				<div class="hideShow" id="within-48hours">
-					<div class="checklist">
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Thank them for their time and insight.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Detail action items with deadlines and who is responsible for them.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Define what the next steps will be.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Proofread the email one more time before sending.
-						    </label>
-						</div>
-						
-					</div>
-					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal4">
-					  VIEW SAMPLE
-					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					        <h4 class="modal-title" id="myModalLabel4">Within 48 hours after meeting email sample</h4>
-					      </div>
-					      <div class="modal-body">
-
-					        <p>Hi Mary,</p>
-
-					        <p>Once again, on behalf of the entire Jhello team, I’d like to thank you for taking time out of your busy schedule to support us. Your insight so far has been invaluable.</p>
-
-					        <p> Here is a summary of action items.</p>
-							<ol>
-						        <li>Kwame: review technical documentation</li>
-						        <li>Nii: begin recruitment efforts - target is three more engineers</li>
-						        <li>Mary: make email introduction to the person who scaled Facebook’s technical infrastructure</li>
-							</ol>
-
-					        <p>We tentatively set a date for a follow-up meeting on October 19th at 17:00 GMT. I’ll send out calendar invites shortly.</p>
-
-					        <p>Kindly let me know if I omitted anything in this summary, and I look forward to speaking again in a few weeks!</p>
-
-					        <p>Regards,</p>
-
-					        <p>Kwame</p>
-
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
+				<div class="row message-actions">
+					<a href="/messages"><div class="col-xs-5 col-sm-2 col-md-2 pull-right cancel">Cancel</div></a>
+					<a id="submit-message"><div class="col-xs-5 col-sm-2 col-md-2 pull-right send">Send</div></a>
 				</div>
-
-
-				<!-- Follow-up mail sample -->
-				<div class="hideShow" id="follow-up">
-					<div class="checklist">
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Send summary of what you’ve been up to since the last meeting.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Describe whatever challenges you faced executing mentor's recommendations.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Include agenda items for the next meeting.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Send screenshots/documentation if applicable.
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						      <input type="checkbox"> Proofread the email one more time before sending.
-						    </label>
-						</div>
-					</div>
-					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal5">
-					  VIEW SAMPLE
-					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					        <h4 class="modal-title" id="myModalLabel5">Follow-up email sample</h4>
-					      </div>
-					      <div class="modal-body">
-
-					        <p>Hi Mary,</p>
-
-					        <p>Hope you’re doing well. This message is in follow-up to the extremely helpful mentor call we had a few weeks ago. We’ve implemented most of your recommendations:</p>
-
-					        <p>With regards to our next meeting, I’d like us to delve more deeply into UI/UX:</p>
-							<ul>
-								<li>We changed the color palette, typography, and the general user flow of the test site to encourage the creation of multiple widgets. Do you think the changes support this objective?</li>
-								<li>Are there any UI/UX best practice resources you can direct me to?</li>
-								<li>Which member of your team handles UI/UX? Would you mind introducing me to that person?</li>
-							</ul>
-							
-					        <p>Looking forward to our next meeting.</p>
-
-					        <p>Regards,</p>
-
-					        <p>Kwame</p>
-
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
-				</div>
-
-				<div class="tips">
-					<h3><strong>Some useful tips</strong></h3>
-					<div id="carousel-tips" class="carousel slide" data-ride="carousel">
-
-					  <!-- Wrapper for slides -->
-					  <div class="carousel-inner">
-					    <div class="item active">
-					      <p>Important: edit and proofread before hitting "Send." You only get one chance to make a good first impression, so make it count. :)</p>
-					    </div> 
-					    <div class="item ">
-					      <p>Use simple English, and say exactly what you mean. Aim for clarity, not impressiveness.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Put your most important point in the opening sentence or paragraph. If you put it in the middle or the bottom, it might not get seen.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Always enter a descriptive subject line. For example, instead of "Logo," try "Follow-up to logo design brainstorm"</p>
-					    </div>
-					    <div class="item ">
-					      <p>Be clear about what you’re asking. Being straight-forward makes it easy for the mentor to help you.</p>
-					    </div>
-					    <div class="item ">
-					      <p> Link to referenced documents or resources whenever possible. Don’t simply say “Kindly refer to the marketing plan document.” Instead, provide a link to that document. Make things as easy as possible for your reader.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Avoid using ALL CAPITALS - some people consider them to be the email equivalent of shouting.</p>
-					    </div>
-					    <div class="item ">
-					      <p>As a general rule, PLZ avoid textspeak (abbreviations and acronyms): you may be ROFLOL (rolling on the floor laughing out loud), but your reader may be left wondering WUWT (what's up with that).</p>
-					    </div>
-					    <div class="item ">
-					      <p>Be brief and polite. Remember to say “Please” and “Thank you.”</p>
-					    </div>
-					    <div class="item ">
-					      <p>If your message runs longer than two or three short paragraphs, consider (a) reducing the message, or (b) providing an attachment.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Add a signature block with appropriate contact information (in most cases, your name, business address, and phone number).</p>
-					    </div>
-					    <div class="item ">
-					      <p>Reply promptly to serious messages. If you need more than 24 hours to collect information or make a decision, send a brief response explaining the delay.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Stick to one topic for each email.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Avoid excessive compliments.</p>
-					    </div>
-					    <div class="item ">
-					      <p>Always, always proofread email before sending!</p>
-					    </div>
-					  </div>
-
-					  <!-- Controls -->
-					  <a class="left carousel-control" href="#carousel-tips" data-slide="prev">
-					    <span class="glyphicon glyphicon-chevron-left"></span>
-					  </a>
-					  <a class="right carousel-control" href="#carousel-tips" data-slide="next">
-					    <span class="glyphicon glyphicon-chevron-right"></span>
-					  </a>
-					</div>
-				</div>	
-			</div>
-		</div>				
-
-	
-		<!-- ======================================================================== -->
-		<div class="col-md-8">
-			<div class="row messagebox right">
-				<div class="messagebox-addresses">
-					<div class="col-md-4 holder">
-						<input class="form-control" type="text" id="recepient" placeholder="To: {{message.sender.first_name}} {{message.sender.last_name}}" disabled>
-					</div>
-					<div class="col-md-1"></div>
-					<div class="col-md-7 holder">
-						<input class="form-control" type="text" id="notify-email" placeholder="Send response notification to: {{user.notify_mail}}">
-					</div>
-					<div class="col-md-11 holder">
-						<input class="form-control" type="text" id="subject" maxlength="65" placeholder="{{message.subject|truncate(65, true)}}" >
-					</div>
-				</div>
-				<div>
-					<textarea id="message" class="form-control message" col="60"row="600" placeholder="Type away your message..."></textarea>
-				</div>					
-			</div>
-			<div class="row message-actions">
-				<a href="/messages"><div class="col-xs-5 col-sm-2 col-md-2 pull-right cancel">Cancel</div></a>
-				<a><div class="col-xs-5 col-sm-2 col-md-2 pull-right send">Send</div></a>
 			</div>
 		</div>
-	</div>
-	
+	</form>
 	<!-- =============footer ================== -->
 <!-- 	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
@@ -520,6 +523,7 @@
     <script src="../../scripts/assets/js/bs.min.js"></script>
 	<script src="../../scripts/assets/texteditor/ckeditor/ckeditor.js"></script>
 	<script src="../../scripts/assets/js/message-compose.js"></script>
+	<script type="text/javascript" src="../../scripts/assets/parsley/parsley.js"></script>
     <script type="text/javascript">
     	$('.carousel').carousel({
     	  interval: false
@@ -528,8 +532,7 @@
     	$(document).ready(function(){
     		$(".hideShow").hide();
     		$("#email-type").on("change",function(){
-    			// $(".hideShow").hide();
-    			// $("#"+this.value).show();
+				$(".hideShow.active input[type=checkbox]").attr('checked', false);
     			$(".hideShow.active").removeClass("active");
 				$(".hideShow").hide();
 				$("#"+this.value).show();

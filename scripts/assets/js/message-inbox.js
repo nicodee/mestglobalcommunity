@@ -1,6 +1,7 @@
 $(document).ready(
 	function(){
 		init();
+		var inbox_type;
 });
 
 function init() {
@@ -8,6 +9,7 @@ function init() {
 		Binds a message in the inbox to the click event.
 		This calls the readMessage function which fetches the full message
 	**/
+	inbox_type = $(".mail-categories.mail-nav.category").attr("data-category");
 	$(".mail-item").bind('click', function(){
 		readMessage($(this));
 	});
@@ -23,7 +25,7 @@ function readMessage (argument) {
 	var action = "display-message";
 	$.ajax('/messages/inbox',{
 		type: "POST",
-		data: {action:action, message_id: message_id},
+		data: {action:action, message_id: message_id, category: inbox_type},
 		success: handleResponseDisplayMessage
 	});
 }
@@ -146,16 +148,16 @@ function handleDeleteMessageResponse (argument) {
 	timedRefresh(500);
 }
 
-function displayMessage(argument) {
-	var inbox_type = $(".mail-categories.mail-nav.category").attr("data-category");
-	var message_id = argument.attr("data-msg-id");
-	var action = "displayMessageContent";
-	$.ajax('/messages/inbox',{
-		type: "POST",
-		data: {action:action, message_id: message_id, category: inbox_type},
-		success: handleResponseDisplayMessage
-	});
-}
+// function displayMessage(argument) {
+// 	// var inbox_type = $(".mail-categories.mail-nav.category").attr("data-category");
+// 	var message_id = argument.attr("data-msg-id");
+// 	var action = "displayMessageContent";
+// 	$.ajax('/messages/inbox',{
+// 		type: "POST",
+// 		data: {action:action, message_id: message_id, category: inbox_type},
+// 		success: handleResponseDisplayMessage
+// 	});
+// }
 
 function handleResponseDisplayMessage (argument) {
 	$(".mail-content-holder").html(argument);

@@ -15,6 +15,8 @@
 	</div>
 </div>
 <div class="row  mail-content-options-holder">
+	{% if category == 'inbox' %}
 	<a href="/messages/reply/{{message.key().id()}}"><div class="col-md-2 mail-content-options reply pull-right">Reply</div></a>
+	{% endif %}
 	<a><div class="col-md-2 mail-content-options pull-right delete" data-msg-id="{{message.key().id()}}">Delete</div></a>
 </div>

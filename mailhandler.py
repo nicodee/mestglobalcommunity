@@ -258,10 +258,10 @@ def sendCopy(new_message, notify):
 
 
 def composeNewMail(message):
-    result                  = outBoundMail(message)
     user                    = message.get('sender')  
     notify                  = message.get('notification_email')
     msg                     = Message.create(message)
+    result                  = outBoundMail(message)
     user.notify_mail        = notify
     user.put()
     print user.notify_mail

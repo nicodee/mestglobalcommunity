@@ -39,7 +39,7 @@ input, input:focus, input:active {
 }
 .msg-compose-main{
 	margin-top: 2%;
-	margin-bottom: 6%;
+	/*margin-bottom: 6%;*/
 }
 
 select, .form-control {
@@ -230,7 +230,7 @@ background-color: #101010;
 	float: left;
 	width: 18px;
 	height: 20px;
-	margin: 1px 10px 0px 0px;
+	margin: 1px 10px 20px 0px;
 }
 
 .carousel-inner .item {
@@ -351,4 +351,8 @@ a.cke_button_disabled:active {
 .cke_toolbar_break {
 	display: none !important;
 	/*clear: left !important;*/
+}
+
+.parsley-error-list {
+	color: red;
 }
