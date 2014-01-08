@@ -291,7 +291,7 @@ background-color: #101010;
 	-moz-box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
-	padding-left: 0px !important;
+	padding-left: 1px !important;
 }
 
 #cke_1_contents {
@@ -346,4 +346,9 @@ a.cke_button_disabled:active {
 	box-shadow: 0 0 1px rgba(0,0,0,.3) inset;
 	background: #E7E4E4 !important;
 	background-image: none !important;
+}
+
+.cke_toolbar_break {
+	display: none !important;
+	/*clear: left !important;*/
 }

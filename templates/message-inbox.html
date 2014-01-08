@@ -72,10 +72,18 @@
 							</div>
 						</div>
 					{% endfor %}
-				{% else %}
-					<h3 style="padding:20px; color: #777; text-align: center;">
-						You have no new messages
-					</h3>
+				{% elif messages.count() == 0 and category == "inbox" %}
+					<h4 style="padding:10px; color: #777; text-align: center;">
+						This is your inbox, where you’ll receive messages from Mentors and the Platform Administrator.
+						<br>
+						<small><a href="/search">Find a mentor and ask a question</a></small>
+					</h4>
+				{% elif messages.count() == 0 and category == "sent" %}
+					<h4 style="padding:20px; color: #777; text-align: center;">
+						Looks like you’re yet to reach out to a mentor!
+						<br>
+						<small><a href="/search">Find a mentor and ask a question</a></small>
+					</h4>
 				{% endif %}
 			</div>				
 		</div>
