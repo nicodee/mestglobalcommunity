@@ -122,6 +122,7 @@ function handleFullProfileResponse(data){
 	$("#rateit5").rateit("value",user.rating.value);
 	$("#compose-message").attr("name", 'receiver_id');
 	$("#compose-message").attr("value", object.user.user_id);
+	$("#compose-message").attr("href", "/messages/compose/"+object.user.user_id);
 	$("#profile-brief-schedule span").html("<strong>Time zone:</strong> "+object.program[0].time_zone);
 	fetchComments(object);
 	fetchSummary(object);

@@ -260,8 +260,11 @@ def sendCopy(new_message, notify):
 def composeNewMail(message):
     user                    = message.get('sender')  
     notify                  = message.get('notification_email')
+    try:
+        result                  = outBoundMail(message)
+    except:
+        return False        
     msg                     = Message.create(message)
-    result                  = outBoundMail(message)
     user.notify_mail        = notify
     user.put()
     print user.notify_mail

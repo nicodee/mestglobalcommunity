@@ -1,7 +1,7 @@
 <!DOCTYPE html>		
 <html>
 <head>
-	<title>{{category}}</title>
+	<title>{{category}} {{count}}</title>
 	<meta charset="utf-8">
     <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
 		    </button>
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="/messages">Messages</a></li>
+					<li class="active"><a href="/messages">Messages {{message_status}}</a></li>
 					<li><a href="/search">Search</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nic_O_d<b class="caret"></b></a>
@@ -35,8 +35,14 @@
 		</div>
 	</div>
 <!-- ==================================main body here ================================================== -->
+
 	<form action="/messages/compose/{{message.receiver.key().id()}}" method="post" id="message-form" parsley-validate>
 		<div class="msg-compose-main">
+			{% if message_status == "false" %}
+			<div class="text-center container alert alert-danger">
+				<p>{{message_status}}</p>
+			</div>			
+			{% endif %}
 			<div class="col-md-4 left-side">
 				<div class="row left-side-sub">
 					<div class="email-type" >
@@ -492,13 +498,14 @@
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-7 holder">
-							<input class="form-control" name="notify-email" type="email" parsley-type="email" id="notify-email" placeholder="Send response notification to: {{user.notify_mail}}" required>
+							<input class="form-control" name="notify-email" type="email" parsley-type="email" id="notify-email" placeholder="Send response notification to: {{user.notify_mail}}" value="{{notify_email}}" required>
 						</div>
 						<div class="col-md-11 holder">
-							<input class="form-control" name="subject" type="text" id="subject" maxlength="65" placeholder="{{message.subject|truncate(65, true)}}" required>
+							<input class="form-control" name="subject" type="text" id="subject" maxlength="65" placeholder="{{message.subject|truncate(65, true)}}" value="{{subject}}" required>
 						</div>
 					</div>
 					<div>
+						<input type="text" style="display: none;" id="message_content" value="{{content}}">
 						<input type="text" style="display: none;" name="message" id="final-message">
 						<input type="text" style="display: none;" name="recipient" id="final-message" value="{{message.sender.key().id()}}">
 						<textarea id="message" class="form-control message" col="60"row="600" placeholder="Type away your message..."></textarea>

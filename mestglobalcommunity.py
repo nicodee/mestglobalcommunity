@@ -5,6 +5,9 @@ from google.appengine.api import mail
 from models import *
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
+from gaesessions import get_current_session
+from bs4 import BeautifulSoup
+import emailvalid
 import exceptions
 import webapp2
 import time
@@ -586,14 +589,24 @@ class ReplyMessageHandler(RequestHandler):
         if self.user:
             user = User.get_by_id(int(self.user_id))
             if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":
-                # self.redirect('/mentor')
-                # self.response.write(dir(message))                
+
+            ###########################################
+                session = get_current_session()
+                message_status = session.get("message_status", "")
+                subject = session.get("subject", "")
+                content = session.get("message", "")
+                notify_email = session.get("notify-email", "")
+
                 message = Message.get_by_id(int(message_id))
                 message.subject = "Re: %s" %(message.subject)
                 self.render('message-compose.html', 
                     category="Message Reply", 
                     message=message,
-                    user=user)
+                    user=user,
+                    subject=subject,
+                    notify_email=notify_email,
+                    content=content,
+                    message_status=message_status)
 
 class MessagePageHandler(RequestHandler):
     def getUser(self):
@@ -708,18 +721,38 @@ class ComposeNewMessageHandler(RequestHandler):
     def get(self, user_id):
         if self.user:
             user = User.get_by_id(int(self.user_id))
-            if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":   
+            if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":  
+
+                session = get_current_session()
+                message_status = session.get("message_status", "")
+                subject = session.get("subject", "")
+                content = session.get("message", "")
+                notify_email = session.get("notify-email", "")
+
                 message = {}     
                 message['receiver'] = self.getUser(user_id)
                 message['sender'] = self.getUser(self.user_id)
                 message['subject'] = "Subject: Seeking advice about email marketing"
+
                 self.render('message-compose.html', 
                     category="Message Compose", 
                     message=message,
-                    user=user)
+                    user=user,
+                    subject=subject,
+                    notify_email=notify_email,
+                    content=content,
+                    message_status=message_status)
+            else:
+                self.redirect("/home")    
+        else:
+            self.redirect("/home")
 
-    
     def post(self, user_id):
+        def sessionDetails(session,message):
+            session['subject'] = message['subject']
+            session['notify-email'] = message['notification_email']
+            session['message'] = message['content']
+            # session[]
         def getMessage(user, recipient):
             #dict to hold message
             message                     = {}
@@ -745,17 +778,36 @@ class ComposeNewMessageHandler(RequestHandler):
 
             return message
 
+        def validateMessage(message):
+            soup = BeautifulSoup(message['content'])
+
+            return emailvalid.check_email(message['notification_email']) and len(soup.get_text()) > 0 and message['subject'] != ""
+
         if self.user:
             user =  self.getUser(self.user_id)
             recipient_id = self.request.get("recipient")
             recipient = self.getUser(recipient_id)
             message = getMessage(user, recipient)
-            message_status = mailhandler.composeNewMail(message) 
-            print message_status
-            print type(message_status)
-            # self.response.write(message_status)
-            # if message_status ==
-            self.redirect("/messages/sent")
+            form_is_valid = validateMessage(message)
+            session = get_current_session()
+
+            if form_is_valid:
+                session['subject'] = ""
+                session['notify-email'] = ""
+                session['message'] = ""
+                session['message_status'] = ""
+
+                message_status = mailhandler.composeNewMail(message) 
+
+                if message_status == False:
+                    # session['message_status'] = "false"
+                    self.redirect("/messages/compose/%d" %(int(recipient_id)))
+                else:
+                    self.redirect("/messages/sent")
+            else:
+                sessionDetails(session, message)
+                self.redirect("/messages/compose/%d" %(int(recipient_id)))
+
 
 class ComposeMessageHandler(RequestHandler):
     def get(self):

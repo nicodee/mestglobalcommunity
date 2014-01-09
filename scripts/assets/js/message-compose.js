@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	CKEDITOR.instances.message.setData($("#message_content").val());
 	CKEDITOR.instances.message.on('change', function() { checkMessageType()});
 	$("#submit-message").bind('click', function () {
 		validateform();
