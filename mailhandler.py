@@ -258,18 +258,25 @@ def sendCopy(new_message, notify):
 
 
 def composeNewMail(message):
-    user                    = message.get('sender')  
-    notify                  = message.get('notification_email')
+    user = message.get('sender')  
+    notify = message.get('notification_email')
+    result = False
     try:
-        result                  = outBoundMail(message)
+        result = outBoundMail(message)
     except:
-        return False        
-    msg                     = Message.create(message)
-    user.notify_mail        = notify
-    user.put()
-    print user.notify_mail
-    return result
-
+        return False      
+    if result != False:
+        try:
+            msg = Message.create(message)
+            user.notify_mail = notify
+            user.put()
+            print user.notify_mail
+            return result
+        except:
+            return False
+    else:
+        return False
+         
 def notifyEntrepreneur(message):
     user       = message.get("receiver")
     from_email = message.get("sender_email")

@@ -37,12 +37,8 @@
 <!-- ==================================main body here ================================================== -->
 
 	<form action="/messages/compose/{{message.receiver.key().id()}}" method="post" id="message-form" parsley-validate>
+		<input type="text" style="display: none" value="{{token}}" name="token">
 		<div class="msg-compose-main">
-			{% if message_status == "false" %}
-			<div class="text-center container alert alert-danger">
-				<p>{{message_status}}</p>
-			</div>			
-			{% endif %}
 			<div class="col-md-4 left-side">
 				<div class="row left-side-sub">
 					<div class="email-type" >

@@ -590,13 +590,14 @@ class ReplyMessageHandler(RequestHandler):
             user = User.get_by_id(int(self.user_id))
             if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":
 
-            ###########################################
                 session = get_current_session()
                 message_status = session.get("message_status", "")
                 subject = session.get("subject", "")
                 content = session.get("message", "")
                 notify_email = session.get("notify-email", "")
-
+                token = access.state_generator([])
+                session['xsrf_token'] = token
+                
                 message = Message.get_by_id(int(message_id))
                 message.subject = "Re: %s" %(message.subject)
                 self.render('message-compose.html', 
@@ -606,7 +607,8 @@ class ReplyMessageHandler(RequestHandler):
                     subject=subject,
                     notify_email=notify_email,
                     content=content,
-                    message_status=message_status)
+                    message_status=message_status, 
+                    token=token)
 
 class MessagePageHandler(RequestHandler):
     def getUser(self):
@@ -728,7 +730,8 @@ class ComposeNewMessageHandler(RequestHandler):
                 subject = session.get("subject", "")
                 content = session.get("message", "")
                 notify_email = session.get("notify-email", "")
-
+                token = access.state_generator([])
+                session['xsrf_token'] = token
                 message = {}     
                 message['receiver'] = self.getUser(user_id)
                 message['sender'] = self.getUser(self.user_id)
@@ -741,7 +744,8 @@ class ComposeNewMessageHandler(RequestHandler):
                     subject=subject,
                     notify_email=notify_email,
                     content=content,
-                    message_status=message_status)
+                    message_status=message_status,
+                    token=token)
             else:
                 self.redirect("/home")    
         else:
@@ -796,14 +800,15 @@ class ComposeNewMessageHandler(RequestHandler):
                 session['notify-email'] = ""
                 session['message'] = ""
                 session['message_status'] = ""
+                if session["xsrf_token"] == self.request.get("token"):
+                    message_status = mailhandler.composeNewMail(message) 
 
-                message_status = mailhandler.composeNewMail(message) 
-
-                if message_status == False:
-                    # session['message_status'] = "false"
-                    self.redirect("/messages/compose/%d" %(int(recipient_id)))
+                    if message_status == False:
+                        self.redirect("/messages/compose/%d" %(int(recipient_id)))
+                    else:
+                        self.redirect("/messages/sent")
                 else:
-                    self.redirect("/messages/sent")
+                    self.redirect("/messages/inbox")
             else:
                 sessionDetails(session, message)
                 self.redirect("/messages/compose/%d" %(int(recipient_id)))
