@@ -808,7 +808,7 @@ class ComposeNewMessageHandler(RequestHandler):
                     else:
                         self.redirect("/messages/sent")
                 else:
-                    self.redirect("/messages/inbox")
+                    self.redirect("/messages/compose/%d" %(int(recipient_id)))
             else:
                 sessionDetails(session, message)
                 self.redirect("/messages/compose/%d" %(int(recipient_id)))
@@ -1087,7 +1087,8 @@ class SearchPageHandler(RequestHandler):
                     comment["comment_id"]     = result.get('value')
                     comment['entity']    = None 
                     comment['commentor'] = user.first_name + " " + user.last_name
-                    self.response.write(json.dumps(comment));   
+                    self.response.write(json.dumps(comment));  
+                     
             else:
                 result["message"] = "error"
                 result["value"]   = "wrong command"

@@ -4,7 +4,9 @@ $(document).ready(function(){
 	$("#submit-message").bind('click', function () {
 		validateform();
 	});
-	$("#email-type").on("change",function(){ checkMessageType()});
+	$("#email-type").on("change",function(){
+		checkMessageType();
+	});
 });
 
 function checkMessageType() {
@@ -12,7 +14,8 @@ function checkMessageType() {
 	var unchecked = $(".hideShow.active input[type=checkbox]");
 	var msg_type = $("#email-type").val();
 	if (msg_type == "default"){
-		alert("Please select a type of message.");
+		$('#select_type_of_message').modal('show');
+		$('#message_content_be_blank').modal('hide');
 		determineErrorClass(false);
 		return false;
 	}	
@@ -60,8 +63,9 @@ function strip (html) {
 
 function validateMessage (message) {
 	length = strip(message).length;
-	if (length == 0) {
-		alert("Message content can't be blank");
+	if (length == 0) {	
+		$('#message_content_be_blank').modal('show');
+		$('#select_type_of_message').modal('hide');		
 		return false;
 	}
 	else {

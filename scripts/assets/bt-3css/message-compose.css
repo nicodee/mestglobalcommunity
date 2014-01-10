@@ -297,7 +297,7 @@ background-color: #101010;
 #cke_1_contents {
 	border: 1px solid #CFD1CF !important;
 	border-bottom: 0px !important;
-	/*height: 391px !important;*/
+	height: 403px !important;
 }
 
 .cke_toolgroup {
@@ -355,4 +355,28 @@ a.cke_button_disabled:active {
 
 .parsley-error-list {
 	color: red;
+}
+
+#select_type_of_message .modal-body,
+#message_content_be_blank .modal-body {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	color: #b94a48;
+	padding-top: 0px;
+}
+
+#select_type_of_message .modal-content,
+#message_content_be_blank .modal-content {
+	background-color: #fdf7f7;
+}
+
+#select_type_of_message .modal-dialog ,
+#message_content_be_blank .modal-dialog  {
+	padding-top: 15%;
+}
+
+#select_type_of_message .modal-header,
+#message_content_be_blank .modal-header {
+	border-bottom: none;
 }
