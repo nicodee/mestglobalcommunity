@@ -10,7 +10,10 @@ $('#submit-form').click(
             alert("Please choose an area of expertise");   
             return false;
         }
-
+        else if (Number($("#hours-to-commit").val()) == 0) {
+            alert("Please enter the number of hours you are willing to contribute");
+            return false;
+        }
         else{
                 var program_data = JSON.stringify(populate_user_data());
                 var user_data    = JSON.parse(getUserData());
@@ -48,6 +51,7 @@ function populate_user_data() {
     var topics           = getTopics();
     var sectors          = getSectors();
     var referrals        = getReferrals();
+    var hours_to_commit  = Number($("#hours-to-commit").val());
 
     user_data= {
         "program_type": program_type,
@@ -56,7 +60,8 @@ function populate_user_data() {
         "mini_bio": summary,
         "topic": topics,
         "sector": sectors, 
-        "referral": referrals
+        "referral": referrals,
+        "hours": hours_to_commit
     } 
     return user_data;
 }

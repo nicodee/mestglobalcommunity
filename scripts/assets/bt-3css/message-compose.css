@@ -297,7 +297,7 @@ background-color: #101010;
 #cke_1_contents {
 	border: 1px solid #CFD1CF !important;
 	border-bottom: 0px !important;
-	height: 403px !important;
+	min-height: 403px !important;
 }
 
 .cke_toolgroup {
@@ -380,3 +380,22 @@ a.cke_button_disabled:active {
 #message_content_be_blank .modal-header {
 	border-bottom: none;
 }
+
+#cke_message {
+	float: left;
+}
+
+.nav.navbar-nav.navbar-right li a:first-child:hover {
+	border-bottom: 2px solid #5882FA;
+}
+
+#logout a:hover{
+	border: none;
+}
+
+/*.dropdown-menu li a:hover{
+	border-bottom: none;	
+}
+*/
+
+

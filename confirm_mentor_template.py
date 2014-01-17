@@ -258,14 +258,11 @@ to the MEST Mentor Platform, *|username|*!<br>
 </p>
 <div class="article-content" align="left"><span
 style="color: rgb(102, 102, 102);">Thank you for signing up to be a part of the MEST Mentor Platform. 
-Whether you are interested in being a Subject Area Specialist, an MBA Consultant,
-a Senior Advisor or an Expert in Residence, 
-we really appreciate your offer to support MEST and MEST Incubator companies.
+You have now been added to our database, and our incubator entrepreneurs will reach out when your valuable skills are in demand.
 </span><br style="color: rgb(102, 102, 102);">
 <br style="color: rgb(102, 102, 102);">
 <span style="color: rgb(102, 102, 102);">
-You have now been added to our database and 
-we will reach out when your valuable skills are in demand!</span><br
+<a href="http://localhost:8080/signin" style="text-decoration:underline;">You can log-in here to update your preferences.</a></span><br
 style="color: rgb(102, 102, 102);">
 <br>
 </div>
@@ -420,10 +417,10 @@ Now that you're a member of the MEST Mentor Platform, our entrepreneurs will be 
 <br>
 <br>
 If you have any questions, kindly contact us at 
-<a href="mailto:info@meltwater.org"><span style="font-size:15px;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">info@meltwater.org</span></a>.
+<a href="mailto: ani@meltwater.org"><span style="font-size:15px;font-family:Arial;color:#1155cc;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;"> ani@meltwater.org</span></a>.
 <br>
 <br>
-Regards,<br>
+Best regards,<br>
 The MEST Team
 </div>
 </td>

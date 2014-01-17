@@ -142,14 +142,14 @@ def create_admin():
 		new_admin = User(first_name          ="Administrator",
 					    last_name           = "",
 					    confirmation_status = "confirmed",
-					    email               = "nnutsukpui@gmail.com",
-					    alias               = "nnutsukpui@gmail.com",
+					    email               = "nicodemus.nutsukpui@meltwater.org",
+					    alias               = "admin@mestglobalcommunity.appspotmail.com",
 					    picture             = None,
 					    industry	        = None,
 					    location	        = None,
 					    user_id		        = None,
 					    linkedin_profile    = None,
-					    notify_mail         = "nnutsukpui@gmail.com",
+					    notify_mail         = "nicodemus.nutsukpui@meltwater.org",
 					    summary             = None,
 					    user_profile        = 'Administrator'
 						)

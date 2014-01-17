@@ -29,6 +29,9 @@ class LogSenderHandler(InboundMailHandler):
                 logging.info(SENDER)
                 sender_one = User.gql("WHERE email=:1", SENDER)
                 sender_two = User.gql("WHERE alias=:1", SENDER)
+                print "============="
+                print sender_two.count()
+                print "============="
                 if sender_one.count()==1:
                     return sender_one.get()
                 elif sender_two.count()==1:

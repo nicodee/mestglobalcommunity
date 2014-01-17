@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<title></title>
@@ -57,11 +57,12 @@
 				.modal #industries span ul li {
 					width: 30%;
 					margin-bottom: 5px;
-					padding: 5px;
+					padding: 8px;
 					font-size: 18px;
 				}
-				.modal #industries span ul li{
-					width: 29%;
+
+				#sectorModal #industries{
+					width: 95%;
 				}
 
 				#sectorModal {
@@ -70,6 +71,7 @@
 				#sectorModal .modal-body {
 					overflow-y: hidden;
 					overflow-x: hidden; 
+					background: #eee;
 				}
 
 				#myModal{
@@ -80,6 +82,50 @@
 				}
 				.modal-header {
 					background: #f5f5f5;
+				}
+				#badges .span2 {
+					width: 5.529915%;
+				}
+				#profile-head {
+					margin-top: 10px;
+				}
+				#badges {
+					margin-bottom: 20px;
+					margin-top: 23px;
+				}
+				#modal-pic {
+					border-radius: 3%;
+				}
+				#contributionModal{
+					top: 10%;
+					left: 46%;
+					width: 670px;
+				}
+				#contributionModal .modal-header,
+				#contributionModal .modal-body,
+				#contributionModal .modal-footer {
+					background: #fff;
+					text-align: center;
+					border: none;
+					color: #777;
+				}
+				#contributionModal .modal-body{
+					text-align: left;
+				}
+				#contributionModal img {
+					width: 251px;
+					height: 365px;
+					text-align: center;
+					position: absolute;
+					z-index: 100000;
+					top: -30px;
+					left: -70px;
+				}
+				#contributionModal .modal-footer {
+					/*text-align: right;*/	
+				}
+				#badges .span2:hover {
+					width: 12%;
 				}
 		</style>
 	</head>
@@ -122,21 +168,16 @@
 						    			<div class="row item" id="profile-head">
 									    	
 											<div class="span5" id="profile-brief-img">
-												<ul class="grid">
-											        <li class="">
-											          <figure class="">
-											            <div>
-											            	<img  id="modal-pic" src="{{mentor.picture}}" alt="picture" style="height: 100%;">
-											            </div>
-											          </figure>
-											        </li>
-											    </ul>
+									            <div class="row-fluid">
+									            	<img  id="modal-pic" src="{{mentor.picture}}" alt="picture" style="height: 100%;">
+									            </div>
 											</div>
 											<div class="span7" id="profile-brief-text">
 												<div class="row-fluid">
 													<h3><strong>Program:</strong> {{mentor.programs[0].program_type}}</h3>
 													<span id="profile-name">
-														<h3 id="mentor-profile-name">{{mentor.first_name}} {{mentor.last_name}}
+														<h3 id="mentor-profile-name">
+															<strong>Name:</strong> {{mentor.first_name}} {{mentor.last_name}}
 														</h3>
 													</span>
 													<span id="profile-company-position">
@@ -154,21 +195,75 @@
 													</span>
 												</div>
 												<div class="row-fluid" id="profile-brief-location">
-													<span>
-														<strong>
-															Location: {{mentor.location}}
-														</strong>
-													</span>
+													<p>														
+														<span>
+															<strong>
+																Location: {{mentor.location}}
+															</strong>
+														</span>
+													</p>
 												</div>
 												<div class="row-fluid" id="profile-brief-schedule">
-						    						<span>
-						    							<strong>Time zone:</strong> {{mentor.programs[0].time_zone}}
-						    						</span>
+													<p>
+							    						<span>
+							    							<strong>Time zone:</strong> {{mentor.programs[0].time_zone}}
+							    						</span>														
+													</p>
+												</div>
+												<div class="row-fluid" id="hours-to-commit">
+													<p>
+							    						<span>
+							    							<strong>Hours:</strong> {{mentor.programs[0].hours}} hour(s)
+							    						</span>														
+													</p>
 												</div>
 											</div>
 											
 						    			</div>
 						    		</div>	
+
+									<div class="row-fluid badges" id="badges">
+										{% set count = mentor|hours_committed %}
+			    						<div class="span2" id="img1">
+			    							{% if count >= 10 %}
+				    							<img src="../../scripts/assets/img/mentorbadges/Badge10.png" alt="">  						
+			    							{% else %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">  						
+			    							{% endif %}
+			    						</div>	
+
+			    						<div class="span2" id="img2">
+			    							{% if count >= 25 %}
+				    							<img src="../../scripts/assets/img/mentorbadges/Badge25.png" alt="">   							
+			    							{% else %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">  						
+			    							{% endif %}
+			    						</div>		
+
+			    						<div class="span2" id="img3">
+			    							{% if count >= 50 %}
+				    							<img src="../../scripts/assets/img/mentorbadges/Badge50.png" alt="">   							
+			    							{% else %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">  						
+			    							{% endif %}
+			    						</div>	
+
+			    						<div class="span2" id="img4">
+			    							{% if count >= 75 %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">						
+			    							{% else %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">  						
+			    							{% endif %}
+			    						</div>	
+			    							
+			    						<div class="span2" id="img5">
+			    							{% if count >= 100 %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">   						
+			    							{% else %}
+				    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">  						
+			    							{% endif %}
+			    						</div>	
+			    					</div>
 
 			    					<div class="row-fluid"  id="profile-summary">
 			    						<div class="row-fluid" id="profile-summary-label"><span><h5>SUMMARY</h5></span></div>
@@ -191,19 +286,19 @@
 			    							{% for position in positions.order('-end_date') %}
 		    								<div class="row-fluid" id="profile-resume-item">
 		    									<div class="row-fluid" id="resume-position-details">
-			    									<p id="position-title">position.title</p>
-			    									<p id="position-company">position.company</p>
+			    									<p id="position-title">{{position.title}}</p>
+			    									<p id="position-company">{{position.company}}</p>
 													{% if position.is_current == "True" %}
 													<p id="position-duration-description">
 														<span id="position-duration">{{position.start_date}} - Present</span>
 													</p>
 													{% else %}
 													<p id="position-duration-description">
-														<span id="position-duration">position.start_date - position.end_date</span>
+														<span id="position-duration">{{position.start_date}} - {{position.end_date}}</span>
 													</p>
 													{% endif %}
 													{% if position.summary != None %}
-													<p id="position-description">position.summary</p>
+													<p id="position-description">{{position.summary}}</p>
 													{% endif %}
 												</div>
 											</div>
@@ -231,68 +326,103 @@
 									{% endif %}
 			    				</div>
 			    				<div class="span4 pull-left" id="full-profile-content-right">
-									
-									<div class="row-fluid skills" id="profile-brief-skills-tags">
-										<div class="row-fluid tags" id="">
-			    							<span><b>ENDORSED ON LINKEDIN FOR</b></span>
+
+			    					<div class="row-fluid contribution skills" id="hours-contributed" style="margin-top:0px;">
+										<div id="piechart" class="row-fluid"></div>
+										
+				    					<div class="contributions" id="contributions">
+				    						{% if mentor.programs[0].contributions.count() > 0 %}
+					    						<table class="table table-bordered table-striped">
+									              <thead>
+									                <tr>
+									                  <th>Company</th>
+									                  <th>Hours</th>
+									                </tr>
+									              </thead>
+									              <tbody>
+					    							{% for contribution in mentor.programs[0].contributions.order("company") %}
+									                <tr>
+									                  <td>
+									                  	<a href="#"  class="des" data-toggle="popover" data-placement="top" data-content="{{ contribution.description }}" title="" data-original-title='{{contribution.created.strftime("%d %b %Y")}}'>
+									                  		{{ contribution.company }}
+									                  	</a>
+								                  	  </td>
+									                  <td>{{ contribution.contributed_hours }}</td>
+									                </tr>
+					    							{% endfor%}
+									              </tbody>
+									            </table>
+				    						{% endif %}
+				    					</div>
+										<button href="#contributionModal" class="btn-default btn-block btn" id="hours-contributed-button" role="button" data-toggle="modal">Add hours</button>
+			    					</div>
+
+
+			    					<div id="skills_container" style="margin-top:12px;">
+			    						
+										<div class="row-fluid skills" id="profile-brief-skills-tags" style="margin-top:12px;">
+											<div class="row-fluid tags" id="">
+				    							<span><b>ENDORSED ON LINKEDIN FOR</b></span>
+				    						</div>
+											<span>
+												<ul>
+			    									{% if mentor.skills.count() > 0 %}
+				    									{% for skill in mentor.skills.order('name') %}
+															<li>{{skill.name}}</li>
+				    									{% endfor %}
+				    								{% else %}
+					    								<li>None selected</li>
+			    									{% endif %}
+			    								</ul>
+											</span>
+										</div>
+
+			    						<div class="row-fluid skills" id="industries">
+			    							<div class="row-fluid tags" id="">
+				    							<span><b>INDUSTRIES</b></span>
+				    						</div>
+				    						<div class="row-fluid">
+				    							<span>
+				    								<ul>
+				    									{% if mentor.programs[0].sectors.count() > 0 %}
+					    									{% for sector in mentor.programs[0].sectors.order('value') %}
+																<li>{{sector.value}}</li>
+					    									{% endfor %}
+					    								{% else %}
+						    								<li>None selected</li>
+				    									{% endif %}
+				    								</ul>
+				    							</span>
+											</div>										
+											<div class="row-fluid">
+				    							<a href="#sectorModal" role="button" class="btn" data-toggle="modal">Click here to edit</a>
+											</div>
 			    						</div>
-										<span>
-											<ul>
-		    									{% if mentor.skills.count() > 0 %}
-			    									{% for skill in mentor.skills.order('name') %}
-														<li>{{skill.name}}</li>
-			    									{% endfor %}
-			    								{% else %}
-				    								<li>None selected</li>
-		    									{% endif %}
-		    								</ul>
-										</span>
+
+			    						<div class="row-fluid skills" id="expertise">
+			    							<div class="row-fluid tags" id="">
+				    							<span><b>EXPERTISE</b></span>
+				    						</div>
+				    						<div class="row-fluid">			    							
+				    							<span>
+				    								<ul>
+				    									{% if mentor.programs[0].topics.count() > 0 %}
+					    									{% for topic in mentor.programs[0].topics.order('value') %}
+																<li class="selectedd" data-topic-criteria="{{topic.criteria}}">{{topic.value}}</li>
+					    									{% endfor %}
+					    								{% else %}
+						    								<li>None selected</li>
+				    									{% endif %}
+				    								</ul>
+					    							<br>
+				    							</span>
+				    						</div>
+											<div class="row-fluid">
+				    							<a href="#myModal" role="button" class="btn" data-toggle="modal">Click here to edit</a>
+											</div>
+			    						</div>								
+			    					
 									</div>
-
-		    						<div class="row-fluid skills" id="industries">
-		    							<div class="row-fluid tags" id="">
-			    							<span><b>INDUSTRIES</b></span>
-			    						</div>
-			    						<div class="row-fluid">
-			    							<span>
-			    								<ul>
-			    									{% if mentor.programs[0].sectors.count() > 0 %}
-				    									{% for sector in mentor.programs[0].sectors.order('value') %}
-															<li>{{sector.value}}</li>
-				    									{% endfor %}
-				    								{% else %}
-					    								<li>None selected</li>
-			    									{% endif %}
-			    								</ul>
-			    							</span>
-										</div>										
-										<div class="row-fluid">
-			    							<a href="#sectorModal" role="button" class="btn" data-toggle="modal">Click here to edit</a>
-										</div>
-		    						</div>
-
-		    						<div class="row-fluid skills" id="expertise">
-		    							<div class="row-fluid tags" id="">
-			    							<span><b>EXPERTISE</b></span>
-			    						</div>
-			    						<div class="row-fluid">			    							
-			    							<span>
-			    								<ul>
-			    									{% if mentor.programs[0].topics.count() > 0 %}
-				    									{% for topic in mentor.programs[0].topics.order('value') %}
-															<li class="selectedd" data-topic-criteria="{{topic.criteria}}">{{topic.value}}</li>
-				    									{% endfor %}
-				    								{% else %}
-					    								<li>None selected</li>
-			    									{% endif %}
-			    								</ul>
-				    							<br>
-			    							</span>
-			    						</div>
-										<div class="row-fluid">
-			    							<a href="#myModal" role="button" class="btn" data-toggle="modal">Click here to edit</a>
-										</div>
-		    						</div>								
 
 			    				</div>
 			    			</div>									
@@ -302,6 +432,7 @@
 			  </div>
 			</div>
 		</div> <!-- results container ends -->
+		
 		<div id="myModal" class="modal hide fade">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -312,6 +443,7 @@
 		  		<div class="span10 offset1">
 					<div class="row-fluid skills" id="expertise">
 
+						
 						<div class="row-fluid tags">
 							<label><b>ANALYTICS</b></label>
 						</div>
@@ -470,6 +602,27 @@
 								</ul>
 							</span>
 						</div>	
+						
+						{% if mentor.programs[0].program_type == "MEST Strike Force"%}
+							<div class="row-fluid tags">
+								<label><b>MEST STRIKE FORCE</b></label>
+							</div>
+							<div class="row-fluid">
+								<span>
+									<ul>
+
+										<li class="{{ mentor.programs[0].topics|is_topic('Scaling Expert')}}" data-topic-criteria="MEST Strike Force">Scaling Expert</li>
+
+										<li class="{{ mentor.programs[0].topics|is_topic('SEO Expert')}}" data-topic-criteria="MEST Strike Force">SEO Expert</li>
+
+										<li class="{{ mentor.programs[0].topics|is_topic('UI/UX Expert')}}" data-topic-criteria="MEST Strike Force">UI/UX Expert</li>
+
+										<li class="{{ mentor.programs[0].topics|is_topic('Virality Expert')}}" data-topic-criteria="MEST Strike Force">Virality Expert</li>
+
+									</ul>
+								</span>
+							</div>
+						{% endif %}
 
 						<div class="row-fluid tags" id="">
 							<label><b>OPERATION</b></label>
@@ -599,6 +752,7 @@
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>
+
 		<div id="sectorModal" class="modal hide fade">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -671,9 +825,73 @@
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>
+
+		<div id="contributionModal" class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3>Add new hours here</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="inputCompany">Incubator Company</label>
+						<div class="controls">
+							<select id="inputCompany">
+							    <option value="Adsbrook">AdsBrook</option>
+							    <option value="Dropifi">Dropifi</option>
+							    <option value="Freelancepro">Freelancepro</option>
+							    <option value="Leti Arts">Leti Arts</option>
+							    <option value="Mpawa">mPawa</option>
+							    <option value="Nandimobile">Nandimobile</option>
+							    <option value="Kudobuzz">Kudobuzz</option>
+							    <option value="Retail Tower">Retail Tower</option>
+							    <option value="Saya">Saya</option>
+							    <option value="Orgaroo">Orgaroo</option>
+							    <option value="Suba">Suba</option>
+							    <option value="Meqasa">MeQasa</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputHours">Number of hours: </label>
+						<div class="controls">
+							<input type="number" id="inputHours" placeholder="hours committed" min="1" required="required">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputDescription">What did you work on?</label>
+						<div class="controls">
+						  <textarea rows="12" class="span4" id="inputDescription"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>									  
+			<div class="modal-footer">
+				<button class="btn btn-default" id="submit-contribution">Add hours</button>
+			</div>
+		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
     	<script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
     	<script src="../../scripts/js/ajax/editmentorprofile.ajax.js"></script>
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
+    	 $('.des').popover();
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Task', 'Hours Contributed'],
+				['Completed',     {{ mentor|hours_committed }}],
+				['Hours Left',    {{ mentor|hours_left }} ]
+	        ]);
 
+	        var options = {
+	          title: 'Hours I Have Contributed'
+	        };
+
+	        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	        chart.draw(data, options);
+	      }
+	    </script>
 	</body>
 </html>

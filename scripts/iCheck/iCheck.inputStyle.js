@@ -168,7 +168,9 @@ $(document).ready(function(){
    					"marketing" ,
    					"finance-accounting",
 				   	"project-management",
-   					"sales"
+   					"sales",
+   					"mest-strike-force",
+   					"list-tech"
    					];
    	var special_criterias=['1','2','3' 
 					];

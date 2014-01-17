@@ -1,0 +1,312 @@
+<div id="myModal" class="modal hide fade  in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h3 id="myModalLabel">{{mentor.programs[0].program_type}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="cover-banner" id="mentor-full-view"> <!-- mentor profile begins -->	
+	<div class="row-fluid" id="full-profile-content">
+		<div class="span7 item" id="full-profile-content-left">
+
+
+			 <div class="" id="mentor-full-view"> <!-- mentor profile begins -->	
+    			<div class="row item" id="profile-head">
+			    	
+						<div class="span5" id="profile-brief-img">
+							<ul class="grid">
+						        <li class="">
+						          <figure class="">
+						            <div>
+						            	<img id="modal-pic" src="{{mentor.picture}}" alt="picture" data-user-id="{{mentor.key().id()}}" data-fav-status="false" data-favorite-type="Mentor" rating="{{mentor.key().id()|get_rating(user_id)}}">
+						            </div>
+						          </figure>
+						        </li>
+						    </ul>
+		            		<input type="hidden" id="backing6">
+							<div class="rateit" id="rateit5" data-rateit-min="0"  data-rateit-ispreset="true">
+							</div>
+		            		
+						</div>
+						<div class="span7" id="profile-brief-text">
+							<div class="row-fluid">
+								<label id="profile-name">
+									<h3 id="mentor-profile-name">{{mentor.first_name}} {{mentor.last_name}}</h3>
+								</label>
+								<span>
+									<label id="profile-company-position">
+										<p>
+											{% if mentor.positions.count() > 0 %}
+												<strong>Position: </strong>
+												{% for position in mentor.positions.filter('is_current =', 'True') %}
+													{{position.title}} at {{position.company}}
+												{% endfor %}
+											{% else %}
+												<strong>Education: </strong>
+												{% for school in mentor.educations.order('-end_date').fetch(limit=1) %}
+													{{school.school_name}}
+												{% endfor %}
+											{% endif %}
+										</p>
+									</label>
+								</span>
+							</div>
+							<div class="row-fluid" id="profile-brief-location">
+								<p>
+									<span>
+										<strong>Location:</strong> {{mentor.location}}
+									</span>
+								</p>
+							</div>
+							<div class="row-fluid" id="profile-brief-schedule">
+	    						<p>
+		    						<span>
+		    							<strong>Time zone:</strong> {{mentor.programs[0].time_zone}}
+		    						</span>	 
+	    						</p>
+							</div>
+							<div class="row-fluid" id="hours-to-commit">
+								<p>
+		    						<span>
+		    							<strong>Hours:</strong> {{mentor.programs[0].hours}} hour(s)
+		    						</span>										
+								</p>
+							</div>		
+						</div>
+
+						<div class="row-fluid badges" id="badges">
+							{% set count = mentor|hours_committed %}
+							{% if count >= 10 %}
+								<div class="span1" id="img1" style="margin-left: 10px;">
+	    							<img src="../../scripts/assets/img/mentorbadges/Badge10.png" alt="">  						
+								</div>	
+							{% endif %}								  						
+
+							{% if count >= 25 %}
+								<div class="span1" id="img2">
+	    							<img src="../../scripts/assets/img/mentorbadges/Badge25.png" alt="">   							
+								</div>		
+							{% endif %}								  						
+
+							{% if count >= 50 %}
+								<div class="span1" id="img3">
+	    							<img src="../../scripts/assets/img/mentorbadges/Badge50.png" alt="">   							
+								</div>	
+							{% endif %}								  						
+
+							{% if count >= 75 %}
+								<div class="span1" id="img4">
+	    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">						
+								</div>	
+							{% endif %}								  						
+								
+							{% if count >= 100 %}
+								<div class="span1" id="img5">
+	    							<img src="../../scripts/assets/img/mentorbadges/BadgeSilhouette.png" alt="">   						
+								</div>	
+							{% endif %}								  						
+						</div>
+					
+    			</div>
+    		</div>	
+
+			<div class="row-fluid" id="profile-summary">
+				<div class="row-fluid" id="profile-summary-label">
+					<label>
+						<h5>SUMMARY</h5>
+					</label>
+				</div>
+				<div class="row-fluid" id="profile-summary-content">
+					<span>
+						<p>
+							{% if mentor.summary != null%}
+								{{mentor.summary}}
+							{% else %}
+								{{mentor.program[0].mini_bio}}
+							{% endif %}
+						</p>
+					</span>
+				</div>
+			</div>
+
+			{% if mentor.positions.count() > 0 %}
+			<div class="row-fluid" id="profile-resume" style="display: none;">
+				<div class="profile-resume-label">
+					<label>
+						<h5>EXPERIENCE</h5>
+					</label>
+				</div>
+				<div class="row-fluid" id="profile-resume-list">
+					{% for position in positions.order('-end_date') %}
+					<div class="row-fluid" id="profile-resume-item">
+						<div class="row-fluid" id="resume-position-details">
+							<p id="position-title">{{position.title}}</p>
+							<p id="position-company">{{position.company}}</p>
+							{% if position.is_current == "True" %}
+							<p id="position-duration-description">
+								<span id="position-duration">{{position.start_date}} - Present</span>
+							</p>
+							{% else %}
+							<p id="position-duration-description">
+								<span id="position-duration">{{position.start_date}} - {{position.end_date}}</span>
+							</p>
+							{% endif %}
+							{% if position.summary != None %}
+							<p id="position-description">{{position.summary}}</p>
+							{% endif %}
+						</div>
+					</div>
+					{% endfor %}					
+				</div>
+			</div>
+			{% endif %}
+
+			{% if mentor.educations.count() > 0 %}
+			<div class="row-fluid" id="profile-education">
+				<div class="profile-education-label"><span><h5>Education</h5></span></div>
+				<div class="row-fluid" id="profile-education-list">
+					{% for school in mentor.educations.order('-end_date') %}
+						<div class="row-fluid" id="profile-education-item">
+							<div class="row-fluid" id="education-school-details">
+								<p id="education-school"> {{school.school_name}} <p>
+								{% if school.field_of_study != None %}
+									<p id="education-school-degree">{{school.field_of_study}}<p>
+								{% endif %}
+								<p id="education-school-duration-description">
+									<span id="education-school-duration">
+										{{school.start_date}} - {{school.end_date}}
+									</span>
+								</p>
+							</div> 										
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+		<div class="span4 pull-left" id="full-profile-content-right">
+			<div class="row-fluid contribution skills" id="hours-contributed" style="margin-top:0px;">
+
+				<div id="piechart" class="row-fluid" data-committed="{{ mentor|hours_committed }}" data-left="{{ mentor|hours_left }}" width="120%" heigth="400px">
+				</div>
+				
+				<div class="contributions" id="contributions">
+					{% if mentor.programs[0].contributions.count() > 0 %}
+						<table class="table table-bordered table-striped">
+			              <thead>
+			                <tr>
+			                  <th><label>Company</label></th>
+			                  <th><label>Hours</label></th>
+			                </tr>
+			              </thead>
+			              <tbody>
+							{% for contribution in mentor.programs[0].contributions.order("company") %}
+			                <tr>
+			                  <td>
+			                  	<a href="#"  class="des" data-toggle="popover" data-placement="bottom" data-content="{{ contribution.description }}" title="" data-original-title='{{contribution.created.strftime("%d %b %Y")}}'>
+			                  		{{ contribution.company }}
+			                  	</a>
+		                  	  </td>
+			                  <td><small>{{ contribution.contributed_hours }}</small></td>
+			                </tr>
+							{% endfor%}
+			              </tbody>
+			            </table>
+					{% endif %}
+				</div>
+			</div>
+			
+			{% if mentor.skills.count() > 0 %}
+			<div class="row-fluid skills" id="profile-brief-skills-tags">
+				<div class="row-fluid tags" id="">
+					<label>ENDORSED FOR</label>
+				</div>
+				<span>
+					<ul>
+						{% for skill in mentor.skills.order('name') %}
+							<li>{{skill.name}}</li>
+						{% endfor %}
+					</ul>
+				</span>
+			</div>
+			{% endif %}
+
+			{% if mentor.programs[0].sectors.count() > 0 %}
+			<div class="row-fluid skills" id="industries">
+				<div class="row-fluid tags" id="">
+					<label>INDUSTRIES</label>
+				</div>
+				<span>
+					<ul>
+						{% for sector in mentor.programs[0].sectors.order('value') %}
+							<li>{{sector.value}}</li>
+						{% endfor %}
+					</ul>
+				</span>
+			</div>
+			{% endif %}
+
+			{% if mentor.programs[0].topics.count() > 0 %}
+			<div class="row-fluid skills" id="expertise">
+				<div class="row-fluid tags" id="">
+					<label>EXPERTISE</label>
+				</div>
+				<span>
+					<ul>
+						{% for topic in mentor.programs[0].topics.order('value') %}
+							<li>{{topic.value}}</li>
+						{% endfor %}
+					</ul>
+				</span>
+			</div>		
+			{% endif %}
+
+			<div class="row-fluid item" id="commments-and-ratings">
+				<div class="row-fluid"><label><p>COMMENTS</p></label></div>
+				{% if mentor.comments_received.count() > 0 %}
+				<div class="row-fluid" id="comments-container">
+					{% for comment in mentor.comments_received %}
+					<div class="row-fluid {{comment.commentor_id}}" id="comment-item" data-comment-id="{{comment.key().id()}}" data-commentor-id="{{comment.commentor_id}}">
+						<div class="row-fluid">
+							<div class="span9 pull-left" id="commentor-name">
+								<p>{{comment.commentor.first_name}} {{comment.commentor.last_name}}</p>
+							</div>
+							<div class="span3 pull-right">
+								{% if comment.commentor.key().id() == user_id %}
+									<img src="scripts/img/delete_comment.png" class="delete" data-commentor-id="{{comment.commentor_id}}">
+									<img src="scripts/img/edit.png" class="edit" data-commentor-id="{{comment.commentor_id}}">
+								{% endif %}
+							</div>
+						</div>
+						<input type="hidden" id="{{comment.comment_id}}">
+						<div class="comment-content">
+							<span>
+								<p>
+									{{comment.content}}
+								</p>
+							</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				<div class="row-fluid {{mentor|has_commented(user_id)}}" id="new-comment-container">
+					<div class="row-fluid" id="new-comment-textarea">
+						<textarea id="comment-textarea"></textarea>
+					</div>
+					<div class="row-fluid" id="comment-submit-container">
+						<button id="comment-submit-button" class="pull-right btn">Submit</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>									
+</div> <!-- mentor profile ends -->
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+    	<a id="compose-message" class="btn btn-primary send-message" target="_blank" name="receiver_id" value="{{mentor.key().id()}}" href="/messages/compose/{{mentor.key().id()}}">SEND MESSAGE</a>
+  </div>
+</div>

@@ -477,6 +477,8 @@ ul>li>ul>li {
 	/*width: 80%;
 	margin: auto;*/
 	text-align: left;
+	font-size: 15px;
+	line-height: 20px;
 }
 
 .hidden-program {
@@ -514,4 +516,26 @@ input#email {
 	border: 1px solid #7bb7fa;
 	box-shadow: none;
 	cursor: progress;
+}
+
+#topics.strike-force-options ul li {
+	width: 23%;
+	float: right;
+}
+
+#topics.strike-force-options ul {
+	list-style: none;
+	float: left;
+	width: 100%;
+}
+
+#topics.strike-force-options ul {
+	width: 100%;
+	padding-bottom: 25px;
+	padding-top: 20px;
+}
+
+#topics.strike-force-options {
+	width: 100%;
+	margin-top: 3px;
 }

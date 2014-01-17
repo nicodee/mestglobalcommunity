@@ -1,5 +1,9 @@
 //changes ui of checkbox inputs
 $(document).ready(function(){
+				$('#strike-force-options input[type="checkbox"]').iCheck({
+					checkboxClass: 'icheckbox_flat-aero',
+					radioClass: 'iradio_flat-aero'
+				});
 				$('#topics input').iCheck({
 					checkboxClass: 'icheckbox_flat-aero',
 					radioClass: 'iradio_flat-aero'

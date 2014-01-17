@@ -5,6 +5,9 @@ $(document).ready(function(){
 	$('.modal #industries span ul li').bind('click', function () {
 		checkSector($(this));
 	});
+	$("#submit-contribution").bind('click', function () {
+		submitContribution();
+	})
 	$('#myModal').on('hidden', function () {
 	    refreshTopics();
 	});
@@ -58,5 +61,39 @@ function refreshTopics(){
 }
 
 function handleRefreshTopics(data){
-	$('#full-profile-content-right').html(data);
+	$('#skills_container').html(data);
+}
+
+function submitContribution () {
+	var company = $("#inputCompany").val();
+	var description = $("#inputDescription").val();
+	var hours = $("#inputHours").val();
+
+	if (company && description && hours){
+		var action = "add_contribution";
+		var contribution = JSON.stringify({"company":company, "description": description, "hours": hours});
+		$.ajax('/mentor', {
+			type: "POST",
+			data:{action: action, contribution: contribution},
+			success: handleContributionResponse
+		}
+	);
+
+	}		
+	else {
+		alert("Please enter all the fields before submitting the form.");	
+	}		
+}
+
+function handleContributionResponse (data) {
+	console.log(data);
+	$("#contributionModal").html(data);
+	$("#contributionModal").addClass("success");
+	$("#contributionModal.success").on('hidden', function () {
+		timedRefresh(500);
+	});
+}
+
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
 }

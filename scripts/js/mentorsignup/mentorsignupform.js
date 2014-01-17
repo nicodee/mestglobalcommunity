@@ -96,6 +96,15 @@ $(document).ready(
 $("#programs").change(
 	function(){
         var id=$(this).val();
+        if (id == "mest-strike-force"){
+        	$("#topics.strike-force-options").show();
+        	$("#topics.strike-force-options").addClass("selected");
+        }
+        else {        	
+        	$("#topics.strike-force-options").hide();
+        	$("#topics.strike-force-options").removeClass("selected");
+        	$("#topics.strike-force-options input").iCheck("uncheck");
+        }
         var programDetail = "#"+id;
         $('#program-details p').addClass('hidden-program');
         $(programDetail).removeClass('hidden-program');

@@ -246,7 +246,7 @@ def sendCopy(new_message, notify):
     to_name    = new_message.get("sender_name")
     subject    = "Notification"
     html       = mailContent.notification_sent
-    reply_to   = "no-reply@mestglobalcommunity.appspotmail.com"
+    reply_to   = "<no-reply>@mestglobalcommunity.appspotmail.com"
     tags       = "Outbound Mail"
     confirmation_url = "http://mestglobalcommunity.appspot.com/messages"
     variables  = [  {'name': 'username', 'content': new_message.get("sender_name")},
@@ -288,7 +288,7 @@ def notifyEntrepreneur(message):
         html   = mailContent.notification_received
     except:
         html   = "You just received a mail"
-    reply_to   = "no-reply@mestglobalcommunity.appspotmail.com"
+    reply_to   = "<no-reply>@mestglobalcommunity.appspotmail.com"
     tags       = "Outbound Mail"
     confirmation_url = "http://mestglobalcommunity.appspot.com/messages"
     variables  = [  {'name': 'username', 'content': message.get("receiver").first_name + " " +message.get("receiver").last_name},
@@ -317,7 +317,7 @@ def confirmUserMail(user):
         variables = [{ 'name': 'username', 'content': to_name},
                     {'name': 'confirmation_url', 'content': confirmation_url}]
 
-    reply_to = "<no-reply>@mestglobalcommunity.appspotmailmail.com"
+    reply_to = "<no-reply>@mestglobalcommunity.appspotmail.com"
     tags = "Confirmed User"
     merge = False
     return sendOutboundMail(from_email, from_name, to_email, to_name, subject, html, tags, reply_to, variables, merge)
@@ -337,7 +337,7 @@ def notificationMail(user):
     html = mailContent.signup_template
     variables = [{ 'name': 'username', 'content': to_name},
                 {'name': 'userprofile', 'content': user_profile}]
-    reply_to = "<no-reply>@mestglobalcommunity.appspotmailmail.com"
+    reply_to = "<no-reply>@mestglobalcommunity.appspotmail.com"
     tags = "Confirmed User"
     merge = False
     return sendOutboundMail(from_email, from_name, to_email, to_name, subject, html, tags, reply_to, variables, merge)

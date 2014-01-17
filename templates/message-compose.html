@@ -21,13 +21,13 @@
 		    </button>
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="/messages">Messages {{message_status}}</a></li>
 					<li><a href="/search">Search</a></li>
+					<li class="active"><a href="/messages">Messages</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nic_O_d<b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.first_name}}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Settings</a></li>
-							<li><a href="#">Logout</a></li>
+							<li id="logout"><a href="#">Logout</a></li>
 						</ul>
 					</li>	
 				</ul>
@@ -490,7 +490,7 @@
 				<div class="row messagebox right">
 					<div class="messagebox-addresses">
 						<div class="col-md-4 holder">
-							<input class="form-control" type="text" id="recepient" value="To: {{message.sender.first_name}} {{message.sender.last_name}}" disabled>
+							<input class="form-control" type="text" id="recepient" value="To: {{receiver.first_name}} {{receiver.last_name}}" disabled>
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-7 holder">
@@ -503,12 +503,12 @@
 					<div>
 						<input type="text" style="display: none;" id="message_content" value="{{content}}">
 						<input type="text" style="display: none;" name="message" id="final-message">
-						<input type="text" style="display: none;" name="recipient" id="final-message" value="{{message.sender.key().id()}}">
+						<input type="text" style="display: none;" name="recipient" id="final-message" value="{{receiver.key().id()}}">
 						<textarea id="message" class="form-control message" col="60"row="600" placeholder="Type away your message..."></textarea>
 					</div>					
 				</div>
 				<div class="row message-actions">
-					<a href="/messages"><div class="col-xs-5 col-sm-2 col-md-2 pull-right cancel">Cancel</div></a>
+					<a href="/{{page}}"><div class="col-xs-5 col-sm-2 col-md-2 pull-right cancel">Cancel</div></a>
 					<a id="submit-message"><div class="col-xs-5 col-sm-2 col-md-2 pull-right send">Send</div></a>
 				</div>
 			</div>

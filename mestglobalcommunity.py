@@ -40,12 +40,32 @@ def is_sector(sectors, criteria):
 
 def inbox_type(category, arg):
     return customfilters.inbox_type(category, arg)
+
+def hours_committed(mentor):
+    return customfilters.hours_committed(mentor)
+
+def hours_left(mentor):
+    return customfilters.hours_left(mentor)
+
+def get_committed_image(mentor, arg):
+    return customfilters.get_committed_image(mentor, arg)
+
+def get_rating(mentor_id, arg):
+    return customfilters.get_rating(mentor_id, arg)
+
+def has_commented(mentor, arg):
+    return customfilters.has_commented(mentor, arg)
 #################################custom filters ends#############################################
 
 jinja_env.filters['true'] = true
 jinja_env.filters['is_topic'] = is_topic
 jinja_env.filters['is_sector'] = is_sector
 jinja_env.filters['inbox_type'] = inbox_type
+jinja_env.filters['hours_committed'] = hours_committed
+jinja_env.filters['hours_left'] = hours_left
+jinja_env.filters['get_committed_image'] = get_committed_image
+jinja_env.filters['get_rating'] = get_rating
+jinja_env.filters['has_commented'] = has_commented
 
 API_Key                   = access.API_Key
 Secret_Key                = access.Secret_Key
@@ -170,6 +190,7 @@ class HomePageHandler(RequestHandler):
 class SignUpEntrepreneur(RequestHandler):
     def get(self):
         self.redirect('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%s&scope=%s&state=%s&redirect_uri=%s' %(API_Key,Scope_sign_up,State,Redirect_uri_entrepreneur))
+
 class SignUpMentorHandler(RequestHandler):
     def get(self):
         self.redirect('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%s&scope=%s&state=%s&redirect_uri=%s' %(API_Key,Scope_sign_up,State,Redirect_uri_mentor))
@@ -222,7 +243,8 @@ class MentorSignUpPageHandler(RequestHandler):
     def post(self):
         action = self.request.get('action')
         if action == "submit_application":
-            # try:
+            user = ""
+            try:
                 user_data = json.loads(self.request.get('user_data'))
                 user      = populate.create_user(user_data, "Mentor")
                 if user=="User already exists":
@@ -238,6 +260,11 @@ class MentorSignUpPageHandler(RequestHandler):
                     message     = json.dumps({"message":"success", "firstname":user.first_name, "lastname":user.last_name})
                     self.log_user_out()
                     self.response.write(message)
+            except:
+                populate.delete_user(user)
+                self.log_user_out()
+                message  = json.dumps({"message":"error", "value":"unknown"})
+                self.response.write(message)
 
 #authorizes and fetches entrepreneur details from linkedin
 #further redirects to home when form is successfully filled
@@ -354,6 +381,14 @@ class MentorPageHandler(RequestHandler):
 
             elif action == 'topics':
                 return self.render('refreshtopic.html', mentor = user)
+
+            elif action == "add_contribution":
+                contribution = json.loads(self.request.get('contribution'))
+                contribution['program'] = user.programs[0]
+                result = Contribution.add_contribution(contribution)
+                return self.render('new_contribution.html', mentor = user)
+                # self.response.write(result)
+
 
 class ResourceHandler(RequestHandler):
     def getResources(self):
@@ -523,7 +558,7 @@ class MentorAdminPageHandler(RequestHandler):
     def get(self):        
         if self.user and self.user_profile == "Administrator":
             new_mentors     = User.all().filter("user_profile =", "Mentor").filter("confirmation_status !=", "confirmed").filter("confirmation_status !=", "declined")
-            mentors         = self.getMentors(Program.gql("WHERE program_type=:1", "Subject Area Mentor"))
+            mentors         = self.getMentors(Program.gql("WHERE program_type=:1", "MEST Strike Force"))
             mba_mentors     = self.getMentors(Program.gql("WHERE program_type=:1", "MBA Consultant"))
             expert_mentors  = self.getMentors(Program.gql("WHERE program_type=:1", "Expert in residence"))
             senior_mentors  = self.getMentors(Program.gql("WHERE program_type=:1", "Senior advisor"))
@@ -555,10 +590,10 @@ class InboxHandler(RequestHandler):
             if user.user_profile == "Mentor":
                 self.redirect('/mentor')
             elif category == "sent":
-                messages =  Message.all().filter('sender =', user).order('-created')  
+                messages =  Message.all().filter('sender =', user).filter('sender_deleted =', 'False').order('-created')  
                 self.render('message-inbox.html', user=user, messages=messages, category=category)
             elif category == "inbox":
-                messages =  Message.all().filter('receiver =', user).order('-created')  
+                messages =  Message.all().filter('receiver =', user).filter('receiver_deleted =', 'False').order('-created')  
                 self.render('message-inbox.html', user=user, messages=messages, category=category) 
             else:
                 self.redirect('/messages')
@@ -575,7 +610,7 @@ class InboxHandler(RequestHandler):
             self.response.write(result)
         elif action == "delete-message":
             message_id = self.request.get('message_id')
-            result = Message.delete_message(message_id)
+            result = Message.delete_message(message_id, user)
             self.response.write(result)
         elif action == "display-message":
             msg_id = self.request.get("message_id")
@@ -591,7 +626,6 @@ class ReplyMessageHandler(RequestHandler):
             if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":
 
                 session = get_current_session()
-                message_status = session.get("message_status", "")
                 subject = session.get("subject", "")
                 content = session.get("message", "")
                 notify_email = session.get("notify-email", "")
@@ -606,9 +640,10 @@ class ReplyMessageHandler(RequestHandler):
                     user=user,
                     subject=subject,
                     notify_email=notify_email,
-                    content=content,
-                    message_status=message_status, 
-                    token=token)
+                    content=content, 
+                    token=token,
+                    page="messages/inbox",
+                    receiver=message.sender)
 
 class MessagePageHandler(RequestHandler):
     def getUser(self):
@@ -726,7 +761,6 @@ class ComposeNewMessageHandler(RequestHandler):
             if user.user_profile == "Entrepreneur" or user.user_profile == "Administrator":  
 
                 session = get_current_session()
-                message_status = session.get("message_status", "")
                 subject = session.get("subject", "")
                 content = session.get("message", "")
                 notify_email = session.get("notify-email", "")
@@ -744,8 +778,9 @@ class ComposeNewMessageHandler(RequestHandler):
                     subject=subject,
                     notify_email=notify_email,
                     content=content,
-                    message_status=message_status,
-                    token=token)
+                    token=token,
+                    page="search",
+                    receiver=message['receiver'])
             else:
                 self.redirect("/home")    
         else:
@@ -963,56 +998,58 @@ class SearchPageHandler(RequestHandler):
 
             elif action == "getFullProfile":
                 user_id = self.request.get("user_id")
-                user    = User.get_by_id(int(user_id))
-                user_profile = {}
-                user_profile["user"]             = m2json.to_dict(user)
-                user_profile["user"]["user_id"]  = user_id
+                mentor    = User.get_by_id(int(user_id))
+                user      = User.get_by_id(int(self.user_id))
+                self.render("fullprofile.html", mentor = mentor, user_id= user.key().id())
+                # user_profile = {}
+                # user_profile["user"]             = m2json.to_dict(user)
+                # user_profile["user"]["user_id"]  = user_id
 
 
-                logged_user                             = User.get_by_id(int(self.user_id))
-                status                                  = Favorite.check(logged_user, user_id)
-                user_profile["user"]["user_profile"]    = user.user_profile
-                user_profile["user"]["data_fav_status"] = status["favorite"]
-                user_profile["user"]["data_fav_src"]    = status["src"]
+                # logged_user                             = User.get_by_id(int(self.user_id))
+                # status                                  = Favorite.check(logged_user, user_id)
+                # user_profile["user"]["user_profile"]    = user.user_profile
+                # user_profile["user"]["data_fav_status"] = status["favorite"]
+                # user_profile["user"]["data_fav_src"]    = status["src"]
 
-                rating                                  = Rating.check(logged_user, user_id)
-                user_profile["user"]["rating"]          = rating
+                # rating                                  = Rating.check(logged_user, user_id)
+                # user_profile["user"]["rating"]          = rating
                 
-                if user.educations:
-                    user_profile["educations"]   = m2json.gql_json_parser(user.educations)
+                # if user.educations:
+                #     user_profile["educations"]   = m2json.gql_json_parser(user.educations)
 
-                if user.positions:
-                    user_profile["positions"]    = m2json.gql_json_parser(user.positions)
+                # if user.positions:
+                #     user_profile["positions"]    = m2json.gql_json_parser(user.positions)
 
-                if user.skills:
-                    user_profile["skills"]       = m2json.gql_json_parser(user.skills)
+                # if user.skills:
+                #     user_profile["skills"]       = m2json.gql_json_parser(user.skills)
 
-                if user.comments_received:
-                    user_profile["logged_user_comment"] = Comment.check({"entity_id":user_id, "commentor_id":self.user_id})
-                    user_profile["comments_received"]   = []
-                    for comments_received in user.comments_received:
-                        received = {}
-                        received['user']           = comments_received.user.first_name + " " + comments_received.user.last_name
-                        received['resource']       = comments_received.resource
-                        received['entity_id']      = comments_received.entity_id
-                        received['comment_id']     = comments_received.key().id()
-                        received['commentor']      = comments_received.commentor_name
-                        received['commentor_name'] = comments_received.commentor_name
-                        received['commentor_id']   = comments_received.commentor_id
-                        received['content']        = comments_received.content
-                        received['created']        = m2json.get_milliseconds(comments_received.created)
-                        received["rating"]         = Rating.check(comments_received.commentor, comments_received.entity_id)
-                        user_profile["comments_received"].append(received)
+                # if user.comments_received:
+                #     user_profile["logged_user_comment"] = Comment.check({"entity_id":user_id, "commentor_id":self.user_id})
+                #     user_profile["comments_received"]   = []
+                #     for comments_received in user.comments_received:
+                #         received = {}
+                #         received['user']           = comments_received.user.first_name + " " + comments_received.user.last_name
+                #         received['resource']       = comments_received.resource
+                #         received['entity_id']      = comments_received.entity_id
+                #         received['comment_id']     = comments_received.key().id()
+                #         received['commentor']      = comments_received.commentor_name
+                #         received['commentor_name'] = comments_received.commentor_name
+                #         received['commentor_id']   = comments_received.commentor_id
+                #         received['content']        = comments_received.content
+                #         received['created']        = m2json.get_milliseconds(comments_received.created)
+                #         received["rating"]         = Rating.check(comments_received.commentor, comments_received.entity_id)
+                #         user_profile["comments_received"].append(received)
 
-                if user.programs:
-                    user_profile["program"]      = m2json.gql_json_parser(user.programs)
+                # if user.programs:
+                #     user_profile["program"]      = m2json.gql_json_parser(user.programs)
 
-                if user.programs[0].topics:
-                    user_profile["topics"]       = m2json.gql_json_parser(user.programs[0].topics)
+                # if user.programs[0].topics:
+                #     user_profile["topics"]       = m2json.gql_json_parser(user.programs[0].topics)
 
-                if user.programs[0].sectors:
-                    user_profile["sectors"]      = m2json.gql_json_parser(user.programs[0].sectors)
-                self.response.write(json.dumps(user_profile))
+                # if user.programs[0].sectors:
+                #     user_profile["sectors"]      = m2json.gql_json_parser(user.programs[0].sectors)
+                # self.response.write(json.dumps(user_profile))
 
             elif action == "favorite":
                 favorite_action = self.request.get('favorite_action')
@@ -1068,27 +1105,17 @@ class SearchPageHandler(RequestHandler):
                 comment_action          = comment.get("comment_action")                 
 
                 if comment_action == "new":
-                    result               = Comment.create(comment)
-                    comment['status']    = result.get('status')
-                    comment["comment_id"]     = result.get('value')
-                    comment['entity']    = None 
-                    comment['commentor'] = user.first_name + " " + user.last_name
-                    self.response.write(json.dumps(comment)); 
+                    result = Comment.create(comment)
+                    self.response.write(result)
+                
                 elif comment_action == "delete":
-                    result  = Comment.delete(comment)
-                    comment['status']    = result.get('status')
-                    comment["comment_id"]     = result.get('value')
-                    comment['entity']    = None 
-                    comment['commentor'] = user.first_name + " " + user.last_name 
-                    self.response.write(json.dumps(comment)); 
+                    result = Comment.delete(comment)
+                    self.response.write(result);  
+
                 elif comment_action == "edit":
-                    result  = Comment.edit(comment)
-                    comment['status']    = result.get('status')
-                    comment["comment_id"]     = result.get('value')
-                    comment['entity']    = None 
-                    comment['commentor'] = user.first_name + " " + user.last_name
-                    self.response.write(json.dumps(comment));  
-                     
+                    result = Comment.edit(comment)
+                    self.response.write(result);  
+
             else:
                 result["message"] = "error"
                 result["value"]   = "wrong command"

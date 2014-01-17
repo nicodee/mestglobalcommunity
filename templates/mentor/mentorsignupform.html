@@ -50,7 +50,7 @@
 				<li class="active">Choose a program</li>
 				<li>Expertise</li>
 				<li>Industry</li>
-				<li>Email And Timezone</li>
+				<li>Preferences</li>
 				<li>Brief Bio</li>
 				<li>Done</li>
 			</ul>
@@ -63,7 +63,7 @@
 							</li>
 							<li>
 								<select id="programs" name="programs">
-									<option data-value='Subject Area Mentor' value="subject-area-mentor">Subject Area Mentor</option>
+									<option data-value='MEST Strike Force' value="mest-strike-force">MEST Strike Force</option>
 									<option data-value='MBA Consultant' value="mba-consultant">MBA Consultant</option>
 									<option data-value='Senior Advisor' value="snr-advisor">Senior Advisor</option>
 									<option data-value='Expert in Residence' value="experts-in-residence">Expert-In-Residence</option> 
@@ -75,28 +75,42 @@
 						</ul>
 					</div>	
 				<div class="row-fluid" id="program-details" >
-						<p id="subject-area-mentor" class="fs-subtitle">
-							Subject Area Mentors have expertise within a specific area (such as infrastructure scaling, email marketing, branding etc.) and can help a company resolve a challenge they’re having in that space. <br><br>
-							<b>Commitment:</b> From as little as a one-time phone call to a longer term commitment, depending on the mentor’s interest and availability.
+						<p id="mest-strike-force" class="fs-subtitle">
+							<span>Members of the MEST Strike Force are subject area specialists who aren’t afraid to roll up their sleeves and get their hands dirty alongside our entrepreneurs. 
+							<br>
+							<br>
+							Often, what our entrepreneurs need isn’t an explanation for how to do something, but for a domain expert to come in and actively problem-solve, be it through diving into code, copy, or Photoshop PSDs.
+							<br>
+							<br>
+							Strike Force members declare how many total hours they’re able to donate within the following tracks:
+							<br>	
+							<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;SEO Expert<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;UI/UX Expert<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scaling Expert<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Virality Expert<br>		
+							<br>
+							You can increase or decrease your commitment level as desired.
+							</span>
 						</p>
 						<p id="mba-consultant" class="hidden-program fs-subtitle">
-							MBA students and recent business school graduates support our top companies in many ways. They: <br><br>
+							MBA students and recent business school graduates support our top companies in many ways.<br><br> They: <br><br>
 								
-								&bull;provide feedback on competitive analysis, market research, and financial projections	<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;provide feedback on competitive analysis, market research, and financial projections	<br>
 
-								&bull;prepare pitch decks and coach founders during fundraising <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;prepare pitch decks and coach founders during fundraising <br>
 
-								&bull;make argued recommendations on the best growth options to the start&ndash;up&apos;s board and executive team <br><br>	
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;make argued recommendations on the best growth options to the start&ndash;up&apos;s board and executive team <br><br>	
 
 							MBA consultants are encouraged to connect with our entrepreneurs weekly via Skype or e-mail, and are offered the opportunity to travel to Accra at least once to conduct a workshop and meet the entrepreneurs in person. MEST Incubator will cover housing, travel and provide three meals a day during their time in Accra. <br><br>
 
-							Commitment: MBAs can expect to spend an average of 2 to 4 hours a week working with the CEO of the company (based in Ghana) and the MEST Incubator team (based in San Francisco) + 1 week on the ground in Accra.
+							<b>Commitment:</b> MBAs can expect to spend an average of 2 to 4 hours a week working with the CEO of the company (based in Ghana) and the MEST Incubator team (based in San Francisco) + 1 week on the ground in Accra.
 						</p>
 						<p id="snr-advisor" class="hidden-program fs-subtitle">
 							Senior Advisors are highly experienced, trusted professionals who work closely with one of our portfolio companies. The advisor offers insight based on his or her long industry experience, and makes introductions to other experts and potential partners. 
 							Advisors might also be invited to support fundraising and recruitment campaigns. 
 							<br><br>
-							Commitment: Our ideal advisor joins monthly calls with the company as well as quarterly board meetings. Advisors who commit to support a company for the long term might be offered board seats and company equity.
+							<b>Commitment:</b> Our ideal advisor joins monthly calls with the company as well as quarterly board meetings. Advisors who commit to support a company for the long term might be offered board seats and company equity.
 						</p>
 						<p id="experts-in-residence" class="hidden-program fs-subtitle">
 							Experts in Residence are mid-career professionals who travel to Accra, Ghana for 6 to 8 weeks to share their expertise with MEST entrepreneurs. As an Expert in Residence, you will augment the expertise of the resident Teaching and Incubator Fellows with your 5-10 years of real-world experience in your field.
@@ -112,6 +126,34 @@
 			<fieldset>
 				<p class="fs-title">I am comfortable giving advice in the following areas:</p>
 					<div id="topic_options">	
+						<div id="topics" class="strike-force-options">
+							<ul>
+								<li>
+									<input type="checkbox" data-type="expertise" data-expertise="MEST Strike Force" data-value="Virality Expert">
+									<label>
+										Virality Expert
+									</label>
+								</li>
+								<li>
+									<input type="checkbox" data-type="expertise" data-expertise="MEST Strike Force" data-value="UI/UX Expert">
+									<label>
+										UI/UX Expert
+									</label>
+								</li>
+								<li>
+									<input type="checkbox" data-type="expertise" data-expertise="MEST Strike Force" data-value="SEO Expert">
+									<label>
+										SEO Expert
+									</label>
+								</li>
+								<li>
+									<input type="checkbox" data-type="expertise" data-expertise="MEST Strike Force" data-value="Scaling Expert">
+									<label>
+										Scaling Expert
+									</label>
+								</li>
+							</ul>
+						</div>
 	            		<div class="left_topic topic_option" id="left_topic">
 
 				            <div class="listblock" id="topics">
@@ -378,7 +420,19 @@
 									</ul>
 								</div>
 							</div>
-						</div>
+						</div>	
+						<div class="row-fluid fs-subtitle" id="method-of-contact-text" style="width: 100%;">
+							<ul style="width: 85%; margin-bottom: 30px; margin-left: 135px; margin-right: 0px;">
+								<li class="method-label pull-left" style="width: 56%; margin-right: 0px; text-align: left;">
+									<label>How many total hours are you able to donate to supporting entrepreneurs?</label>
+									<br>
+									<label>Note: you’ll be able to reduce or increase this commitment as desired.</label>
+								</li>
+								<li class="method-value pull-" style="width: 10%; float: left; margin-top: 5px;">
+									<input type="number" name="hours-to-commit" min="1"  placeholder="1" id="hours-to-commit" style="float: left; width: 100%;">
+								</li>
+							</ul>
+						</div>			
 					</div>
 				</div>
 				

@@ -210,10 +210,11 @@ class Entrepreneur(db.Model):
 
 class Program(db.Model):
     user               = db.ReferenceProperty(User, collection_name = 'programs')
-    program_type       = db.StringProperty(required=True, choices=set(['Subject Area Mentor', 'MBA Consultant', 'Senior Advisor', 'Expert in Residence', 'Job Applicant']))
+    program_type       = db.StringProperty(required=True, choices=set(['MEST Strike Force', 'MBA Consultant', 'Senior Advisor', 'Expert in Residence', 'Job Applicant']))
     preferred_email    = db.StringProperty()
     mini_bio           = db.TextProperty() 
     time_zone          = db.StringProperty()
+    hours              = db.IntegerProperty()
     created            = db.DateTimeProperty(auto_now_add=True)
 
     @classmethod
@@ -228,7 +229,8 @@ class Program(db.Model):
                 commitment_level      = program_data.get('commitment_level'),
                 preferred_email       = program_data.get('email'),
                 mini_bio              = program_data.get('mini_bio'),
-                time_zone             = program_data.get('time_zone')              
+                time_zone             = program_data.get('time_zone'),
+                hours                 = program_data.get('hours')              
             )    
             return program
         elif count==0 and user.user_profile=="Job Applicant":
@@ -249,6 +251,37 @@ class Program(db.Model):
             return True
         else: 
             db.delete(result)
+
+class Contribution(db.Model):    
+    program     = db.ReferenceProperty(Program, collection_name='contributions')
+    company     = db.StringProperty()
+    contributed_hours   = db.IntegerProperty()
+    description  = db.TextProperty()
+    created = db.DateTimeProperty(auto_now_add=True)
+
+    @classmethod
+    def add_contribution(cls, contribution):
+        result = cls.gql("WHERE program=:1 and company=:2 and contributed_hours=:3 and description=:4",
+                            contribution.get("program", ""), 
+                            contribution.get("company", ""),
+                            contribution.get("hours", ""),
+                            contribution.get("description", "")
+                        )
+
+        if result.count() == 0:
+            new_contribution = Contribution(
+                program = contribution.get("program"),
+                company = contribution.get("company"),
+                contributed_hours = int(contribution.get("hours")),
+                description = contribution.get("description")
+                )
+            new_contribution.put()
+            return True
+        else:
+            return True
+
+
+
 
 class Resource(db.Model):
     user         = db.ReferenceProperty(User, collection_name='resources')
@@ -435,7 +468,9 @@ class Message(db.Model):
     date_sent        = db.StringProperty()
     created          = db.DateTimeProperty(auto_now_add=True)
     deleted          = db.DateTimeProperty(auto_now_add=False)
-    
+    sender_deleted   = db.StringProperty()
+    receiver_deleted = db.StringProperty()
+
     @classmethod
     def state_generator(cls,size=50, chars=string.ascii_uppercase + string.digits):
         msg_id = "".join(random.choice(chars) for x in range(size))
@@ -460,7 +495,9 @@ class Message(db.Model):
                             date_sent        = message.get('date'),
                             msg_type         = message.get('type'),
                             status           = "unread",
-                            starred          = "False"
+                            starred          = "False",
+                            sender_deleted   = "False",
+                            receiver_deleted = "False"
                         )
             msg.put()
             return True
@@ -516,10 +553,29 @@ class Message(db.Model):
             return True 
         
     @classmethod
-    def delete_message(cls, msg_id):
+    def delete_message(cls, msg_id, user):
         msg = Message.get_by_id(int(msg_id))
         if msg:
-            Message.delete(msg.msg_id)
+            Message.delete_sent(msg, user)
+            Message.delete_received(msg, user)
+            return True
+        else:
+            return True
+            
+    @classmethod
+    def delete_sent(cls, msg, user):        
+        if msg.sender.email == user.email:
+            msg.sender_deleted = "True"
+            msg.put()
+            return True
+        else:
+            return True
+
+    @classmethod
+    def delete_received(cls, msg, user):
+        if msg.receiver.email == user.email:
+            msg.receiver_deleted = "True"
+            msg.put()
             return True
         else:
             return True
@@ -667,6 +723,9 @@ class Comment(db.Model):
     @classmethod
     def delete(cls, comment): 
         comment_id = comment.get("comment_id")
+        print "=============================="
+        print comment_id
+        print "=============================="
         try:
             item_to_delete = Comment.get_by_id(int(comment_id))
             db.delete(item_to_delete)
@@ -677,6 +736,9 @@ class Comment(db.Model):
 
     @classmethod
     def check(cls, comment):
+        print "=============================="
+        print comment
+        print "=============================="
         result = cls.gql("WHERE entity_id=:1 and commentor_id=:2", comment.get('entity_id'), comment.get('commentor_id'))
         print result.count()
         if result.count() > 0:

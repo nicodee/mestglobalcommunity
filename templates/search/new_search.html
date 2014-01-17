@@ -21,14 +21,23 @@
 				body{
 					background: #f5f5f5;
 				}
-				#mentor-label{
-					/*background: #eee;*/
+				#mentor-label {
 					background: #ddd;
 					border-radius: 0px;
-					/*border: none;*/
 				}
-				#mentors2{
+				#mentors2 {
 					margin-top: -20px; 
+				}
+				.accordion-group {
+					background: #fff;
+
+				}
+				#tech-list ul li {
+					width: 23%;
+				}
+				.rateit button.rateit-reset {
+					margin-top: 9px;
+					margin-right: 6px;
 				}
 		</style>
 
@@ -98,126 +107,164 @@
 						</ul>
 						<div class="tab-content item row-fluid " id="tab-content">
 							<div class="tab-pane row-fluid active" id="topics">
-								<div class="span12 first"> 
-									
-									<div class="row-fluid">
-										<div id="analytics" class="span12 tp">
-											<label>ANALYTICS</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Funnels</label></li>
-											<li><input type="checkbox"><label>Google Analytics</label></li>
-											<li><input type="checkbox"><label>Web Analytics</label></li>
-											<li><input type="checkbox"><label>Data Mining</label></li>
-											<li><input type="checkbox"><label>Mobile Analytics</label></li>
-											</span></ul>
-										</div>	
-									</div>
-									<hr>
-									<div class="row-fluid">
-										<div id="business-development" class="span12 tp">
-											<label>BUSINESS DEVELOPMENT</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Sales</label></li>
-											<li><input type="checkbox"><label>Market Research</label></li>
-											<li><input type="checkbox"><label>Customer Service</label></li>
-											<li><input type="checkbox"><label>Customer Development</label></li>
-											<li><input type="checkbox"><label>Partnerships/Sponsorship</label></li>
-											</span></ul>
-										</div>	
-									</div>
-									<hr>
-									<div class="row-fluid">	
-										<div id="design" class="span12 tp">
-											<label>DESIGN</label>
-											<ul><span>
-											<li><input type="checkbox"><label>UI</label></li>
-											<li><input type="checkbox"><label>UX</label></li>
-											<li><input type="checkbox"><label>Infographics</label></li>
-											<li><input type="checkbox"><label>Product Design</label></li>
-											<li><input type="checkbox"><label>Game Design</label></li>
-											<li><input type="checkbox"><label>Graphic Design</label></li>
-											<li><input type="checkbox"><label>Usability Testing</label></li>
-											<li><input type="checkbox"><label>Interactive Design</label></li>
-											</span></ul>
+								<div class="row">
+									<div class="span6 first"> 
+										
+										<div class="row-fluid">
+											<div id="analytics" class="span12 tp">
+												<label>ANALYTICS</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Data Mining</label></li>
+												<li><input type="checkbox"><label>Funnels</label></li>
+												<li><input type="checkbox"><label>Google Analytics</label></li>
+												<li><input type="checkbox"><label>Mobile Analytics</label></li>
+												<li><input type="checkbox"><label>Web Analytics</label></li>
+												</span></ul>
+											</div>	
 										</div>
-									</div>
-									<hr>
-									<div class="row-fluid">			
-										<div id="project-management" class="span12 tp">
-											<label>PROJECT MANAGEMENT</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Scrum</label></li>
-											<li><input type="checkbox"><label>Lean Startup Methodology</label></li>
-											<li><input type="checkbox"><label>Project Management Tools</label></li>
-											<li><input type="checkbox"><label>Agile Product Development</label></li>
+										<hr>
+										<div class="row-fluid">
+											<div id="business-development" class="span12 tp">
+												<label>BUSINESS DEVELOPMENT</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Customer Development</label></li>
+												<li><input type="checkbox"><label>Customer Service</label></li>
+												<li><input type="checkbox"><label>Market Research</label></li>
+												<li><input type="checkbox"><label>Partnerships Sponsorship</label></li>
+												<li><input type="checkbox"><label>Sales</label></li>
+												</span></ul>
+											</div>	
 										</div>
-									</div>
-									<hr>	
-									<div class="row-fluid">
-										<div id="legal" class="span12 tp">
-											<label>LEGAL</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Licensing</label></li>
-											<li><input type="checkbox"><label>Trademarks</label></li>
-											<li><input type="checkbox"><label>Negotiation</label></li>
-											<li><input type="checkbox"><label>Copyrighting</label></li>
-											<li><input type="checkbox"><label>Incorporation</label></li>
-											<li><input type="checkbox"><label>Contract Formulation</label></li>
-											<li><input type="checkbox"><label>Intellectual Property</label></li>
-											</span></ul>
+										<hr>
+										<div class="row-fluid">
+											<div id="design" class="span12 tp">
+												<label>DESIGN</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Game Design</label></li>
+												<li><input type="checkbox"><label>Graphic Design</label></li>
+												<li><input type="checkbox"><label>Infographics</label></li>
+												<li><input type="checkbox"><label>Interactive Design</label></li>
+												<li><input type="checkbox"><label>Product Design</label></li>
+												<li><input type="checkbox"><label>UI</label></li>
+												<li><input type="checkbox"><label>Usability Testing</label></li>
+												<li><input type="checkbox"><label>UX</label></li>
+												</span></ul>
+											</div>
 										</div>
-									</div>
-									<hr>
-									<div class="row-fluid">		
-										<div id="finance-accounting" class="span12">
-											<label>FINANCIAL/ACCOUNTING</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Financial Models</label></li>
-											<li><input type="checkbox"><label>Accounting Software</label></li>
-											<li><input type="checkbox"><label>Accounting Best Practices</label></li></span></ul>
+										<hr>	
+										<div class="row-fluid">
+											<div id="finance-accounting" class="span12 tp">
+												<label>FINANCIAL/ACCOUNTING</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Accounting Best Practices</label></li>
+												<li><input type="checkbox"><label>Accounting Software</label></li>
+												<li><input type="checkbox"><label>Financial Models</label></li>
+												</span></ul>
+											</div>
 										</div>
-									</div>
-									<hr>
-									<div class="row-fluid">
-										<div id="human-resources" class="span12 tp">
-											<label>HUMAN RESOURCES</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Hiring</label></li>
-											<li><input type="checkbox"><label>Training</label></li>
-											<li><input type="checkbox"><label>Recruitment</label></li>
-											<li><input type="checkbox"><label>Interviewing</label></li>
-											<li><input type="checkbox"><label>Coaching And Leadership</label></li>
-											</span></ul>
+										<hr>
+										<div class="row-fluid">
+											<div id="human-resources" class="span12 tp">
+												<label>HUMAN RESOURCES</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Coaching And Leadership</label></li>
+												<li><input type="checkbox"><label>Hiring</label></li>
+												<li><input type="checkbox"><label>Interviewing</label></li>
+												<li><input type="checkbox"><label>Recruitment</label></li>
+												<li><input type="checkbox"><label>Training</label></li>
+												</span></ul>
+											</div>
 										</div>
-									</div>
-									<hr>
-									<div class="row-fluid">		
-										<div id="operations" class="span12 tp">
-											<label>OPERATIONS</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Process Optimization</label></li>
-											<li><input type="checkbox"><label>Quality Assurance/Management</label></li>
-											</span></ul>
+										<hr>
+										<div class="row-fluid">
+											<div id="legal" class="span12 tp">
+												<label>LEGAL</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Contract Formulation</label></li>
+												<li><input type="checkbox"><label>Copyrighting</label></li>
+												<li><input type="checkbox"><label>Incorporation</label></li>
+												<li><input type="checkbox"><label>Intellectual Property</label></li>
+												<li><input type="checkbox"><label>Licensing</label></li>
+												<li><input type="checkbox"><label>Negotiations</label></li>
+												<li><input type="checkbox"><label>Trademarks</label></li>
+												</span></ul>
+											</div>
 										</div>
+										<hr>
+									</div>	
+										
+									<div class="span6 first">
+										<div class="row-fluid">
+											<div id="marketing" class="span12 tp">
+												<label>MARKETING</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Affiliate Marketing</label></li>
+												<li><input type="checkbox"><label>Branding</label></li>
+												<li><input type="checkbox"><label>Email Marketing</label></li>
+												<li><input type="checkbox"><label>Guerilla Marketing</label></li>
+												<li><input type="checkbox"><label>Internet Marketing</label></li>
+												<li><input type="checkbox"><label>Pricing</label></li>
+												<li><input type="checkbox"><label>Viral Marketing</label></li>
+											</div>	
+										</div>
+										<hr>
+										<div class="row-fluid">
+											<div id="mest-strike-force" class="span12 tp">
+												<label>MEST STRIKE FORCE</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Scaling Expert</label></li>
+												<li><input type="checkbox"><label>SEO Expert</label></li>
+												<li><input type="checkbox"><label>UI/UX Expert</label></li>
+												<li><input type="checkbox"><label>Virality Expert</label></li>
+												</span></ul>
+											</div>
+										</div>
+										<hr>
+										<div class="row-fluid">
+											<div id="operations" class="span12 tp">
+												<label>OPERATIONS</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Process Optimization</label></li>
+												<li><input type="checkbox"><label>Quality Assurance/ Management</label></li>
+												</span></ul>
+											</div>
+										</div>
+										<hr>
+										<div class="row-fluid">
+											<div id="project-management" class="span12 tp">
+												<label>PROJECT MANAGEMENT</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Agile Product Development</label></li>
+												<li><input type="checkbox"><label>Lean Startup Methodology</label></li>
+												<li><input type="checkbox"><label>Project Management Tools</label></li>
+												<li><input type="checkbox"><label>Scrum</label></li>
+											</div>
+										</div>
+										<hr>	
+										<div class="row-fluid">
+											<div id="sales" class="span12 tp">
+												<label>SALES</label>
+												<ul><span>
+												<li><input type="checkbox"><label>Sales Funnel</label></li>
+												<li><input type="checkbox"><label>Sales Management</label></li>
+												<li><input type="checkbox"><label>Sales Process</label></li>
+												</span></ul>
+											</div>
+										</div>
+										<hr>
+										<div class="row-fluid">
+											<div id="technology" class="span12 tp">
+												<label>TECHNOLOGY</label>
+											</div>
+										</div>
+										<hr>
 									</div>
-									<hr>
-									<div class="row-fluid">		
-										<div id="marketing" class="span12 tp">
-											<label>MARKETING</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Affiliate Marketing</label></li>
-											<li><input type="checkbox"><label>Branding</label></li>
-											<li><input type="checkbox"><label>Email Marketing</label></li>
-											<li><input type="checkbox"><label>Guerilla Marketing</label></li>
-											<li><input type="checkbox"><label>Internet Marketing</label></li>
-											<li><input type="checkbox"><label>Pricing</label></li>
-											<li><input type="checkbox"><label>Viral Marketing</label></li>
-										</div>	
-									</div>
-									<hr>
-									<div class="row-fluid">
-										<div id="technology" class="span12 tp">
-											<label>TECHNOLOGY</label>
+
+								</div>
+
+								<div class="row" id="tech-list">
+									<div class="span12 first">
+										<div class="row-fluid" id="list-tech">
 											<ul><span>
 		                                    <li><input type="checkbox"><label>Advanced Web Applications</label></li>
 		                                    <li><input type="checkbox"><label>Algorithms</label></li>
@@ -236,32 +283,21 @@
 		                                    <li><input type="checkbox"><label>J2ME</label></li>
 		                                    <li><input type="checkbox"><label>Linux</label></li>
 		                                    <li><input type="checkbox"><label>Mathematics</label></li>
-		                                    <li><input type="checkbox"><label>NLP</label></li>
 		                                    <li><input type="checkbox"><label>Networking</label></li>
-		                                    <li><input type="checkbox"><label>NoSQL + memcached</label></li>
-		                                    <li><input type="checkbox"><label>PHP</label></li>
+		                                    <li><input type="checkbox"><label>NLP</label></li>
+		                                    <li><input type="checkbox"><label>NoSQL + Memcached</label></li>
 		                                    <li><input type="checkbox"><label>Performace Optimization</label></li>
+		                                    <li><input type="checkbox"><label>PHP</label></li>
 		                                    <li><input type="checkbox"><label>Python</label></li>
-		                                    <li><input type="checkbox"><label>Ruby On Rails</label></li>
+		                                    <li><input type="checkbox"><label>Ruby on Rails</label></li>
 		                                    <li><input type="checkbox"><label>Security</label></li>
 		                                    <li><input type="checkbox"><label>SEO</label></li>
 		                                    <li><input type="checkbox"><label>Server Side</label></li>
 		                                    <li><input type="checkbox"><label>System Analysis And Design</label></li>
 											</ul></span>
-										</div>
-									</div>
-									<hr>
-									<div class="row-fluid">
-										<div id="sales" class="span12 tp">
-											<label>SALES</label>
-											<ul><span>
-											<li><input type="checkbox"><label>Sales Funnel</label></li>
-											<li><input type="checkbox"><label>Sales Process</label></li>
-											<li><input type="checkbox"><label>Sales Management</label></li>
-											</span></ul>
-										</div>
-									</div>
-								</div>																						
+										</div>									
+									</div>	
+								</div>																				
 							</div>
 							<div class="tab-pane row-fluid" id="sectors">
 								<ul><span>
@@ -510,7 +546,7 @@
 								  <div class="modal-footer">
 								    <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
 								    <!-- <form method="POST" action="/messages?action=send-message" class="pull-right"> -->
-								    	<a id="compose-message" class="btn btn-primary send-message">SEND MESSAGE</a>
+								    	<a id="compose-message" class="btn btn-primary send-message" target="_blank">SEND MESSAGE</a>
 		    							<!-- <input type="text" id="receiver_id" name="receiver_id" style="display:none" value="hello"> -->
 								    <!-- <form> -->
 								  </div>
@@ -531,18 +567,51 @@
 
 
 		<script src="../../scripts/js/modernizr.custom.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://code.jquery.com/jquery.js"></script>
-		<script src="../../scripts/rateit/src/jquery.rateit.js" type="text/javascript"></script>
+		<!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+		<!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+    	<script src="../../scripts/assets/js/jquery-2.0.3.min.js"></script>
     	<script src="../../scripts/bootstrap/js/bootstrap.min.js"></script>
     	<script src="../../scripts/iCheck/jquery.icheck.js"></script>
     	<script src="../../scripts/iCheck/iCheck.inputStyle.js"></script>
-    	<script src="../../scripts/js/toucheffects.js"></script>
+    	<!-- // <script src="../../scripts/js/toucheffects.js"></script> -->
     	<script src="../../scripts/js/ajax/ajax_calls.js"></script>
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <!-- // <script type="text/javascript" src="../../scripts/assets/js/Chart.js"></script> -->
+		<script src="../../scripts/rateit/src/jquery.rateit.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		    $(function () {
 				$('#rateit5').rateit({ max: 5, step: 0.5, backingfld: '#backing6' }); 
 			});
+			$(document).ready(
+				function(){
+					$(".span12.tp label:first-child").bind("click", function() {
+						if($(this).hasClass("active")){
+							console.log("hello");
+							hideLists();
+						}
+						else{
+							hideLists();
+							var parent = $(this).parent();
+							var parent_id = parent.attr("id");
+							console.log(parent_id);
+							if (parent_id == "technology"){
+								$("#tech-list").show();								
+								$(this).addClass("active");
+							}
+							else {
+								var list = parent.find("ul");
+								list.show();
+								$(this).addClass("active");
+							}								
+						}
+							
+					})
+			});
+			function hideLists(){
+				$(".span12.tp ul").hide();
+				$(".span12.tp label").removeClass("active");
+				$("#tech-list").hide();
+			}
 		</script> 
 	</body>
 </html>
