@@ -76,6 +76,7 @@
 
 				#myModal{
 					width: 1150px;
+					margin-left:-30%;
 				}
 				.modal {
 					left: 37%;
@@ -126,6 +127,13 @@
 				}
 				#badges .span2:hover {
 					width: 12%;
+				}
+
+				.modal #expertise .row-fluid ul li {
+					padding: 6px;
+				}
+				.modal #expertise span ul li {
+					width: 30%;
 				}
 		</style>
 	</head>
@@ -464,7 +472,7 @@
 								</ul>
 							</span>
 						</div>
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>BUSINESS DEVELOPMENT</b></label>
 						</div>
@@ -485,7 +493,7 @@
 								</ul>
 							</span>
 						</div>						
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>DESIGN</b></label>
 						</div>
@@ -512,7 +520,7 @@
 								</ul>
 							</span>
 						</div>
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>FINANCIAL ACCOUNTING</b></label>
 						</div>
@@ -529,7 +537,7 @@
 								</ul>
 							</span>
 						</div>
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>HUMAN RESOURCES</b></label>
 						</div>
@@ -550,8 +558,7 @@
 								</ul>
 							</span>
 						</div>
-
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>LEGAL</b></label>
 						</div>
@@ -576,8 +583,7 @@
 								</ul>
 							</span>
 						</div>
-
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>MARKETING</b></label>
 						</div>
@@ -604,6 +610,7 @@
 						</div>	
 						
 						{% if mentor.programs[0].program_type == "MEST Strike Force"%}
+							<hr>
 							<div class="row-fluid tags">
 								<label><b>MEST STRIKE FORCE</b></label>
 							</div>
@@ -623,7 +630,7 @@
 								</span>
 							</div>
 						{% endif %}
-
+						<hr>
 						<div class="row-fluid tags" id="">
 							<label><b>OPERATION</b></label>
 						</div>
@@ -638,7 +645,7 @@
 								</ul>
 							</span>							
 						</div>
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>PROJECT MANAGEMENT</b></label>
 						</div>
@@ -657,7 +664,7 @@
 								</ul>
 							</span>
 						</div>
-
+						<hr>
 						<div class="row-fluid tags">
 							<label><b>SALES</b></label>
 						</div>
@@ -674,7 +681,7 @@
 								</ul>
 							</span>
 						</div>
-
+						<hr>
 						<div class="row-fluid tags" id="">
 							<label><b>TECHNOLOGY</b></label>
 						</div>
@@ -881,7 +888,7 @@
 	      function drawChart() {
 	        var data = google.visualization.arrayToDataTable([
 	          ['Task', 'Hours Contributed'],
-				['Completed',     {{ mentor|hours_committed }}],
+				['Hours Completed',     {{ mentor|hours_committed }}],
 				['Hours Left',    {{ mentor|hours_left }} ]
 	        ]);
 

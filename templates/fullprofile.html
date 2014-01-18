@@ -298,6 +298,9 @@
 						<button id="comment-submit-button" class="pull-right btn">Submit</button>
 					</div>
 				</div>
+				<div class="row-fluid">
+					<i><small>Comments are only visible to entrepreneurs and admins.</small></i>
+				</div>
 			</div>
 
 		</div>
@@ -306,7 +309,7 @@
 
   </div>
   <div class="modal-footer">
-    <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
-    	<a id="compose-message" class="btn btn-primary send-message" target="_blank" name="receiver_id" value="{{mentor.key().id()}}" href="/messages/compose/{{mentor.key().id()}}">SEND MESSAGE</a>
+    <a class="btn pull-right" data-dismiss="modal" aria-hidden="true" id="close-modal">Close</a>
+	<a id="compose-message" class="btn btn-primary send-message" target="_blank" name="receiver_id" value="{{mentor.key().id()}}" href="/messages/compose/{{mentor.key().id()}}">SEND MESSAGE</a>
   </div>
 </div>

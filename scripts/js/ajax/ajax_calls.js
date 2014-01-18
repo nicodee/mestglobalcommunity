@@ -135,7 +135,7 @@ function drawChart() {
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['Task', 'Hours Contributed'],
-		['Completed',     Number($("#piechart").attr("data-committed"))],
+		['Hours Completed',     Number($("#piechart").attr("data-committed"))],
 		['Hours Left',    Number($("#piechart").attr("data-left"))]
     ]);
 
@@ -156,7 +156,6 @@ function submitComment(comment_item){
 	var content    = $("#comment-textarea").val();
 	var entity_id  = $("#modal-pic").attr("data-user-id");
 	comment(action, type, content , entity_id, "");	
-	// comment_item.off("click");
 }
 
 //event listener for editing and deleting comment items
@@ -171,9 +170,6 @@ function confirmDelete(comment_object){
 		deleteComment(comment_object);
 		$("#new-comment-container").show();
 	}	
-	// else{
-	// 	alert("Go back.");
-	// }	
 }
 
 function deleteComment(comment_object){

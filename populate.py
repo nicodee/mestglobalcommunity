@@ -143,7 +143,7 @@ def create_admin():
 					    last_name           = "",
 					    confirmation_status = "confirmed",
 					    email               = "nicodemus.nutsukpui@meltwater.org",
-					    alias               = "admin@mestglobalcommunity.appspotmail.com",
+					    alias               = "admin@mestmentorplatform.appspotmail.com",
 					    picture             = None,
 					    industry	        = None,
 					    location	        = None,

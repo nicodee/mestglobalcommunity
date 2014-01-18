@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title></title>
+        <title>MEST Mentor Platform - Search</title>
 		<meta name="viewport" content="initial-scale=1.0, width=device-width"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../../scripts/rateit/src/rateit.css" rel="stylesheet" type="text/css">
@@ -39,6 +39,11 @@
 					margin-top: 9px;
 					margin-right: 6px;
 				}
+				#myModal {
+					background-color: #D7D7D7;
+					width: 90%;
+					margin-left: -45%;
+				}
 		</style>
 
 <!-- start Dropifi --> <script type='text/javascript' src='https://s3.amazonaws.com/dropifi/js/widget/dropifi_widget.min.js'></script><script type='text/javascript'>document.renderDropifiWidget('d50c6bd9e2b036bdbc82532cf493b82a-1384997155883');</script> <!-- end Dropifi -->
@@ -57,15 +62,23 @@
 			          </button>
 			          <div class="nav-collapse collapse pull-right">
 			            <ul class="nav">
+		            	{% if user.user_profile == "Administrator" %}
+			              <li>
+			                <a href="/admin">Dashboard</a>
+			              </li>
+		            	{% endif %}
 			              <li class="active">
 			                <a href="/search">Search</a>
 			              </li>
 			              <li class="">
 			                <a href="/messages">Messages</a>
 			              </li>
-			              <li class="pull-right">
-			                <a href="/signout">Signout</a>
-			              </li>
+						  <li class="dropdown">
+						   	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {{user.first_name}}<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								  <li id="logout"><a href="/signout">Logout</a></li>
+							  </ul>
+						  </li>
 			            </ul>
 			          </div>
 			        </div>
@@ -416,13 +429,6 @@
 				    		</div>
 				    	</div>
 
-			    		<!-- <div class="item row-fluid" id="job-applicants">
-			    			<div class="row-fluid" id="job-applicant-label"><label><h5>Job applicants</h5></label></div>
-			    			<div class="row-fluid search-result-job-applicant">
-				    			<ul class="grid cs-style-3"></ul>
-			    			</div>
-			    		</div>
- -->
 			    		<div class="row-fluid" id="full-profile-mentor">
 			    			<div class="row-fluid" id="full-profile-nav">					
 
@@ -545,7 +551,6 @@
 								  </div>
 								  <div class="modal-footer">
 								    <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
-								    <!-- <form method="POST" action="/messages?action=send-message" class="pull-right"> -->
 								    	<a id="compose-message" class="btn btn-primary send-message" target="_blank">SEND MESSAGE</a>
 		    							<!-- <input type="text" id="receiver_id" name="receiver_id" style="display:none" value="hello"> -->
 								    <!-- <form> -->

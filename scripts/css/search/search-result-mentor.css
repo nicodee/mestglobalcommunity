@@ -149,6 +149,8 @@ padding: 0;
 /*modal==========================*/
 #myModal{
 	background-color: #D7D7D7;
+	/*width: 90%;*/
+	/*margin-left: -45%;*/
 	width: 925px;
 	margin-left: -400px;
 	/*height: 700px;*/
@@ -185,7 +187,7 @@ padding: 0;
 }
 
 #profile-brief-skills-tags {
-	margin-top: 0px;
+	margin-top: 12px;
 }
 
 .grid figure figcaption img, #modal-fav-image{
@@ -450,4 +452,18 @@ margin-bottom: 20px;
 
 #badges .span1:hover {
 	width: 14%;
+}
+
+#close-modal {
+	margin-top: 2px;
+	margin-left: 2px
+}
+
+.dropdown-menu {
+	overflow: hidden;
+}
+
+.navbar .nav>li>a {
+  padding-bottom: 15px;
+  padding-top: 15px;
 }

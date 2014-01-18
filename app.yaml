@@ -1,4 +1,4 @@
-application: mestglobalcommunity
+application: mestmentorplatform
 version: 1
 runtime: python27
 api_version: 1
@@ -20,7 +20,7 @@ handlers:
   login: admin
 
 - url: /.*
-  script: mestglobalcommunity.app
+  script: mestmentorplatform.app
 
 libraries:
 - name: webapp2

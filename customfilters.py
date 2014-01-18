@@ -37,7 +37,6 @@ def hours_left(mentor):
 
 def get_committed_image(mentor, arg):
 	image_src= "BadgesSilhouette.png"
-	# if hours_committed(mentor) == 0:
 	return image_src
 
 def get_rating(mentor_id, arg):
@@ -53,7 +52,3 @@ def has_commented(mentor, arg):
 		return "hide-comment-box"
 	else:
 		return "show-comment-box"
-	print "======================="
-	print result
-	print "======================="
-	# return result

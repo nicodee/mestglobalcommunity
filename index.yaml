@@ -77,5 +77,11 @@ indexes:
 
 - kind: User
   properties:
+  - name: confirmation_status
+  - name: user_profile
+  - name: confirmation_status
+
+- kind: User
+  properties:
   - name: user_profile
   - name: confirmation_status

@@ -262,7 +262,7 @@ You have now been added to our database, and our incubator entrepreneurs will re
 </span><br style="color: rgb(102, 102, 102);">
 <br style="color: rgb(102, 102, 102);">
 <span style="color: rgb(102, 102, 102);">
-<a href="http://localhost:8080/signin" style="text-decoration:underline;">You can log-in here to update your preferences.</a></span><br
+<a href="*|signin_url|*" style="text-decoration:underline;">You can log-in here to update your preferences.</a></span><br
 style="color: rgb(102, 102, 102);">
 <br>
 </div>
@@ -319,7 +319,7 @@ cellspacing="0">
 <td><img
 style="border-radius:100px; border: 0px solid ; width: 200px; height: 200px;" alt="MG"
 label="Image" class="w300"
-src="http://mestglobalcommunity.appspot.com/scripts/img/michael_geer.jpg"></td>
+src="*|server_url|*/scripts/img/michael_geer.jpg"></td>
 </tr>
 <tr>
 <td class="w30" height="5" width="15"><br>
@@ -373,7 +373,7 @@ cellspacing="0">
 <td><img
 style="border-radius:100px; border: 0px solid ; width: 200px; height: 199px;" alt="SR"
 label="Image" class="w300"
-src="http://mestglobalcommunity.appspot.com/scripts/img/sraub.jpg"></td>
+src="*|server_url|*/scripts/img/sraub.jpg"></td>
 <td class="w30" width="15"><br>
 </td>
 </tr>

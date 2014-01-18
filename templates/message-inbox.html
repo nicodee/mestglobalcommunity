@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>Message Center </title>
+	<title>MEST Mentor Platform - Inbox</title>
 
 	<meta charset="utf-8">
     <meta name="description" content="">
@@ -22,10 +22,17 @@
 		    </button>
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-right">
+					{% if user.user_profile == "Administrator" %}
+					<li>
+					<a href="/admin">Dashboard</a>
+					</li>
+					{% endif %}
 					<li><a href="/search">Search</a></li>
 					<li class="active"><a href="#">Messages</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.first_name}}<b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-user"></i>  {{user.first_name}}
+							<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li id="logout"><a href="/signout">Logout</a></li>
 						</ul>

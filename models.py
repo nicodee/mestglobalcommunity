@@ -31,7 +31,7 @@ class User(db.Model):
         email_address = user_data.get('emailAddress')
         results  = cls.gql("WHERE email=:1",email_address)
         count    = results.count()
-        alias    = access.createAlias( user_data.get('firstName') + " " + user_data.get('lastName') ) + "@mestglobalcommunity.appspotmail.com"
+        alias    = access.createAlias( user_data.get('firstName') + " " + user_data.get('lastName') ) + "@mestmentorplatform.appspotmail.com"
 
         if count==0:
             user = User(

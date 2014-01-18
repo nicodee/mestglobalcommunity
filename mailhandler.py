@@ -2,91 +2,17 @@ from models import User, Message
 from time import gmtime, strftime
 import mandrill
 import exceptions
-import mailContent
 import access
+import mailContent
 KEY = access.mandrill_key 
-
-#sending confirmation mail
-def populate_confirmation_message(user):
-    user_status      = user.confirmation_status
-    user_name        = user.first_name + " " + user.last_name
-    confirmation_url = access.confirmation_url  %(user_status)
-    message = {"sender_email"     : "admin@mestglobalcommunity.appspotmail.com" ,
-                "sender_name"      : "Admin",
-                "receiver_email"   : user.email,
-                "receiver_name"    : user_name,
-                "subject"          : "Welcome to %s" %(user_name),
-                "tag"              : "Signup Confirmation",
-                "reply_to"         : "<no-reply>@mestglobalcommunity.appspotmail.com",
-                "confirmation_url" : confirmation_url
-                }
-    return message
-
-def confirmationMail(user):
-    message          = populate_confirmation_message(user) 
-    from_email       = message.get("sender_email")
-    from_name        = message.get("sender_name")
-    to_email         = message.get("receiver_email")
-    to_name          = message.get("receiver_name")
-    subject          = message.get("subject")
-    tags             = message.get("tag")
-    html             = mailContent.confirmation
-    reply_to         = message.get("reply_to")
-    confirmation_url = message.get("confirmation_url")
-
-    return sendConfirmationMail(from_email, from_name, to_email, to_name, subject, tags, html, reply_to, confirmation_url)
-
-
-def sendConfirmationMail(from_email, from_name, to_email, to_name, subject, tags, html, reply_to, confirmation_url):
-    try:
-        mandrill_client = mandrill.Mandrill(KEY)
-        message = {'auto_html': True,
-         'auto_text': True,
-         'from_email': from_email,
-         'from_name': from_name,
-         'global_merge_vars': [{'content': 'merge1 content', 'name': 'merge1'}],
-         'headers': {'Reply-To': reply_to},
-         'html': html,
-         'important': True,
-         'inline_css': True,
-         'merge': True,
-         'merge_vars': [{'rcpt': to_email,
-                         'vars': [
-                                    {'name': 'user', 'content': to_name},
-                                    {'name': 'email', 'content': to_email},
-                                    {'name':'confirmationurl', 'content': confirmation_url}
-                                  ]
-                        }],
-         'metadata': {'website': 'www.mestglobalcommunity.appspot.com'},
-         'preserve_recipients': None,
-         'recipient_metadata': [{'rcpt': to_email,
-                                 'values': {'user_id': 123456}}],
-         'signing_domain': None,
-         'subject': subject,
-         'tags': [tags],
-         'text': "text",
-         'to': [{'email': to_email}],
-         'track_clicks': True,
-         'track_opens': True,
-         'tracking_domain': None,
-         'url_strip_qs': None}
-        result = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
-        return result
-
-
-    except mandrill.Error, e: 
-        return 'A mandrill error occurred: %s - %s' % (e.__class__, e)
-#confirmation mail ends here
 
 
 #sending an outbound mail. From entrepreneur to mentor or job applicant
-
 def outBoundMail(message):
 
     from_email = message.get("sender_email")
     from_name  = message.get("sender_name")
     to_email   = message.get("receiver_email")
-    # to_email   = "kaizzenn@yahoo.com"
     to_name    = message.get("receiver_name")
     subject    = message.get("subject")
     html       = message.get("content")
@@ -112,7 +38,7 @@ def sendOutboundMail(from_email, from_name, to_email, to_name, subject, html, ta
          'inline_css': True,
          'merge': merge,
          'merge_vars': [{'rcpt': to_email, 'vars': variables}],
-         'metadata': {'website': 'www.mestglobalcommunity.appspot.com'},
+         'metadata': {'website': 'www.mestmentorplatform.appspot.com'},
          'preserve_recipients': None,
          'recipient_metadata': [{'rcpt': to_email,
                                  'values': {'rcpt_name': to_name}
@@ -140,15 +66,13 @@ def getAdminDetails():
 
     recipient['name']  = "Administration" 
     recipient['email'] = "nnutsukpui@gmail.com"
-    # #<incubator.mgmt@meltwater.org>
-    # recipient['alias'] = "<no-reply>@mestglobalcommunity.appspotmail.com"
-    # recipient['alias'] = "incubator.mgmt@meltwater.org"
+    # recipient['alias'] = "<no-reply>@mestmentorplatform.appspotmail.com"
      # <incubator.mgmt@meltwater.org>
 
 
     # recipient['name']  = "Anirudh Narla" 
     # recipient['email'] = "anirudh@meltwater.org"
-    recipient['alias'] = "<no-reply>@mestglobalcommunity.appspotmail.com"
+    recipient['alias'] = "<no-reply>@mestmentorplatform.appspotmail.com"
 
     return recipient
 
@@ -158,7 +82,7 @@ def requestMail(user):
     new_user_name    = user.first_name + " " + user.last_name
     new_user_role    = user_role.get(user.user_profile)
 
-    from_email       = "admin@mestglobalcommunity.appspotmail.com" 
+    from_email       = "admin@mestmentorplatform.appspotmail.com" 
     from_name        = "Signup Administration"
 
     recipient        = getAdminDetails();
@@ -171,7 +95,7 @@ def requestMail(user):
     reply_to         = recipient.get("alias")
     tags             = "Request For Confirmation"
 
-    confirmation_url = "http://mestglobalcommunity.appspot.com/admin"
+    confirmation_url = access.admin_url
 
     variables        = [{'name': 'username', 'content': new_user_name}, 
                         {'name': 'role', 'content': new_user_role }, 
@@ -194,7 +118,7 @@ def sendRequestMail(from_email, from_name, to_email, to_name, subject, html, tag
          'inline_css': True,
          'merge': True,
          'merge_vars': [{'rcpt': to_email, 'vars': variables}],
-         'metadata': {'website': 'www.mestglobalcommunity.appspot.com'},
+         'metadata': {'website': 'www.mestmentorplatform.appspot.com'},
          'preserve_recipients': None,
          'recipient_metadata': [{'rcpt': to_email,
                                  'values': {'user_id': 123456}}],
@@ -246,9 +170,10 @@ def sendCopy(new_message, notify):
     to_name    = new_message.get("sender_name")
     subject    = "Notification"
     html       = mailContent.notification_sent
-    reply_to   = "<no-reply>@mestglobalcommunity.appspotmail.com"
+    reply_to   = "<no-reply>@mestmentorplatform.appspotmail.com"
     tags       = "Outbound Mail"
-    confirmation_url = "http://mestglobalcommunity.appspot.com/messages"
+    
+    confirmation_url = access.message_url
     variables  = [  {'name': 'username', 'content': new_message.get("sender_name")},
                     {'name': 'receiver_name', 'content': new_message.get("receiver_name")}, 
                     {'name': 'role', 'content'    : new_message.get("receiver").user_profile },
@@ -288,9 +213,10 @@ def notifyEntrepreneur(message):
         html   = mailContent.notification_received
     except:
         html   = "You just received a mail"
-    reply_to   = "<no-reply>@mestglobalcommunity.appspotmail.com"
+    reply_to   = "<no-reply>@mestmentorplatform.appspotmail.com"
     tags       = "Outbound Mail"
-    confirmation_url = "http://mestglobalcommunity.appspot.com/messages"
+
+    confirmation_url = access.message_url
     variables  = [  {'name': 'username', 'content': message.get("receiver").first_name + " " +message.get("receiver").last_name},
                     {'name': 'sender_name', 'content': message.get("sender").first_name + " " +message.get("sender").last_name}, 
                     {'name': 'role', 'content'    : message.get("sender").user_profile },
@@ -300,31 +226,36 @@ def notifyEntrepreneur(message):
 
 
 def confirmUserMail(user):
-    from_email = "no-reply@mestglobalcommunity.appspotmail.com"
+    from_email = "no-reply@mestmentorplatform.appspotmail.com"
     from_name  = "MEST Mentor Platform"
     to_email = user.notify_mail
     to_name  = user.first_name + " " + user.last_name
     subject = "Welcome to the MEST Mentor Platform!"
-    confirmation_url = "http://mestglobalcommunity.appspot.com/signin"
-    # confirmation_url = "http://localhost:8080/signin"
+    
+    confirmation_url = access.signin_url
     
     if user.user_profile == "Mentor":
         html = mailContent.confirm_user_mentor
-        variables = [{ 'name': 'username', 'content': to_name}]  
+        variables = [{ 'name': 'username', 'content': to_name},
+                {'name': 'server_url', 'content': access.server_url},
+                {'name': 'signin_url', 'content': confirmation_url},
+                {'name': 'confirmation_url', 'content': confirmation_url}]  
 
     elif user.user_profile == "Entrepreneur":
         html = mailContent.confirm_user
         variables = [{ 'name': 'username', 'content': to_name},
+                    {'name': 'signin_url', 'content': confirmation_url},
                     {'name': 'confirmation_url', 'content': confirmation_url}]
 
-    reply_to = "<no-reply>@mestglobalcommunity.appspotmail.com"
+
+    reply_to = "<no-reply>@mestmentorplatform.appspotmail.com"
     tags = "Confirmed User"
     merge = False
     return sendOutboundMail(from_email, from_name, to_email, to_name, subject, html, tags, reply_to, variables, merge)
 
 
 def notificationMail(user):
-    from_email = "no-reply@mestglobalcommunity.appspotmail.com"
+    from_email = "no-reply@mestmentorplatform.appspotmail.com"
     from_name  = "MEST Mentor Platform"
     to_email = user.notify_mail
     to_name  = user.first_name + " " + user.last_name
@@ -337,27 +268,8 @@ def notificationMail(user):
     html = mailContent.signup_template
     variables = [{ 'name': 'username', 'content': to_name},
                 {'name': 'userprofile', 'content': user_profile}]
-    reply_to = "<no-reply>@mestglobalcommunity.appspotmail.com"
+    reply_to = "<no-reply>@mestmentorplatform.appspotmail.com"
     tags = "Confirmed User"
     merge = False
     return sendOutboundMail(from_email, from_name, to_email, to_name, subject, html, tags, reply_to, variables, merge)
 
-
-    # if user.user_profile == "Mentor":
-        # subject = "We've Received Your Mentor Application"    
-    # elif user.user_profile == "Entrepreneur":
-        # subject = "We've Received Your Entrepreneur Application"
-
-
-# confirmation_url = "http://mestglobalcommunity.appspot.com/signin"
-# confirmation_url = "http://localhost:8080/signin"
-    # if user.user_profile == "Mentor":
-    #     html = mailContent.signup_template
-    #     variables = [{ 'name': 'username', 'content': to_name},
-    #                 {'name': 'userprofile', 'content': user.user_profile}]  
-
-    # elif user.user_profile == "Entrepreneur":
-    #     html = mailContent.signup_template
-    #     variables = [{ 'name': 'username', 'content': to_name},
-    #                 {'name': 'confirmation_url', 'content': confirmation_url},
-    #                 {'name': 'userprofile', 'content': user.user_profile}]

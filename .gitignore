@@ -20,6 +20,7 @@ lib64
 requests
 img2
 bootstrap
+admin-template
 
 # Installer logs
 pip-log.txt
@@ -39,5 +40,4 @@ nosetests.xml
 
 #fmeo
 access.py
-
-
+populate.py
